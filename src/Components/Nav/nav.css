@@ -1,1 +1,8 @@
-
+.Nav{
+    grid-column: 1/3;
+    grid-row: 1/2;
+    display:grid;
+    grid-template-columns: 2fr 5.5fr 0.5fr;
+    align-items: center;
+  
+  }
