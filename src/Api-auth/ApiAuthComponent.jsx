@@ -49,6 +49,7 @@ const SpotifyAuth = ({ clientId }) => {
                 <img src={profile.images[0].url} alt="Profile" width={100} />
             )}
             <p>Email: {profile.email}</p>
+            <p>id: {profile.id}</p>
         </div>
     );
 };
