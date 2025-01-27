@@ -7,7 +7,6 @@ const SpotifyAuth = ({ clientId }) => {
 
     useEffect(() => {
         const authFlow = async () => {
-            console.log("authFlow started")
             let accessToken = localStorage.getItem("accessToken")
             if (!accessToken) {
                 const params = new URLSearchParams(window.location.search);
