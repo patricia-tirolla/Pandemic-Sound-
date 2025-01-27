@@ -1,6 +1,6 @@
 import './App.css';
-
 import SpotifyAuth from './Api-auth/ApiAuthComponent';
+import React from 'react';
 
 function App() {
   const clientId = "bab8a1bc1b6348759c3cd4efb8b959e9";
