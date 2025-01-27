@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 //token
 
 const GetPlaylist = () => {
-    const[searchPlaylist, setPlaylist] = useState("")
+    const[searchPlaylist, setPlaylists] = useState("")
 
     useEffect(() => {
         //the token
@@ -17,7 +17,8 @@ const GetPlaylist = () => {
         }
         fetch("https://api.spotify.com/v1/users/nat.torres9/playlists ", playlistParameters)
         .then(result => result.json())
-        .then(data => console.log(data))
+        .then(data => setPlaylists(data.items))
+        //add error handling
     })
 
 
