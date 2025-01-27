@@ -26,7 +26,6 @@ const SpotifyAuth = ({ clientId }) => {
             }
             if (accessToken) {
                 const fetchedProfile = await fetchProfile(accessToken);
-                console.log("Fetched profile:", fetchedProfile);
                 setProfile(fetchedProfile);
             }
         };
@@ -42,14 +41,6 @@ const SpotifyAuth = ({ clientId }) => {
         return <div>Loading...</div>;
     }
 
-    return (
-        <div>
-            <h1>Welcome, {profile.display_name}!</h1>
-            {profile.images?.[0]?.url && (
-                <img src={profile.images[0].url} alt="Profile" width={100} />
-            )}
-            <p>Email: {profile.email}</p>
-        </div>
-    );
+
 };
 export default SpotifyAuth;
