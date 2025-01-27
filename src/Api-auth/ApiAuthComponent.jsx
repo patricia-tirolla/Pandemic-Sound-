@@ -7,6 +7,7 @@ const SpotifyAuth = ({ clientId }) => {
 
     useEffect(() => {
         const authFlow = async () => {
+            console.log("authFlow started")
             let accessToken = localStorage.getItem("accessToken")
             if (!accessToken) {
                 const params = new URLSearchParams(window.location.search);
@@ -16,8 +17,11 @@ const SpotifyAuth = ({ clientId }) => {
                 } else {
                     try {
                         accessToken = await getAccessToken(clientId, code);
-                        console.log("access token = " + accessToken)
-                        localStorage.setItem("accessToken", accessToken);
+                        if (!localStorage.getItem("accessToken")) {
+                            console.log("access token = " + accessToken)
+                            localStorage.setItem("accessToken", accessToken);
+                        }
+
                     } catch (err) {
                         console.error("Error during authentication:", err);
                         setError("Failed to authenticate. Please try again.");
@@ -28,6 +32,7 @@ const SpotifyAuth = ({ clientId }) => {
                 const fetchedProfile = await fetchProfile(accessToken);
                 console.log("Fetched profile:", fetchedProfile);
                 setProfile(fetchedProfile);
+                localStorage.setItem("profileId", fetchedProfile.id);
             }
         };
 
@@ -49,6 +54,7 @@ const SpotifyAuth = ({ clientId }) => {
                 <img src={profile.images[0].url} alt="Profile" width={100} />
             )}
             <p>Email: {profile.email}</p>
+            <p>Id: {profile.id}</p>
         </div>
     );
 };
