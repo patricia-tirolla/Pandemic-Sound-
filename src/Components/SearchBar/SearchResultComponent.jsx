@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-const TrackDataFetcher = ({ url, token }) => {
-    const [trackData, setTrackData] = useState(null);
+const SearchResult = ({ url, token }) => {
+    const [valueList, setValueList] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const trackSearch = async () => {
+        const SearchFetcher = async () => {
             try {
                 const response = await fetch(url, {
                     method: "GET",
@@ -20,8 +20,7 @@ const TrackDataFetcher = ({ url, token }) => {
                 }
 
                 const trackData = await response.json();
-                setTrackData(trackData);
-                console.log(trackData);
+                setValueList(trackData);
             } catch (error) {
                 console.error("Error fetching the track:", error);
                 setError(error);
@@ -29,7 +28,7 @@ const TrackDataFetcher = ({ url, token }) => {
                 setLoading(false);
             }
         };
-        trackSearch()
+        SearchFetcher()
     }, [url, token])
 
     if (loading) {
@@ -40,11 +39,11 @@ const TrackDataFetcher = ({ url, token }) => {
         return <div>Error: {error}</div>;
     }
 
-    if (trackData) {
+    if (valueList) {
         return (
             <div>
                 <ul>
-                    {trackData?.albums?.items?.map((item) => (
+                    {valueList?.albums?.items?.map((item) => (
                         <li key={item.id}>
                             {item.name}
                             {/* <img
@@ -55,11 +54,11 @@ const TrackDataFetcher = ({ url, token }) => {
                         </li>))}
                 </ul>
                 <ul>
-                    {trackData?.artists?.items?.map((item) => (
+                    {valueList?.artists?.items?.map((item) => (
                         <li key={item.id}>{item.name}</li>))}
                 </ul>
                 <ul>
-                    {trackData?.tracks?.items?.map((item) => (
+                    {valueList?.tracks?.items?.map((item) => (
                         <li key={item.id}>{item.name}</li>))}
                 </ul>
             </div>
@@ -68,4 +67,4 @@ const TrackDataFetcher = ({ url, token }) => {
 
 };
 
-export default TrackDataFetcher;
+export default SearchResult;
