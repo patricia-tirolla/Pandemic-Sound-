@@ -1,0 +1,24 @@
+:root {
+  --primary-text-color: #ffffff;  
+  --secondary-text-color:#000000; 
+  --highlight-text-color:#B09FFF;
+  --main-background-color: #000000; 
+  --secondary-background-color: #B09FFF; 
+  --searchBar-color:white; 
+
+}
+
+.App {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 7fr;
+  height: 100vh; 
+  width: 100vw;
+  color: var(--primary-text-color);
+  background-color: var(--main-background-color);
+}
+
+
+
+
+
