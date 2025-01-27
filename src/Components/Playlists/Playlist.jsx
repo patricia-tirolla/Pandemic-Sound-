@@ -1,36 +1,50 @@
 import React, { useEffect, useState } from "react";
 
-// userID =
-//URL to fetch
-//token
+
 
 const GetPlaylist = () => {
-    const[searchPlaylist, setPlaylists] = useState("")
+    const[userPlaylists, setPlaylists] = useState([])
+    const profileId = localStorage.getItem("profileId")
+    const token = localStorage.getItem("accessToken")
 
     useEffect(() => {
-        //the token
+        if (!profileId || !token) {
+            console.error("Missing profileId or token");
+            return;
+          }
+     
+    
         var playlistParameters ={
             method:"GET",
             headers: {
-                'Authorization': 'Bearer BQAsUoenGNgd_jHQgLmz4sqsiRyHXrppvgpQubhTTCPp8HsWp9eJ144i8-EuDxpx6C1IWjihNzclwlPPSBpy9zeeibIQaP9GVCsDkyVgwZZOTPb4fv4TLz-9WC9SAtq86xx8U675Y5fWWGjtLUG2wj_97X9yf-f66XeiVQFneNHnKeSLGFOzXUF5b2N8UQUI0rwNA1NavSk'
+                'Authorization': `Bearer ${token}`,
             },
         }
-        fetch("https://api.spotify.com/v1/users/nat.torres9/playlists ", playlistParameters)
+        const playlistUrl = `https://api.spotify.com/v1/users/${profileId}/playlists`;
+        fetch(playlistUrl, playlistParameters)
         .then(result => result.json())
         .then(data => setPlaylists(data.items))
-        //add error handling
+        .catch((error) => console.error("Error fetching playlists:", error));
+     
     })
 
 
     return (
-      <div className="playlist">
-        {/* map() and return a div */}
-         <div className="playlistContainer">
-            <h3>Title</h3>
-            <p>Songs n°</p>
-         </div>
-
-
+      <div className="playlistList">
+      
+        <div className="playlistContainer">
+        <h3>Playlists</h3>
+        {userPlaylists.length > 0 ? (
+          userPlaylists.map((userPlaylists, index) => (
+            <div key={index}>
+              <h4>{userPlaylists.name}</h4>
+              <p>Songs: {userPlaylists.tracks.total}</p>
+            </div>
+          ))
+        ) : (
+          <p>No playlists found</p>
+        )}
+      </div>
       </div>
     );
 
