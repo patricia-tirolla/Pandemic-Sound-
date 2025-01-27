@@ -1,0 +1,10 @@
+.sideBar{
+    grid-column: 1;
+    grid-row: 2/3;
+    justify-content: center;
+    background-image:url(/public/assets/sideBar-bakcground.png) ;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 0px 20px 0px 0px;
+  
+  }
