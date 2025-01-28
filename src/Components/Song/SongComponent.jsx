@@ -25,7 +25,6 @@ const useSpotifyTrackData = (accessToken, trackId) => {
                 }
 
                 const data = await response.json();
-                console.log("Track data:", data);
                 setTrackData(data);
             } catch (err) {
                 console.error("Error fetching track data:", err);

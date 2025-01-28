@@ -25,7 +25,6 @@ const Song = ({ clientId }) => {
                     <h2>Track Data</h2>
                 <p>{trackData.name}</p>
                 <p>{trackData.artists[0].name}</p>
-                <p>{trackData.album.name}</p>
                 <p>Duration: {formatDuration(trackData.duration_ms)}</p>
                 <img src={trackData.album.images[0].url} alt="Album Art" />
                 </div>
