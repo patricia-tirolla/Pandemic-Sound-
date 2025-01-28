@@ -28,9 +28,26 @@ const SpotifyAuth = ({ clientId }) => {
                 }
             }
             if (accessToken) {
-                const fetchedProfile = await fetchProfile(accessToken);
-                setProfile(fetchedProfile);
-                localStorage.setItem("profileId", fetchedProfile.id);
+               try {
+                    const fetchedProfile = await fetchProfile(accessToken);
+                    if (fetchedProfile.error && fetchedProfile.error.status === 401) {
+                        // Token expired, restart authentication process
+                        localStorage.removeItem("accessToken");
+                        redirectToAuthCodeFlow(clientId);
+                        return;
+                    }
+                    console.log("Fetched profile:", fetchedProfile);
+                    if (fetchedProfile && fetchedProfile.id) {
+                        setProfile(fetchedProfile);
+                        localStorage.setItem("profileId", fetchedProfile.id);
+                        console.log("Profile ID stored:", fetchedProfile.id);
+                    } else {
+                        throw new Error("Profile data is missing the ID field");
+                    }
+                } catch (err) {
+                    console.error("Error fetching profile:", err);
+                    setError("Failed to fetch profile. Please try again.");
+                }
             }
         };
 
@@ -47,7 +64,7 @@ const SpotifyAuth = ({ clientId }) => {
 
     return (
         <div>
-            <h1>Welcome, {profile.display_name}!</h1>
+            <h1>Welcome, www {profile.display_name}!</h1>
             {profile.images?.[0]?.url && (
                 <img src={profile.images[0].url} alt="Profile" width={100} />
             )}
