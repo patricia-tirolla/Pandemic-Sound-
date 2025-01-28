@@ -1,4 +1,4 @@
-import GetPlaylist from "../Playlists/Playlist";
+import GetPlaylist from "./GetPlaylist/GetPlaylist";
 import "./sidebar.css"
 
 function Sidebar() {

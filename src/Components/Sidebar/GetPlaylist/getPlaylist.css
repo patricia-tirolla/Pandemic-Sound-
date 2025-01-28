@@ -1,0 +1,11 @@
+.playlistContainer{
+    display:flex;
+    flex-direction: column;
+
+    padding: 1rem;
+
+}
+
+.playlist-image{
+    width:4rem;
+}

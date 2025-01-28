@@ -1,12 +1,12 @@
-import "./homepage.css"
+import "./main.css"
 import SpotifyAuth from '../../Api-auth/ApiAuthComponent';
 
-function Homepage() {
+function Main() {
   const clientId = "bab8a1bc1b6348759c3cd4efb8b959e9";
   return (
-    <div className="homepage">
+    <div className="main">
       <SpotifyAuth clientId={clientId} />
     </div>
   );
 }
-export default Homepage;
+export default Main;
