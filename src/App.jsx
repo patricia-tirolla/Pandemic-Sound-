@@ -8,10 +8,10 @@ import Songs from './Components/Songs/Songs';
 function App() {
   return (
     <div className="App">
-      <Nav />
-      <Sidebar />
-      <Homepage />
       <Songs />
+        <Nav/>
+        <Sidebar/>
+        <Homepage/>
     </div>
   );
 }

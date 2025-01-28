@@ -16,8 +16,11 @@ const SpotifyAuth = ({ clientId }) => {
                 } else {
                     try {
                         accessToken = await getAccessToken(clientId, code);
-                        console.log("access token = " + accessToken)
-                        localStorage.setItem("accessToken", accessToken);
+                        if (!localStorage.getItem("accessToken")) {
+                            console.log("access token = " + accessToken)
+                            localStorage.setItem("accessToken", accessToken);
+                        }
+
                     } catch (err) {
                         console.error("Error during authentication:", err);
                         setError("Failed to authenticate. Please try again.");
@@ -27,6 +30,7 @@ const SpotifyAuth = ({ clientId }) => {
             if (accessToken) {
                 const fetchedProfile = await fetchProfile(accessToken);
                 setProfile(fetchedProfile);
+                localStorage.setItem("profileId", fetchedProfile.id);
             }
         };
 
@@ -41,6 +45,15 @@ const SpotifyAuth = ({ clientId }) => {
         return <div>Loading...</div>;
     }
 
-
+    return (
+        <div>
+            <h1>Welcome, {profile.display_name}!</h1>
+            {profile.images?.[0]?.url && (
+                <img src={profile.images[0].url} alt="Profile" width={100} />
+            )}
+            <p>Email: {profile.email}</p>
+            <p>Id: {profile.id}</p>
+        </div>
+    );
 };
 export default SpotifyAuth;
