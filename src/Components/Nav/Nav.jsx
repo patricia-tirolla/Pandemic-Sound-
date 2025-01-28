@@ -1,11 +1,15 @@
-import React from "react";
+import React from "react"
 import "./nav.css";
-function Nav() {
-    return (
-      <div className="Nav">
-        <h1>Nav</h1>
-      </div>
-    );
-  }
-  
-  export default Nav;
+import SearchBar from "../SearchBar/SearchBarComponent";
+
+function Nav({handleSearchSubmit, searchValue, onSearchChange}) {
+
+  return (
+    <div className="Nav">
+      <h1>Nav</h1>
+      <SearchBar handleSearchSubmit={handleSearchSubmit} value={searchValue} onChange={onSearchChange}/>
+    </div>
+  );
+}
+
+export default Nav;
