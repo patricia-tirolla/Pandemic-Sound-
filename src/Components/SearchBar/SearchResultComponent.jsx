@@ -7,6 +7,9 @@ const SearchResult = ({ url, token }) => {
 
     useEffect(() => {
         const SearchFetcher = async () => {
+            if (url === "") {
+                return;
+            }
             try {
                 const response = await fetch(url, {
                     method: "GET",
