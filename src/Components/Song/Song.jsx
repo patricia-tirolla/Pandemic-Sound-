@@ -27,6 +27,8 @@ const Song = ({ clientId }) => {
                 <p>{trackData.artists[0].name}</p>
                 <p>Duration: {formatDuration(trackData.duration_ms)}</p>
                 <img src={trackData.album.images[0].url} alt="Album Art" />
+                <button>heart</button>
+                <button>add to playlist</button>
                 </div>
             )}
         </div>
