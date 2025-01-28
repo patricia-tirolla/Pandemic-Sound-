@@ -1,48 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { redirectToAuthCodeFlow, getAccessToken, } from "../../Api-auth/script";
+import React, { useState } from "react";
 import useSpotifyTrackData from "./SongComponent";
 
 const Song = ({ clientId }) => {
-    const [error, setError] = useState(null);
-    const [accessToken, setAccessToken] = useState(localStorage.getItem("accessToken"));
-
-    useEffect(() => {
-        const authFlow = async () => {
-            if (!accessToken) {
-                const params = new URLSearchParams(window.location.search);
-                const code = params.get("code");
-                if (!code) {
-                    redirectToAuthCodeFlow(clientId);
-                } else {
-                    try {
-                        const token = await getAccessToken(clientId, code);
-                        if (!token) {
-                            throw new Error("Access token is undefined");
-                        }
-                        console.log("Access token obtained:", token);
-                        localStorage.setItem("accessToken", token);
-                        setAccessToken(token);
-                    } catch (err) {
-                        console.error("Error during authentication:", err);
-                        setError("Failed to authenticate. Please try again.");
-                        return;
-                    }
-                }
-            }
-          
-        };
-
-        authFlow();
-    }, [clientId, accessToken]);
-
+    const [error] = useState(null);
+    const [accessToken] = useState(localStorage.getItem("accessToken"));
+    
     const trackId = "11dFghVXANMlKmJXsNCbNl"; // Example track ID
     const { trackData, error: trackError } = useSpotifyTrackData(accessToken, trackId);
 
     if (error || trackError) {
         return <div>Error: {error || trackError}</div>;
     }
-
-   
+    const formatDuration = (ms) => {
+        const minutes = Math.floor(ms / 60000);
+        const seconds = ((ms % 60000) / 1000).toFixed(0);
+        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    };
 
     return (
         <div>
@@ -50,7 +23,11 @@ const Song = ({ clientId }) => {
             {trackData && (
                 <div>
                     <h2>Track Data</h2>
-                    <pre>{JSON.stringify(trackData, null, 2)}</pre>
+                <p>{trackData.name}</p>
+                <p>{trackData.artists[0].name}</p>
+                <p>{trackData.album.name}</p>
+                <p>Duration: {formatDuration(trackData.duration_ms)}</p>
+                <img src={trackData.album.images[0].url} alt="Album Art" />
                 </div>
             )}
         </div>

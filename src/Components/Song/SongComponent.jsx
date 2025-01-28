@@ -35,8 +35,6 @@ const useSpotifyTrackData = (accessToken, trackId) => {
 
         fetchTrackData();
     }, [accessToken, trackId]);
-
     return { trackData, error };
 };
-
 export default useSpotifyTrackData;
