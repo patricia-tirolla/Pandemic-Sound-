@@ -3,7 +3,7 @@ import Homepage from './Components/Homepage/Homepage';
 import Nav from './Components/Nav/Nav';
 import Sidebar from './Components/Sidebar/Sidebar';
 import './styles/App.css';
-// import Songs from './Components/Songs/Songs';
+import Song from './Components/Song/Song';
 
 function App() {
   const token = localStorage.getItem("accessToken");
@@ -24,6 +24,7 @@ function App() {
         <Nav handleSearchSubmit={handleSearchSubmit} searchValue={searchValue} onSearchChange={onSearchChange}/>
         <Sidebar/>
         <Homepage searchValue={searchValue} token={token} url={url} />
+        <Song />
     </div>
   );
 }
