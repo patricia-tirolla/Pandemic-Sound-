@@ -6,6 +6,10 @@
   --secondary-background-color: #B09FFF; 
   --searchBar-color:white; 
 
+  --title-size:3rem;
+  --subtitle-size:2rem;
+  --normal-text-size: 1rem;
+  --button-hover-color:#9d8ee2;
 }
 
 .App {

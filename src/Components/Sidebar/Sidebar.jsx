@@ -4,7 +4,7 @@ import "./sidebar.css"
 function Sidebar() {
     return (
       <div className="sideBar">
-        <h2>Playlists</h2>
+        <h2 className="sideBar-title">Playlists</h2>
         <GetPlaylist/>
 
       </div>

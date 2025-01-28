@@ -55,10 +55,12 @@ const GetPlaylist = () => {
       <div className="playlistContainer">
       {data.length > 0 ? (
         data.map((playlist) => (
-          <div key={playlist.id}>
+          <div key={playlist.id} className="single-playlist-container">
+            <img src={playlist.images[0].url} className="playlist-image"/>
+            <div className="playlist-info">
             <h4>{playlist.name}</h4>
             <p>{playlist.tracks.total} songs</p>
-            <img src={playlist.images[0].url} className="playlist-image"/>
+            </div>
           </div>
         ))
       ) : (
