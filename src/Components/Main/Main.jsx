@@ -4,7 +4,6 @@ import { fetchProfile } from "../../Api-auth/script";
 import { useState, useEffect } from "react"
 import Nav from "../Nav/Nav";
 import { ProfileContext } from "../../contexts";
-import LandingPage from "../LandingPage/LandingPageComponent";
 import Homepage from "../Homepage/HomepageComponent";
 
 const Main = () => {
@@ -27,7 +26,6 @@ const Main = () => {
       <div className="App">
         <Nav />
         <Homepage />
-        <LandingPage />
       </div>
 
     </ProfileContext.Provider >
