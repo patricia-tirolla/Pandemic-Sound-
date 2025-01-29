@@ -1,3 +1,5 @@
+export const clientId = "bab8a1bc1b6348759c3cd4efb8b959e9";
+
 export const redirectToAuthCodeFlow = async (clientId) => {
     const verifier = generateCodeVerifier(128);
     const challenge = await generateCodeChallenge(verifier);
@@ -63,3 +65,11 @@ const generateCodeChallenge = async (codeVerifier) => {
         .replace(/=+$/, "");
 };
 
+export const isUserAutheticated = () => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+        return true
+    } else {
+        return false
+    }
+}
