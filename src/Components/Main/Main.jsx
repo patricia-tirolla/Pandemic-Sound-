@@ -1,21 +1,36 @@
-import "./main.css"
-import SpotifyAuth from '../../Api-auth/ApiAuthComponent';
-import {Route} from "react-router-dom"
-import { Outlet } from 'react-router-dom';
+import { Outlet } from "react-router-dom";
+import "./main.css";
+import "../../styles/App.css";
+import { fetchProfile } from "../AuthCallback/script";
+import { useState, useEffect } from "react";
+
+import { ProfileContext } from "../../contexts";
+import Nav from "../Nav/Nav";
+import Sidebar from "../Sidebar/Sidebar";
 
 function Main() {
+  const [profile, setProfile] = useState(null);
+  const token = localStorage.getItem("accessToken");
 
+  useEffect(() => {
+    (async () => {
+      if (token) {
+        const fetchedProfile = await fetchProfile(token);
+        console.log("Fetched profile:", fetchedProfile);
+        setProfile(fetchedProfile);
+        localStorage.setItem("profileId", fetchedProfile.id);
+      }
+    })();
+  }, [token]);
 
-
-
-  // const clientId = "bab8a1bc1b6348759c3cd4efb8b959e9";
   return (
-    <div className="main">
-     
-     {/* <Route path="/callback" element={<SpotifyAuth clientId={clientId} />} /> */}
-      {/* <SpotifyAuth clientId={clientId} /> */}
-      <Outlet />
-    </div>
+    <ProfileContext.Provider value={profile}>
+      <Nav />
+      <Sidebar />
+      <div className="main">
+        <Outlet />
+      </div>
+    </ProfileContext.Provider>
   );
 }
 export default Main;

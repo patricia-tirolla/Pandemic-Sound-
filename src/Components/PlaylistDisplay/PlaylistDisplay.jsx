@@ -6,7 +6,7 @@ const PlaylistDisplay = () => {
 
   const {state} = useLocation();
   const playlist = state?.playlist;
-  console.log(playlist)
+
 
   if (!playlist) {
     return <h2>Loading...</h2>;

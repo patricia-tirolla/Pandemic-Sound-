@@ -1,54 +1,33 @@
-import { PlaylistProvider } from './Contexts/PlaylistContext';
-import {Route, Routes, useNavigate} from "react-router-dom";
-import React, { useEffect } from 'react';
 
-import Main from './Components/Main/Main';
-import Nav from './Components/Nav/Nav';
-import Sidebar from './Components/Sidebar/Sidebar';
-import SpotifyAuth from "./Api-auth/ApiAuthComponent";
-import PlaylistDisplay from "./Components/PlaylistDisplay/PlaylistDisplay"
-import "./styles/reset.css"
-import './styles/App.css';
+import { Route, Routes, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import Main from "./Components/Main/Main";
 
-
-const clientId = "bab8a1bc1b6348759c3cd4efb8b959e9";
+import Homepage from "./Components/Homepage/HomepageComponent";
+import PlaylistDisplay from "./Components/PlaylistDisplay/PlaylistDisplay";
+import AuthCallback from "./Components/AuthCallback/AuthCallbackComponent";
+import LandingPage from "./Components/LandingPage/LandingPageComponent";
+import SearchPage from "./Components/SearchPage/SearchPageComponent";
+import "./styles/reset.css";
+import "./styles/App.css";
 
 function App() {
-
-  const navigate = useNavigate();
-
-  
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (!token) {
-      
-      navigate("/callback");
-    }
-  }, [navigate]);
-
-
   return (
-    <PlaylistProvider>
-    <div className="App">
-         <Nav/>
-         <Sidebar/>
 
+  <div className="app">
       <Routes>
-        {/* here all the path with the components, to actually diaplay the component and the path you need to event on click to link to this path */}
+        <Route path="/" element={<LandingPage />} />
 
-      <Route path="/" element={<Main />}>
+        <Route path="/callback" element={<AuthCallback />} />
 
-          <Route path="//callback" element={<SpotifyAuth clientId={clientId} />} />
-          <Route path="/Playlist/:name" element ={ <PlaylistDisplay/>}/>
-
-      </Route>
-
+        <Route element={<Main />}>
+          <Route path="/home" element={<Homepage />} />
+          <Route path="playlist/:name" element={<PlaylistDisplay />} />
+          <Route path="search" element={<SearchPage />} />
+        </Route>
       </Routes>
-    </div>
-    </PlaylistProvider>
-   
+      </div>
   );
 }
 
 export default App;
-

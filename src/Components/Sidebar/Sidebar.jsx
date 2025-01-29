@@ -7,8 +7,8 @@ function Sidebar() {
         <h2 className="sideBar-title">Playlists</h2>
         <GetPlaylist/>
 
-      </div>
-    );
-  }
-  
-  export default Sidebar;
+    </div>
+  );
+}
+
+export default Sidebar;

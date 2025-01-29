@@ -1,27 +1,42 @@
 import "./getPlaylist.css";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext} from "react";
 import { useNavigate } from "react-router-dom";
-import { usePlaylist } from "../../../Contexts/PlaylistContext";
+import { ProfileContext } from "../../../contexts";
+
 
 const GetPlaylist = () => {
-  const { playlists, fetchPlaylists, loading } = usePlaylist();
+
+  const profile = useContext(ProfileContext) 
+
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-      setTimeout(() => {
-        const profileId = localStorage.getItem("profileId");
+     
         const token = localStorage.getItem("accessToken");
+       
+        const playlistParameters = {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
 
-        if (profileId && token && playlists.length === 0) {
-          fetchPlaylists(profileId, token);
-        } else {
-          setData(playlists);
+        if (profile !== null) {
+          const playlistAPI = `https://api.spotify.com/v1/users/${profile.id}/playlists`;
+     
+          fetch(playlistAPI, playlistParameters)
+         .then(response => response.json())
+         .then(playlist => setData(playlist.items))
+         .catch(error=> console.log("Error fetching playlists:", error)) 
+        
+        .finally(()=>setLoading(false))
         }
-      }, 1000);
+   
     },
-    [fetchPlaylists, playlists]);
+    [profile]);
 
   if (loading) {
     return <h2>Loading...</h2>;
