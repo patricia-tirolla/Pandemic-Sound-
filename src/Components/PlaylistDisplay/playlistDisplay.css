@@ -1,0 +1,15 @@
+.display-playlist-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.display-playlist-title{
+    font-size: var(--subtitle-size);
+    padding: 2rem;
+}
+.display-playlist-img{
+   
+    width: 40%;
+    height:auto;
+}

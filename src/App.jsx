@@ -1,3 +1,4 @@
+import { PlaylistProvider } from './Contexts/PlaylistContext';
 import {Route, Routes, useNavigate} from "react-router-dom";
 import React, { useEffect } from 'react';
 
@@ -27,19 +28,24 @@ function App() {
 
 
   return (
+    <PlaylistProvider>
     <div className="App">
          <Nav/>
          <Sidebar/>
 
       <Routes>
         {/* here all the path with the components, to actually diaplay the component and the path you need to event on click to link to this path */}
+
       <Route path="/" element={<Main />}>
+
           <Route path="//callback" element={<SpotifyAuth clientId={clientId} />} />
           <Route path="/Playlist/:name" element ={ <PlaylistDisplay/>}/>
-        </Route>
+
+      </Route>
 
       </Routes>
     </div>
+    </PlaylistProvider>
    
   );
 }

@@ -1,29 +1,22 @@
-
-import { useParams } from "react-router-dom";
-import {useEffect, useState} from"react"
+import {useLocation} from"react-router-dom"
 import "./playlistDisplay.css" 
-// this will need the props from get playlist 
+
+
 const PlaylistDisplay = () => {
 
-  const { name } = useParams();
-  // const [playlistDetails, setPlaylistDetails] = useState(null);
+  const {state} = useLocation();
+  const playlist = state?.playlist;
+  console.log(playlist)
 
-  // useEffect(()=>{
-  //   const getPlaylistDetails = async () => {
-  //     const response = await fetch(`https://api.spotify.com/v1/playlists/${name}`);
-  //     const data = await response.json();
-  //     setPlaylistDetails(data);
-  //   };
-  //   getPlaylistDetails();
-  // },[name])
+  if (!playlist) {
+    return <h2>Loading...</h2>;
+  }
 
-  // if (!playlistDetails) {
-  //   return <h2>Loading...</h2>;
-  // }
 
   return (
-    <div>
-      <h2>Playlist: {name}</h2>
+    <div className="display-playlist-container">
+      <h2 className="display-playlist-title">Playlist: {playlist.name}</h2>
+      <img src={playlist.images[0].url} className="display-playlist-img"></img>
      
     </div>
   );
