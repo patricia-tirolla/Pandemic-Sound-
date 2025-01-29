@@ -1,15 +1,16 @@
-import "./main.css"
+import "./homepage.css"
 import "../../styles/App.css"
-import { fetchProfile } from "../AuthCallback/script";
+import SearchPage from "../SearchPage/SearchPageComponent";
+import { redirectToAuthCodeFlow, isUserAutheticated, fetchProfile, clientId } from "../AuthCallback/script";
 import { useState, useEffect } from "react"
+import Sidebar from "../Sidebar/Sidebar";
 import Nav from "../Nav/Nav";
 import { ProfileContext } from "../../contexts";
-import Homepage from "../Homepage/HomepageComponent";
 
 const Main = () => {
   const [profile, setProfile] = useState(null);
   const token = localStorage.getItem("accessToken")
-  
+
   useEffect(() => {
     (async () => {
       if (token) {
@@ -24,13 +25,12 @@ const Main = () => {
   return (
     <ProfileContext.Provider value={profile}>
       <div className="App">
-        <Nav />
-        <Homepage />
+        <Nav handleSearchSubmit={handleSearchSubmit} searchValue={searchValue} onSearchChange={onSearchChange} />
+        < Sidebar />
       </div>
 
     </ProfileContext.Provider >
   )
 }
 export default Main;
-
 

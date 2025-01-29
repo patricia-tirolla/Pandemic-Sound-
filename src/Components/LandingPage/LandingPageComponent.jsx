@@ -1,5 +1,5 @@
 import React from "react"
-import { redirectToAuthCodeFlow, isUserAutheticated, clientId } from "../../Api-auth/script";
+import { redirectToAuthCodeFlow, isUserAutheticated, clientId } from "../AuthCallback/script";
 import { ProfileContext } from "../../contexts";
 import { useContext } from "react"
 

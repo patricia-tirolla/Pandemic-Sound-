@@ -1,5 +1,5 @@
 import React from "react";
-import { isUserAutheticated } from "../../Api-auth/script";
+import { isUserAutheticated } from "../AuthCallback/script";
 import Sidebar from "../Sidebar/Sidebar";
 import { ProfileContext } from "../../contexts";
 import { useContext } from "react"

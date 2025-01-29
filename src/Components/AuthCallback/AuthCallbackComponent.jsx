@@ -1,4 +1,4 @@
-import { redirectToAuthCodeFlow, getAccessToken, clientId } from "../../Api-auth/script";
+import { redirectToAuthCodeFlow, getAccessToken, clientId } from "./script";
 import { useEffect } from "react"
 import { useNavigate } from "react-router";
 
