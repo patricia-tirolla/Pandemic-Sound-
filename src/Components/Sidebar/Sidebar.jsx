@@ -3,12 +3,13 @@ import React from "react";
 
 
 function Sidebar() {
-    return (
-      <div className="sideBar">
-        <h2>Playlists</h2>
 
-      </div>
-    );
-  }
-  
-  export default Sidebar;
+  return (
+
+    <div className="sideBar">
+
+    </div>
+  );
+}
+
+export default Sidebar;

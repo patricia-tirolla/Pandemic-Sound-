@@ -73,3 +73,4 @@ const SpotifyAuth = ({ clientId }) => {
     );
 };
 export default SpotifyAuth;
+
