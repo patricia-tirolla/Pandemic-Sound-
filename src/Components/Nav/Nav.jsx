@@ -2,7 +2,6 @@ import React from "react"
 import "./nav.css";
 import SearchBar from "../SearchBar/SearchBarComponent";
 
-function Nav({handleSearchSubmit, searchValue, onSearchChange}) {
 
 function Nav() {
 
