@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import useSpotifyTrackData from "./SongComponent";
+import "./song.css";
 
-const Song = ({ clientId }) => {
+const Song = () => {
     const [error] = useState(null);
     const [accessToken] = useState(localStorage.getItem("accessToken"));
     
@@ -18,18 +19,19 @@ const Song = ({ clientId }) => {
     };
 
     return (
-        <div>
+        <div className="songContainer">
            
             {trackData && (
-                <div>
-                    <h2>Track Data</h2>
-                <p>{trackData.name}</p>
-                <p>{trackData.artists[0].name}</p>
-                <p>Duration: {formatDuration(trackData.duration_ms)}</p>
-                <img src={trackData.album.images[0].url} alt="Album Art" />
-                <button>heart</button>
-                <button>add to playlist</button>
-                </div>
+          <div className="trackDetails">
+          <img className="trackImage" src={trackData.album.images[0].url} alt="Track Art"/>
+          <div className="trackInfo">
+              <p className="trackName">{trackData.name}</p>
+              <p className="trackArtistName">{trackData.artists[0].name}</p>
+              <p className="trackLength">Duration: {formatDuration(trackData.duration_ms)}</p>
+              <button className="trackButtonHeart">heart</button>
+              <button className="trackButtonAddtoPlaylist">add to playlist</button>
+          </div>
+      </div>
             )}
         </div>
     );
