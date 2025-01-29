@@ -1,11 +1,13 @@
 import "./getPlaylist.css";
 import PlaylistButton from "../PlaylistButton/PlaylistButton";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const GetPlaylist = () => {
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
   
     useEffect(() => {
    
@@ -47,15 +49,17 @@ const GetPlaylist = () => {
       return <h2>Loading...</h2>; 
     }
   
-
+    const displayPlaylist = (name) => {
+      navigate(`/playlist/${name}`); 
+    }
   return (
 
     <div>
-      <PlaylistButton/>
+      {/* <PlaylistButton/> */}
       <div className="playlistContainer">
       {data.length > 0 ? (
         data.map((playlist) => (
-          <div key={playlist.id} className="single-playlist-container">
+          <div key={playlist.id} className="single-playlist-container" onClick={()=>displayPlaylist(playlist.name)}>
             <img src={playlist.images[0].url} className="playlist-image"/>
             <div className="playlist-info">
             <h4>{playlist.name}</h4>
