@@ -9,10 +9,12 @@ function Main() {
 
   return (
     <ProfileProvider>
-      <Nav />
-      <Sidebar />
-      <div className="main">
-        <Outlet />
+      <div className="app">
+        <Nav />
+        <Sidebar />
+        <div className="main">
+          <Outlet />
+        </div>
       </div>
     </ProfileProvider>
   );
