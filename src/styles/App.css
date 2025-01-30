@@ -18,6 +18,10 @@
   --text-font:"Encode Sans Semi Expanded", serif;
  
 }
+* {
+  font-family: var(--text-font);
+  font-weight: 500;
+}
 
 .app {
   display: grid;
