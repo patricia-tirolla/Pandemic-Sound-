@@ -14,7 +14,6 @@ import "./styles/App.css";
 function App() {
   return (
 
-    // <div >
     <Routes>
       <Route path="/" element={<LandingPage />} />
 
@@ -22,10 +21,10 @@ function App() {
         <Route element={<Main />}>
           <Route path="/home" element={<Homepage />} />
           <Route path="playlist/:name" element={<PlaylistDisplay />} />
+          <Route path="track/:trackid"/>
           <Route path="search" element={<SearchPage />} />
         </Route>
     </Routes>
-    // </div>
   );
 }
 
