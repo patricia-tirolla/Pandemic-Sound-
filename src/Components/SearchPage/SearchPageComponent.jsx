@@ -11,7 +11,6 @@ const SearchPage = () => {
     const [loading, setLoading] = useState(true);
     const [url, setUrl] = useState("");
     const [searchValue, setSearchValue] = useState("");
-    // const [trackId, setTrackId] = useState();
     const navigate = useNavigate();
 
     function handleSearchSubmit(e) {
@@ -23,8 +22,8 @@ const SearchPage = () => {
         setSearchValue(e.target.value)
     }
 
-    function onTrackClick() {
-        navigate("track/:trackId");
+    function onTrackClick(trackId) {
+        navigate("/track/" + trackId);
     }
 
     useEffect(() => {
@@ -74,7 +73,7 @@ const SearchPage = () => {
                     <ul className="search-list">
                         {result?.tracks?.items?.map((item) => (
                             <li key={item.id} className="single-track-container">
-                                <a href={item.id} target="_blank" rel="noopener noreferrer" onClick={onTrackClick}>
+                                <a href={item.id} target="_blank" rel="noopener noreferrer" onClick={() => onTrackClick(item.id)}>
                                     <div className="track-info">
                                         <img
                                             className="track-image"
