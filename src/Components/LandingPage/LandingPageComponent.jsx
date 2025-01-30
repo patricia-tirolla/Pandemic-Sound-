@@ -1,11 +1,9 @@
 import React from "react"
 import { redirectToAuthCodeFlow, isUserAutheticated, clientId } from "../AuthCallback/script";
-import { ProfileContext } from "../../contexts";
-import { useContext } from "react"
-
+import { useProfile } from "../../Hooks/Profile";
 
 const LandingPage = () => {
-    const profile = useContext(ProfileContext);
+    const profile = useProfile();
     return (
       <div className="landing-page">
         <h1>Welcome to Pandemic Sound!</h1>

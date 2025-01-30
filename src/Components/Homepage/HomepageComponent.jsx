@@ -1,11 +1,11 @@
 import React from "react";
 import { isUserAutheticated } from "../AuthCallback/script";
-import { ProfileContext } from "../../contexts";
-import { useContext } from "react"
 import { Link } from "react-router";
 import Song from "../Song/Song";
+import { useProfile } from "../../Hooks/Profile";
+
 const Homepage = () => {
-    const profile = useContext(ProfileContext);
+    const profile = useProfile();
 
     return (
         <>
