@@ -1,12 +1,12 @@
 import "./getPlaylist.css";
 import PlaylistDisplay from "../../PlaylistDisplay/PlaylistDisplay";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ProfileContext } from "../../../contexts";
+import { useProfile } from "../../../Hooks/Profile";
 
 const GetPlaylist = () => {
-  const profile = useContext(ProfileContext);
 
+  const profile = useProfile();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const navigate = useNavigate();
