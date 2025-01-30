@@ -1,6 +1,5 @@
 import React from "react";
 import { isUserAutheticated } from "../AuthCallback/script";
-import Sidebar from "../Sidebar/Sidebar";
 import { ProfileContext } from "../../contexts";
 import { useContext } from "react"
 import { Link } from "react-router";
@@ -11,7 +10,7 @@ const Homepage = () => {
     return (
         <>
             <div className="App">
-                <main className="homepage">
+                <div className="homepage">
                 {isUserAutheticated() && profile &&
                     <div>
                         <h2>Hi, {profile.display_name}!</h2>
@@ -22,8 +21,8 @@ const Homepage = () => {
                     </div>
                 }
                 <Link to="/search">Go to search</Link>
-            </main>
-                <Sidebar />
+            </div>
+          
             </div>
             
         </>
