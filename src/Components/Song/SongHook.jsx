@@ -13,7 +13,7 @@ const useSpotifyTrackData = (accessToken, trackId) => {
             }
 
             try {
-                const response = await fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
+                const response = await fetch(`https://api.spotify.com/v1/tracks?ids=${trackId}`, {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${accessToken}`,

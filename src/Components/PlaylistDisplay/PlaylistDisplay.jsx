@@ -17,7 +17,7 @@ const PlaylistDisplay = () => {
   return (
     <div className="display-playlist-container">
       <h2 className="display-playlist-title">Playlist: {playlist.name}</h2>
-      <img src={playlist.images[0].url} className="display-playlist-img"></img>
+      <img src={playlist.images[0].url} className="display-playlist-img" alt="playlist"></img>
      
     </div>
   );

@@ -62,7 +62,7 @@ const GetPlaylist = () => {
               className="single-playlist-container"
               onClick={() => displayPlaylist(playlist)}
             >
-              <img src={playlist.images[0].url} className="playlist-image" />
+              <img src={playlist.images[0].url} className="playlist-image" alt="playlist"/>
               <div className="playlist-info">
                 <h4>{playlist.name}</h4>
                 <p>{playlist.tracks.total} songs</p>
