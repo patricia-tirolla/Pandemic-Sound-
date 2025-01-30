@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import React from "react";
-import useFetchTracks from "../Song/SongHook";
+import useFetchTracks from "../Song/GetTrackUrl";
 import "./playlistDisplay.css";
 
 const PlaylistDisplay = () => {
@@ -15,14 +15,33 @@ const PlaylistDisplay = () => {
   if (!trackUrl) {
     return <h2>Loading...</h2>;
   }
-
+  const formatDuration = (ms) => {
+    const minutes = Math.floor(ms / 60000);
+    const seconds = ((ms % 60000) / 1000).toFixed(0);
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  };
   return (
     <div className="display-playlist-container">
       <h2 className="display-playlist-title">Playlist: {playlist.name}</h2>
       <img src={playlist.images[0].url} className="display-playlist-img" alt="playlist" />
       <ul>
-        {tracks.map((track) => (
-          <li key={track.track.id}>{track.track.name}</li>
+      {tracks.map(({ track }) => (
+          <div key={track.id} className="track">
+           {track.album.images[0] && (
+              <img
+                className="trackImage"
+                src={track.album.images[0].url}
+                alt="Track Art"
+              />
+            )}
+            <div className="trackDetails">
+            <p class="trackName">{track.name}</p>
+            <p class="trackArtist"> {track.artists.map(artist => artist.name).join(", ")}</p>
+            <p class="trackDuration">{formatDuration(track.duration_ms)}</p>
+            </div>
+            
+          </div>
+
         ))}
       </ul>
     </div>
