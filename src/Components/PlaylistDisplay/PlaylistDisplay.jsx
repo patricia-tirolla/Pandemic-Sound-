@@ -35,9 +35,9 @@ const PlaylistDisplay = () => {
               />
             )}
             <div className="trackDetails">
-            <p class="trackName">{track.name}</p>
-            <p class="trackArtist"> {track.artists.map(artist => artist.name).join(", ")}</p>
-            <p class="trackDuration">{formatDuration(track.duration_ms)}</p>
+            <p className="trackName">{track.name}</p>
+            <p className="trackArtist"> {track.artists.map(artist => artist.name).join(", ")}</p>
+            <p className="trackDuration">{formatDuration(track.duration_ms)}</p>
             </div>
             
           </div>
