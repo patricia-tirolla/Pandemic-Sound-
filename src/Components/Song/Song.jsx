@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useSpotifyTrackData from "./SongHook";
+import useSpotifyTrackData from "./GetTrackUrl";
 import "./song.css";
 import { useParams } from "react-router-dom";
 
@@ -25,28 +25,51 @@ const Song = () => {
 
   return (
     <div className="songContainer">
-      {trackData && (
-        <div className="trackDetails">
-          <img
-            className="trackImage"
-            src={trackData.album.images[0].url}
-            alt="Track Art"
-          />
-          <div className="trackInfo">
-            <p className="trackName">{trackData.name}</p>
-            <p className="trackArtistName">{trackData.artists[0].name}</p>
-            <p className="trackLength">
-              Duration: {formatDuration(trackData.duration_ms)}
-            </p>
+      {trackData && trackData.tracks && trackData.tracks.map((track) => (
+         <div key={track.id} className="track">
+         {track.album && track.album.images && track.album.images[0] && (
+           <img
+             className="trackImage"
+             src={track.album.images[0].url}
+             alt="Track Art"
+           />
+         )}
+        <h3>{track.name}</h3>
+        <p>Artist: {track.artists.map(artist => artist.name).join(", ")}</p>
+        <p>Album: {track.album.name}</p>
+        <p>Duration: {formatDuration(track.duration_ms)}</p>
+
             <button className="trackButtonHeart">heart</button>
             <button className="trackButtonAddtoPlaylist">
               add to playlist
             </button>
           </div>
-        </div>
-      )}
-    </div>
+      ))}
+      </div >
   );
 };
 
 export default Song;
+
+// const courses = [
+//   "Full Stack Developement Program",
+//   "Python Automation Testing Program",
+//   "UI/UX Program",
+// ];
+
+// function App(props) {
+
+//   /* Mapping the courses into a new array of JSX nodes as arrayDataItems */
+//   const arrayDataItems = courses.map((course) => <li>{course}</li>);
+
+//   return (
+//     <div className="container">
+//       <div>
+//         <h1>Render List/Array of Items</h1>
+//       </div>
+//       {/* returning arrayDataItems wrapped in <ul> */}
+
+//       <ul>{arrayDataItems}</ul>
+//     </div>
+//   );
+// }

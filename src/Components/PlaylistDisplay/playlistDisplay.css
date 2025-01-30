@@ -13,3 +13,16 @@
     width: 40%;
     height:auto;
 }
+.track img {
+    width: 10%;
+    height: auto;
+}
+
+.track{
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+.trackDetails {
+    margin-left: 100px;
+}
