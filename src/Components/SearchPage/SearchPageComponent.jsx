@@ -1,32 +1,28 @@
 import React, { useState, useEffect } from "react";
-import SearchBar from "./SearchBarComponent";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
+import "./searchpage.css"
 
 const SearchPage = () => {
+    const params = new URLSearchParams(window.location.search);
+
     const token = localStorage.getItem("accessToken");
     const [result, setResult] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
+    const searchValue = params.get("q");
+    const navigate = useNavigate();
 
-    const [url, setUrl] = useState("");
-    const [searchValue, setSearchValue] = useState("");
-
-    function handleSearchSubmit(e) {
-        e.preventDefault();
-        setUrl("https://api.spotify.com/v1/search?q=" + searchValue + "&type=artist%2Ctrack%2Calbum&limit=5");
-    }
-
-    function onSearchChange(e) {
-        setSearchValue(e.target.value)
+    function onTrackClick(trackId) {
+        navigate("/track/" + trackId);
     }
 
     useEffect(() => {
         const SearchFetcher = async () => {
-            if (url === "") {
+            if (searchValue == null || searchValue === "") {
                 return;
             }
             try {
-                const response = await fetch(url, {
+                const response = await fetch("https://api.spotify.com/v1/search?q=" + searchValue + "&type=artist%2Ctrack%2Calbum&limit=5", {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -39,6 +35,7 @@ const SearchPage = () => {
 
                 const trackData = await response.json();
                 setResult(trackData);
+
             } catch (error) {
                 console.error("Error fetching the track:", error);
                 setError(error);
@@ -47,28 +44,35 @@ const SearchPage = () => {
             }
         };
         SearchFetcher()
-    }, [url, token])
+    }, [searchValue, token])
 
     return (
-        <div>
-            <nav>
-                <SearchBar handleSearchSubmit={handleSearchSubmit} searchValue={searchValue} onChange={onSearchChange} />
-            </nav>
+        <div className="search-container">
             {error &&
-                <div>Error: {error}</div>
+                <div className="error-message">Error: {error}</div>
             }
             {result && !loading &&
-                <div>
-                    <ul>
+                <div className="search-results">
+                    <ul className="search-list">
                         {result?.tracks?.items?.map((item) => (
-                            <li key={item.id}>
-                                {item.name}
-                                <img src={item.album?.images?.[0]?.url || "https://via.placeholder.com/150"} alt="Album Art" width={80} />
-                            </li>))}
+                            <li key={item.id} className="single-track-container">
+                                <a href={item.id} target="_blank" rel="noopener noreferrer" onClick={() => onTrackClick(item.id)}>
+                                    <div className="track-info">
+                                        <img
+                                            className="track-image"
+                                            src={item.album?.images?.[0]?.url || "https://via.placeholder.com/150"}
+                                            alt="Album Art"
+                                        />
+                                        <div className="track-details">
+                                            <p className="track-name">{item.name}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        ))}
                     </ul>
                 </div>
             }
-            <Link to="/home">Go to home</Link>
         </div>
     );
 };
