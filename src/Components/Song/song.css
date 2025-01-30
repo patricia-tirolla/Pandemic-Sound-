@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: Arial, sans-serif;
+}.songContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.trackDetails {
+    display: flex;
+    align-items: center;
+}
+
+.trackImage {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+.trackInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.trackName,
+.trackArtistName,
+.trackLength {
+    margin: 5px 0;
+}
+
+.trackButtonHeart,
+.trackButtonAddtoPlaylist {
+    margin: 5px 0;
+}
