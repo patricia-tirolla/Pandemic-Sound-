@@ -1,5 +1,3 @@
-
-
 .sideBar{
     grid-column: 1;
     grid-row: 2/3;
@@ -8,11 +6,5 @@
     background-size: cover;
     background-position: center center;
     border-radius: 0px 20px 0px 0px;
-    overflow: auto; 
   
-  }
-  .sideBar-title{
-    font-size: var(--subtitle-size);
-    justify-self: center;
-    padding:2rem;
   }

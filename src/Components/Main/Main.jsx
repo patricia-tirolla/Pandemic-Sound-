@@ -1,36 +1,22 @@
 import { Outlet } from "react-router-dom";
 import "./main.css";
 import "../../styles/App.css";
-import { fetchProfile } from "../AuthCallback/script";
-import { useState, useEffect } from "react";
-
-import { ProfileContext } from "../../contexts";
 import Nav from "../Nav/Nav";
 import Sidebar from "../Sidebar/Sidebar";
+import { ProfileProvider } from "../../Hooks/Profile";
 
 function Main() {
-  const [profile, setProfile] = useState(null);
-  const token = localStorage.getItem("accessToken");
-
-  useEffect(() => {
-    (async () => {
-      if (token) {
-        const fetchedProfile = await fetchProfile(token);
-        console.log("Fetched profile:", fetchedProfile);
-        setProfile(fetchedProfile);
-        localStorage.setItem("profileId", fetchedProfile.id);
-      }
-    })();
-  }, [token]);
 
   return (
-    <ProfileContext.Provider value={profile}>
-      <Nav />
-      <Sidebar />
-      <div className="main">
-        <Outlet />
+    <ProfileProvider>
+      <div className="app">
+        <Nav />
+        <Sidebar />
+        <div className="main">
+          <Outlet />
+        </div>
       </div>
-    </ProfileContext.Provider>
+    </ProfileProvider>
   );
 }
 export default Main;
