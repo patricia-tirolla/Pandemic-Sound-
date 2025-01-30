@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import useSpotifyTrackData from "./SongHook";
 import "./song.css";
+import { useParams } from "react-router-dom";
 
 const Song = () => {
   const [error] = useState(null);
   const [accessToken] = useState(localStorage.getItem("accessToken"));
 
-  const trackId = "11dFghVXANMlKmJXsNCbNl"; // Example track ID
+  const { trackId } = useParams();
   const { trackData, error: trackError } = useSpotifyTrackData(
     accessToken,
     trackId
