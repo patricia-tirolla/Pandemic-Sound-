@@ -1,21 +1,31 @@
-import React from "react"
-import { Link } from "react-router";
+import React, { useState }from "react"
+import { useNavigate } from "react-router";
 import "./searchbar.css"
 
-const SearchBar = ({handleSearchSubmit, searchValue, onChange}) => {
-    
+const SearchBar = () => {
+    const navigate = useNavigate();
+    const [inputValue, setInputValue] = useState("");
+
+    const handleInputValue = (e) => {
+        setInputValue(e.target.value)
+    }
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        navigate("/search?q=" + inputValue)
+    }
+ 
     return (
         <div className="searchContainer">
             <form className="searchBarWrapper" onSubmit={handleSearchSubmit}>
                     <input
                         type="text"
-                        name="name"
-                        value={searchValue}
-                        onChange={onChange}
+                        name="q"
+                        value={inputValue}
+                        onChange={handleInputValue}
                         placeholder="Search for music..."
                     />
                     <button className="searchButton" type="submit">Search</button>
-                    <Link to="/home" className="goHome">Go to home</Link>
             </form>
         </div>
     )

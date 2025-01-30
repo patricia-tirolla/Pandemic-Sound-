@@ -1,26 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import SearchBar from "./SearchBarComponent";
-
 import "./searchpage.css"
 
 const SearchPage = () => {
+    const params = new URLSearchParams(window.location.search);
+
     const token = localStorage.getItem("accessToken");
     const [result, setResult] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [url, setUrl] = useState("");
-    const [searchValue, setSearchValue] = useState("");
+    const searchValue = params.get("q");
     const navigate = useNavigate();
-
-    function handleSearchSubmit(e) {
-        e.preventDefault();
-        setUrl("https://api.spotify.com/v1/search?q=" + searchValue + "&type=artist%2Ctrack%2Calbum&limit=5");
-    }
-
-    function onSearchChange(e) {
-        setSearchValue(e.target.value)
-    }
 
     function onTrackClick(trackId) {
         navigate("/track/" + trackId);
@@ -28,11 +18,11 @@ const SearchPage = () => {
 
     useEffect(() => {
         const SearchFetcher = async () => {
-            if (url === "") {
+            if (searchValue == null || searchValue === "") {
                 return;
             }
             try {
-                const response = await fetch(url, {
+                const response = await fetch("https://api.spotify.com/v1/search?q=" + searchValue + "&type=artist%2Ctrack%2Calbum&limit=5", {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -45,7 +35,6 @@ const SearchPage = () => {
 
                 const trackData = await response.json();
                 setResult(trackData);
-                console.log("track data: ", trackData);
 
             } catch (error) {
                 console.error("Error fetching the track:", error);
@@ -55,16 +44,10 @@ const SearchPage = () => {
             }
         };
         SearchFetcher()
-    }, [url, token])
+    }, [searchValue, token])
 
     return (
         <div className="search-container">
-            <div className="search-bar-container">
-                <SearchBar
-                    handleSearchSubmit={handleSearchSubmit}
-                    searchValue={searchValue}
-                    onChange={onSearchChange} />
-            </div>
             {error &&
                 <div className="error-message">Error: {error}</div>
             }
