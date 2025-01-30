@@ -1,5 +1,4 @@
 import "./getPlaylist.css";
-import PlaylistDisplay from "../../PlaylistDisplay/PlaylistDisplay";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../Hooks/Profile";
@@ -54,7 +53,7 @@ const GetPlaylist = () => {
   };
 
   return (
-    <div>
+    <>
       <div className="playlistContainer">
         {data.length > 0 ? (
           data.map((playlist) => (
@@ -77,7 +76,7 @@ const GetPlaylist = () => {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 };
 export default GetPlaylist;
