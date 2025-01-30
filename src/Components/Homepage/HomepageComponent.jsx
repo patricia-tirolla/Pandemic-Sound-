@@ -3,7 +3,7 @@ import { isUserAutheticated } from "../AuthCallback/script";
 import { ProfileContext } from "../../contexts";
 import { useContext } from "react"
 import { Link } from "react-router";
-
+import Song from "../Song/Song";
 const Homepage = () => {
     const profile = useContext(ProfileContext);
 
@@ -21,6 +21,7 @@ const Homepage = () => {
                     </div>
                 }
                 <Link to="/search">Go to search</Link>
+                <Song/>
             </div>
           
             </div>
