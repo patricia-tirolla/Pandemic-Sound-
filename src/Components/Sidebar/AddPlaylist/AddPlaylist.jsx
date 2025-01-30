@@ -2,7 +2,8 @@ import { useProfile } from "../../../Hooks/Profile";
 import { useState } from "react";  
 import "./addPlaylist.css"
 
-const AddPlaylist = () => {
+
+const AddPlaylist = ({triggerReFetch}) => {
   const profile = useProfile();
   const [loading, setLoading] = useState(false);
 
@@ -13,8 +14,9 @@ const AddPlaylist = () => {
       const addPlaylistURL = `https://api.spotify.com/v1/users/${profile.id}/playlists`;
 
       const playlistData = {
-        name: "New plalist",
-        description: "", // optional
+        name: "New playlist",
+        description: "New playlist created on ", 
+    
       };
 
       const addPlaylistURLParameters = {
@@ -35,6 +37,7 @@ const AddPlaylist = () => {
             throw new Error(data.error.message);
           }
           console.log("Playlist created:", data);
+          triggerReFetch(); 
         })
         .catch((error) => {
           console.error("Error creating playlist:", error);
@@ -50,7 +53,7 @@ const AddPlaylist = () => {
       <button className="add-new-playlist" onClick={createPlaylist} disabled={loading}>
         {loading ? "Creating Playlist..." : "+"}
       </button>
-     </> 
+    </> 
   );
 };
 
