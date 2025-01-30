@@ -21,7 +21,7 @@ const Homepage = () => {
                     </div>
                 }
                 <Link to="/search">Go to search</Link>
-                <Song/>
+            <Song/>
             </div>
           
             </div>
