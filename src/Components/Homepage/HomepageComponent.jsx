@@ -1,7 +1,6 @@
 import React from "react";
 import { isUserAutheticated } from "../AuthCallback/script";
 import { Link } from "react-router";
-import Song from "../Song/Song";
 import { useProfile } from "../../Hooks/Profile";
 
 const Homepage = () => {
@@ -21,7 +20,6 @@ const Homepage = () => {
                     </div>
                 }
                 <Link to="/search">Go to search</Link>
-            <Song/>
             </div>
         </div>
            

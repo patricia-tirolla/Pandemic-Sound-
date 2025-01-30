@@ -14,7 +14,6 @@ import "./styles/App.css";
 function App() {
   return (
 
-    // <div >
     <Routes>
       <Route path="/" element={<LandingPage />} />
 
@@ -25,7 +24,6 @@ function App() {
           <Route path="search" element={<SearchPage />} />
         </Route>
     </Routes>
-    // </div>
   );
 }
 

@@ -1,12 +1,10 @@
 import "./getPlaylist.css";
-import PlaylistDisplay from "../../PlaylistDisplay/PlaylistDisplay";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ProfileContext } from "../../../contexts";
+import { useProfile } from "../../../Hooks/Profile";
 
 const GetPlaylist = () => {
-  const profile = useContext(ProfileContext);
-
+  const profile = useProfile();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const navigate = useNavigate();
@@ -22,19 +20,11 @@ const GetPlaylist = () => {
     };
 
     if (profile !== null) {
-      const playlistAPI = `https://api.spotify.com/v1/users/${profile.id}/playlists`;
+      const playlistAPI = `https://api.spotify.com/v1/users/${profile.id}/playlists?limit=10`;
 
       fetch(playlistAPI, playlistParameters)
         .then((response) => response.json())
         .then((playlist) => {
-          console.log(playlist.items);
-          playlist.items.forEach((item) => {
-            const trackUrl = item.tracks.href; 
-            if (trackUrl) {
-              localStorage.setItem(item.id, trackUrl); //passing to localstorage
-            }
-          });
-
           setData(playlist.items);
         })
         .catch((error) => console.log("Error fetching playlists:", error))
@@ -49,8 +39,9 @@ const GetPlaylist = () => {
   }
 
   const displayPlaylist = (playlist) => {
-    navigate(`/playlist/${playlist.name}`, { state: {   playlist,
-      trackUrl: playlist.tracks.href  } });
+    const trackUrl = playlist.tracks.href;
+  console.log("Track URL:", trackUrl);
+    navigate(`/playlist/${playlist.name}`, { state: { playlist, trackUrl  } });
   };
 
   return (

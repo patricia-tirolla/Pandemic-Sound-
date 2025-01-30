@@ -1,39 +1,42 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
-const useSpotifyTrackData = (accessToken, trackId) => {
-    const [trackData, setTrackData] = useState(null);
-    const [error, setError] = useState(null);
+const useFetchTracks = (trackUrl) => {
+  const [tracks, setTracks] = useState([]);
+  const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchTrackData = async () => {
-            if (!accessToken) {
-                console.error("Access token is missing");
-                setError("Access token is missing");
-                return;
-            }
+  useEffect(() => {
+    const fetchTracks = async () => {
+      const token = localStorage.getItem("accessToken");
 
-            try {
-                const response = await fetch(`https://api.spotify.com/v1/tracks?ids=${trackId}`, {
-                    method: "GET",
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
-                    },
-                });
+      if (!token) {
+        setError("Access token is missing");
+        return;
+      }
 
-                if (!response.ok) {
-                    throw new Error(`Error fetching track data: ${response.statusText}`);
-                }
+      try {
+        const response = await fetch(`${trackUrl}?limit=10`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-                const data = await response.json();
-                setTrackData(data);
-            } catch (err) {
-                console.error("Error fetching track data:", err);
-                setError("Failed to fetch track data. Please try again.");
-            }
-        };
+        if (!response.ok) {
+          throw new Error(`Error fetching track data: ${response.statusText}`);
+        }
 
-        fetchTrackData();
-    }, [accessToken, trackId]);
-    return { trackData, error };
+        const data = await response.json();
+        setTracks(data.items);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    if (trackUrl) {
+      fetchTracks();
+    }
+  }, [trackUrl]);
+
+  return { tracks, error };
 };
-export default useSpotifyTrackData;
+
+export default useFetchTracks;
