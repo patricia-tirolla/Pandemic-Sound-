@@ -1,5 +1,5 @@
 import "./getPlaylist.css";
-
+import PlaylistDisplay from "../../PlaylistDisplay/PlaylistDisplay";
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ProfileContext } from "../../../contexts";
@@ -26,12 +26,23 @@ const GetPlaylist = () => {
 
       fetch(playlistAPI, playlistParameters)
         .then((response) => response.json())
-        .then((playlist) => setData(playlist.items))
-        .catch((error) => console.log("Error fetching playlists:", error))
+        .then((playlist) => {
+          console.log(playlist.items);
+          playlist.items.forEach((item) => {
+            const trackUrl = item.tracks.href; 
+            if (trackUrl) {
+              localStorage.setItem(item.id, trackUrl); //passing to localstorage
+            }
+          });
 
+          setData(playlist.items);
+        })
+        .catch((error) => console.log("Error fetching playlists:", error))
+    
         .finally(() => setLoading(false));
     }
   }, [profile]);
+
 
   if (loading) {
     return <h2>Loading...</h2>;
@@ -55,6 +66,7 @@ const GetPlaylist = () => {
               <div className="playlist-info">
                 <h4>{playlist.name}</h4>
                 <p>{playlist.tracks.total} songs</p>
+                <PlaylistDisplay trackUrl={playlist.tracks.href}/>
               </div>
             </div>
           ))

@@ -8,9 +8,8 @@ const Homepage = () => {
     const profile = useContext(ProfileContext);
 
     return (
-        <>
+     
             <div className="App">
-                <div className="homepage">
                 <div className="homepage">
                 {isUserAutheticated() && profile &&
                     <div>
@@ -22,12 +21,11 @@ const Homepage = () => {
                     </div>
                 }
                 <Link to="/search">Go to search</Link>
-                <Song/>
             </div>
-          
-            </div>
+        </div>
+           
             
-        </>
+        
     )
 }
 
