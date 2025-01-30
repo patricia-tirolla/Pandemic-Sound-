@@ -8,7 +8,7 @@ const Homepage = () => {
     const profile = useProfile();
 
     return (
-        <>
+     
             <div className="App">
                 <div className="homepage">
                 {isUserAutheticated() && profile &&
@@ -21,12 +21,11 @@ const Homepage = () => {
                     </div>
                 }
                 <Link to="/search">Go to search</Link>
-                <Song/>
             </div>
-          
-            </div>
+        </div>
+           
             
-        </>
+        
     )
 }
 
