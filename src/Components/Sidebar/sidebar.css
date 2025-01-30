@@ -6,5 +6,19 @@
     background-size: cover;
     background-position: center center;
     border-radius: 0px 20px 0px 0px;
+    overflow: scroll;
   
+  }
+
+  .title-sidebar-container{
+    display:flex;
+    height: fit-content;
+    justify-content: center;
+    gap:2rem;
+    padding:3rem 0rem;
+
+  }
+
+  .sideBar-title{
+    font-size: var(--subtitle-size);
   }
