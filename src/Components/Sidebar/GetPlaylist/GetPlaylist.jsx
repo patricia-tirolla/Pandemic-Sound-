@@ -49,7 +49,8 @@ const GetPlaylist = () => {
   }
 
   const displayPlaylist = (playlist) => {
-    navigate(`/playlist/${playlist.name}`, { state: { playlist } });
+    navigate(`/playlist/${playlist.name}`, { state: {   playlist,
+      trackUrl: playlist.tracks.href  } });
   };
 
   return (
@@ -66,7 +67,6 @@ const GetPlaylist = () => {
               <div className="playlist-info">
                 <h4>{playlist.name}</h4>
                 <p>{playlist.tracks.total} songs</p>
-                <PlaylistDisplay trackUrl={playlist.tracks.href}/>
               </div>
             </div>
           ))
