@@ -1,15 +1,17 @@
-import "./main.css"
-import "../../styles/App.css"
+import { Outlet } from "react-router-dom";
+import "./main.css";
+import "../../styles/App.css";
 import { fetchProfile } from "../AuthCallback/script";
-import { useState, useEffect } from "react"
-import Nav from "../Nav/Nav";
-import { ProfileContext } from "../../contexts";
-import Homepage from "../Homepage/HomepageComponent";
+import { useState, useEffect } from "react";
 
-const Main = () => {
+import { ProfileContext } from "../../contexts";
+import Nav from "../Nav/Nav";
+import Sidebar from "../Sidebar/Sidebar";
+
+function Main() {
   const [profile, setProfile] = useState(null);
-  const token = localStorage.getItem("accessToken")
-  
+  const token = localStorage.getItem("accessToken");
+
   useEffect(() => {
     (async () => {
       if (token) {
@@ -18,19 +20,17 @@ const Main = () => {
         setProfile(fetchedProfile);
         localStorage.setItem("profileId", fetchedProfile.id);
       }
-    })()
-  }, [token])
+    })();
+  }, [token]);
 
   return (
     <ProfileContext.Provider value={profile}>
-      <div className="App">
-        <Nav />
-        <Homepage />
+      <Nav />
+      <Sidebar />
+      <div className="main">
+        <Outlet />
       </div>
-
-    </ProfileContext.Provider >
-  )
+    </ProfileContext.Provider>
+  );
 }
 export default Main;
-
-

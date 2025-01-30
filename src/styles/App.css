@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Expanded:wght@100;200;300;400;500;600;700;800;900&family=Funnel+Display:wght@300..800&family=Rubik+Gemstones&display=swap');
+
 :root {
   --primary-text-color: #ffffff;  
   --secondary-text-color:#000000; 
@@ -6,9 +8,18 @@
   --secondary-background-color: #B09FFF; 
   --searchBar-color:white; 
 
+  --title-size:3rem;
+  --subtitle-size:2rem;
+  --normal-text-size: 1rem;
+  --button-hover-color:#9d8ee2;
+
+
+  --logo-font:"Rubik Gemstones", serif;
+  --text-font:"Encode Sans Semi Expanded", serif;
+ 
 }
 
-.App {
+.app {
   display: grid;
   grid-template-columns: 1fr 3fr;
   grid-template-rows: 1fr 7fr;
@@ -16,6 +27,9 @@
   width: 100vw;
   color: var(--primary-text-color);
   background-color: var(--main-background-color);
+  font-family: var(--text-font);
+  font-weight: 500;
+  
 }
 
 

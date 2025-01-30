@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import SearchBar from "./SearchBarComponent";
+import SearchBar from "../SearchBar/SearchBarComponent";
 import { Link } from "react-router";
 
 const SearchPage = () => {

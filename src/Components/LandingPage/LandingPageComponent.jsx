@@ -7,7 +7,7 @@ import { useContext } from "react"
 const LandingPage = () => {
     const profile = useContext(ProfileContext);
     return (
-      <main className="homepage">
+      <div className="landing-page">
         <h1>Welcome to Pandemic Sound!</h1>
         {!isUserAutheticated() &&
           <button onClick={() => redirectToAuthCodeFlow(clientId)}>Loging to Spotify</button>
@@ -22,7 +22,7 @@ const LandingPage = () => {
             <p>Email: {profile.email}</p>
           </div>
         }
-      </main>
+      </div>
     )
   }
 
