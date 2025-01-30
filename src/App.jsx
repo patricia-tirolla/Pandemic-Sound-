@@ -14,19 +14,18 @@ import "./styles/App.css";
 function App() {
   return (
 
-  // <div >
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
+    // <div >
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
 
-        <Route path="/callback" element={<AuthCallback />} />
-
+      <Route path="/callback" element={<AuthCallback />} />
         <Route element={<Main />}>
           <Route path="/home" element={<Homepage />} />
           <Route path="playlist/:name" element={<PlaylistDisplay />} />
           <Route path="search" element={<SearchPage />} />
         </Route>
-      </Routes>
-      // </div>
+    </Routes>
+    // </div>
   );
 }
 
