@@ -1,12 +1,20 @@
 import { useLocation } from "react-router-dom";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import useFetchTracks from "../Song/GetTrackUrl";
 import "./playlistDisplay.css";
 
 const PlaylistDisplay = () => {
   const location = useLocation();
   const { playlist, trackUrl } = location.state || {};
-  const { tracks, error } = useFetchTracks(trackUrl);
+  const { tracks: fetchedTracks, error } = useFetchTracks(trackUrl);
+  const [tracks, setTracks] = useState([]);
+  const token = localStorage.getItem("accessToken");
+
+  useEffect(() => {
+    if(fetchedTracks) {
+      setTracks([...fetchedTracks]);
+    }
+  }, [fetchedTracks])
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -21,7 +29,27 @@ const PlaylistDisplay = () => {
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
-  const defaultImage = "https://static.vecteezy.com/system/resources/thumbnails/002/249/673/small/music-note-icon-song-melody-tune-flat-symbol-free-vector.jpg"; 
+  const deleteTrack = (track, playlistId) => {
+    const data = {
+      tracks: [{
+        "uri": track.uri,
+      }]
+    }
+    fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${token}`},
+      body: JSON.stringify(data),
+    })
+    .then((response) => {
+      if (response.ok) {
+        setTracks(tracks.filter((item) => item.track.uri !== track.uri));
+      } else {
+        console.error("nao deletou", response.status);
+      }
+    })
+  }
+
+  const defaultImage = "https://static.vecteezy.com/system/resources/thumbnails/002/249/673/small/music-note-icon-song-melody-tune-flat-symbol-free-vector.jpg";
   const defaultName = "Untitled Playlist";
   return (
     <div className="display-playlist-container">
@@ -42,7 +70,7 @@ const PlaylistDisplay = () => {
             <p className="trackArtist"> {track.artists.map(artist => artist.name).join(", ")}</p>
             <p className="trackDuration">{formatDuration(track.duration_ms)}</p>
             </div>
-            
+            <button onClick={() => deleteTrack(track, playlist.id)}>remove</button>
           </div>
 
         ))}

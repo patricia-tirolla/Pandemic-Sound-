@@ -10,9 +10,8 @@ export const GetPlaylist = ({ playlists }) => {
     navigate(`/playlist/${playlist.name}`, { state: { playlist, trackUrl: playlist.tracks.href } });
   };
 
-  const defaultImage = "https://static.vecteezy.com/system/resources/thumbnails/002/249/673/small/music-note-icon-song-melody-tune-flat-symbol-free-vector.jpg"; 
+  const defaultImage = "https://static.vecteezy.com/system/resources/thumbnails/002/249/673/small/music-note-icon-song-melody-tune-flat-symbol-free-vector.jpg";
   const defaultName = "Untitled Playlist";
-
 
   return (
     <div className="playlistContainer">
@@ -35,10 +34,8 @@ export const GetPlaylist = ({ playlists }) => {
           <p>No playlists found</p>
         </div>
       )}
-      </div>
-    )
-
-}
-
+    </div>
+  );
+};
 
 export default GetPlaylist;
