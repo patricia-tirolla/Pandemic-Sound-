@@ -73,7 +73,6 @@ const PlaylistDisplay = () => {
       alert('Failed to add track. Please check the console for more details.');
     } finally {
       setIsLoading(false);
-      setActiveTrackId(null); // Close dropdown after operation completes
     }
   };
 const handleAddToPlaylist = (event, playlistId, trackUri) => {
@@ -81,6 +80,24 @@ const handleAddToPlaylist = (event, playlistId, trackUri) => {
   event.stopPropagation();
   addTrackToPlaylist(playlistId, trackUri);
 };
+useEffect(() => {
+  const handleClickOutside = (event) => {
+    // Check if clicked element or its parents have dropdown-item class
+    const isDropdownItem = event.target.closest('.dropdown-item');
+    
+    if (activeTrackId && 
+        dropdownRef.current && 
+        !dropdownRef.current.contains(event.target) && 
+        !isDropdownItem) {
+      setActiveTrackId(null);
+    }
+  };
+
+  if (activeTrackId) {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }
+}, [activeTrackId]);
 
   
 
