@@ -1,6 +1,4 @@
-// hooks/usePlaylistFetch.js
 import { useState, useEffect } from "react";
-// import { useProfile } from "../../Hooks/Profile";
 import {useProfile} from "./Profile";
 
 const usePlaylistFetch = () => {

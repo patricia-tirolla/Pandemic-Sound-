@@ -1,4 +1,3 @@
-// components/PlaylistHeader.jsx
 import React from "react";
 
 const PlaylistHeader = ({ playlist }) => {

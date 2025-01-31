@@ -1,4 +1,3 @@
-// hooks/useAddTrackToPlaylist.js
 import { useState } from "react";
 
 const useAddTrackToPlaylist = () => {
@@ -25,6 +24,7 @@ const useAddTrackToPlaylist = () => {
       }
 
       alert('Track added successfully');
+      console.log('Track added successfully');
     } catch (error) {
       console.error('Error adding track to playlist:', error);
       alert('Failed to add track. Please check the console for more details.');
