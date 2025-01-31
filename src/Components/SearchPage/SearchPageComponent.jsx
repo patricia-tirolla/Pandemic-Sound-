@@ -2,9 +2,8 @@ import { useNavigate } from "react-router";
 import React, { useState } from "react";
 import useFetch from "../../Hooks/useFetch";
 import "./searchpage.css"
-import AddToPlaylistButton from "../AddToPlaylistButton";
 import usePlaylistFetch from "../../Hooks/usePlaylistFetch";
-
+import AddToPlaylistButton from "../AddSongToPlaylist/AddToPlaylistButton";
 
 const SearchPage = () => {
     const [activeTrackId, setActiveTrackId] = useState(null);

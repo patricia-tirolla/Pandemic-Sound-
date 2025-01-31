@@ -1,6 +1,5 @@
 import React from "react";
-import useAddTrackToPlaylist from "../Hooks/useAddTrackToPlaylist";
-
+import useAddTrackToPlaylist from "../../Hooks/useAddTrackToPlaylist";
 const AddToPlaylistButton = ({ track, playlists, activeTrackId, toggleDropdown, dropdownRef }) => {
     const { addTrackToPlaylist, isLoading } = useAddTrackToPlaylist();
 

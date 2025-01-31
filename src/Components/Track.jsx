@@ -1,5 +1,5 @@
 import React from "react";
-import AddToPlaylistButton from "./AddToPlaylistButton";
+import AddToPlaylistButton from "./AddSongToPlaylist/AddToPlaylistButton";
 
 const Track = ({ track, playlists, activeTrackId, toggleDropdown, dropdownRef }) => {
     const formatDuration = (ms) => {
