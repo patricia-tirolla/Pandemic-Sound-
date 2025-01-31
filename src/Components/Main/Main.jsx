@@ -4,6 +4,7 @@ import "../../styles/App.css";
 import Nav from "../Nav/Nav";
 import Sidebar from "../Sidebar/Sidebar";
 import { ProfileProvider } from "../../Hooks/Profile";
+import GetNewReleases from "../Homepage/GetNewReleases";
 
 function Main() {
 
@@ -12,6 +13,7 @@ function Main() {
       <div className="app">
         <Nav />
         <Sidebar />
+        <GetNewReleases/>
         <div className="main">
           <Outlet />
         </div>
