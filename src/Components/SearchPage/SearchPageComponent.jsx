@@ -1,9 +1,15 @@
-import React from "react";
 import { useNavigate } from "react-router";
+import React, { useState } from "react";
 import useFetch from "../../Hooks/useFetch";
 import "./searchpage.css"
+import AddToPlaylistButton from "../AddToPlaylistButton";
+import usePlaylistFetch from "../../Hooks/usePlaylistFetch";
+
 
 const SearchPage = () => {
+    const [activeTrackId, setActiveTrackId] = useState(null);
+    const { playlists } = usePlaylistFetch();
+
     const params = new URLSearchParams(window.location.search);
     const token = localStorage.getItem("accessToken");
     const searchValue = params.get("q");
@@ -14,6 +20,10 @@ const SearchPage = () => {
     function onTrackClick(trackId) {
         navigate("/track/" + trackId);
     }
+    const toggleDropdown = (trackId) => {
+        setActiveTrackId(prevId => prevId === trackId ? null : trackId);
+    };
+    
 
     return (
         <div className="search-container">
@@ -24,19 +34,25 @@ const SearchPage = () => {
                 <div className="search-results">
                     <ul className="search-list">
                         {result?.tracks?.items?.map((item) => (
-                            <li key={item.id} className="single-track-container">
-                                <a href={item.id} rel="noopener noreferrer" onClick={() => onTrackClick(item.id)}>
+                            <li key={item.id} className="single-track-container"> 
+                            {/* <a href={item.id} rel="noopener noreferrer" onClick={() => onTrackClick(item.id)}> */}
                                     <div className="track-info">
-                                        <img
-                                            className="track-image"
-                                            src={item.album?.images?.[0]?.url || "https://via.placeholder.com/150"}
-                                            alt="Album Art"
-                                        />
-                                        <div className="track-details">
-                                            <p className="track-name">{item.name}</p>
-                                        </div>
+                                <img
+                                    className="track-image"
+                                    src={item.album?.images?.[0]?.url || "https://via.placeholder.com/150"}
+                                    alt="Album Art"
+                                />
+                                <div className="track-details">
+                                    <p className="track-name">{item.name}</p>
+                                    <AddToPlaylistButton 
+                                        track={item}
+                                        playlists={playlists}
+                                        activeTrackId={activeTrackId}
+                                        toggleDropdown={toggleDropdown}
+                                    />
+                                </div>
                                     </div>
-                                </a>
+                                {/* </a> */}
                             </li>
                         ))}
                     </ul>
