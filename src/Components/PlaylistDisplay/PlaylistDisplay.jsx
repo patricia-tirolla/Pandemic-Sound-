@@ -1,13 +1,22 @@
 import { useLocation } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import useFetchTracks from "../Song/GetTrackUrl";
 import "./playlistDisplay.css";
+import PlaylistSubmenu from "../Song/PlaylistSubMenu";
 
 const PlaylistDisplay = () => {
   const location = useLocation();
   const { playlist, trackUrl } = location.state || {};
   const { tracks, error } = useFetchTracks(trackUrl);
+  const [anchorEl, setAnchorEl] = useState(null);
 
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -41,7 +50,24 @@ const PlaylistDisplay = () => {
             <p className="trackName">{track.name}</p>
             <p className="trackArtist"> {track.artists.map(artist => artist.name).join(", ")}</p>
             <p className="trackDuration">{formatDuration(track.duration_ms)}</p>
-            </div>
+            <div>
+                <button
+                  className="button1"
+                  onClick={handleClick}
+                >
+                  Open Menu
+                </button>
+                <button
+                  className="button2"
+                  onClick={handleClose}
+                >
+                  Close Menu
+                </button>
+                {anchorEl && (
+                  <PlaylistSubmenu anchorEl={anchorEl} handleClose={handleClose} />
+                )}
+              </div>
+           </div>
             
           </div>
 
