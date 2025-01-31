@@ -1,50 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router";
+import useFetch from "../../Hooks/useFetch";
 import "./searchpage.css"
 
 const SearchPage = () => {
     const params = new URLSearchParams(window.location.search);
-
     const token = localStorage.getItem("accessToken");
-    const [result, setResult] = useState(null);
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
     const searchValue = params.get("q");
+    const url = "https://api.spotify.com/v1/search?q=" + searchValue + "&type=artist%2Ctrack%2Calbum&limit=5";
+    const { data: result, error, loading } = useFetch(url, token);
     const navigate = useNavigate();
 
     function onTrackClick(trackId) {
         navigate("/track/" + trackId);
     }
-
-    useEffect(() => {
-        const SearchFetcher = async () => {
-            if (searchValue == null || searchValue === "") {
-                return;
-            }
-            try {
-                const response = await fetch("https://api.spotify.com/v1/search?q=" + searchValue + "&type=artist%2Ctrack%2Calbum&limit=5", {
-                    method: "GET",
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const trackData = await response.json();
-                setResult(trackData);
-
-            } catch (error) {
-                console.error("Error fetching the track:", error);
-                setError(error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        SearchFetcher()
-    }, [searchValue, token])
 
     return (
         <div className="search-container">
@@ -56,7 +25,7 @@ const SearchPage = () => {
                     <ul className="search-list">
                         {result?.tracks?.items?.map((item) => (
                             <li key={item.id} className="single-track-container">
-                                <a href={item.id} target="_blank" rel="noopener noreferrer" onClick={() => onTrackClick(item.id)}>
+                                <a href={item.id} rel="noopener noreferrer" onClick={() => onTrackClick(item.id)}>
                                     <div className="track-info">
                                         <img
                                             className="track-image"
