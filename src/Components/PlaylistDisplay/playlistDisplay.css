@@ -17,7 +17,6 @@
     width: 10%;
     height: auto;
 }
-
 .track{
     display: flex;
     align-items: center;
@@ -25,4 +24,8 @@
 }
 .trackDetails {
     margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
 }
