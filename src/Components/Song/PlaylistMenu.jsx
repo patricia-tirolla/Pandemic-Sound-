@@ -16,10 +16,7 @@ const PlaylistMenu = ({ playlists }) => {
       {playlists && playlists.length > 0 ? (
         playlists.slice(0, 3).map((playlist) => (
           <div
-            key={playlist.id}
-            className="playlist-sub-container"
-            onClick={() => displayPlaylist(playlist)}
-          >
+            className="playlist-sub-container">
             <img alt="playlistimage" src={playlist?.images?.length > 0 ? playlist.images[0].url : defaultImage} className="playlist-image" />
             <div className="playlist-info">
               <h4>{playlist?.name || defaultName}</h4>
