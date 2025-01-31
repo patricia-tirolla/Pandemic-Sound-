@@ -20,8 +20,8 @@ function App() {
       <Route path="/" element={<LandingPage />} />
       <Route path="/callback" element={<AuthCallback />} />
         <Route element={<Main />}>
-          <Route path="/home" element={<Homepage />} />
-          <Route path="/newreleases" element={<GetNewReleases />} />
+          {/* <Route path="/home" element={<Homepage />} /> */}
+          <Route path="/home" element={<GetNewReleases />} />
           <Route path="playlist/:name" element={<PlaylistDisplay />} />
           <Route path="track/:trackId" element={<Song />}/>
           <Route path="search" element={<SearchPage />} />

@@ -60,9 +60,8 @@ const GetNewReleases = () => {
      
       {error && <p className="error-message">{error}</p>}
 
-      <h2 className="new-releases-heading">It's New Music Day! </h2>
+      {/* <h2 className="new-releases-heading">It's New Music Day! </h2> */}
 
-      
 
       <div className="new-releases-container">
         

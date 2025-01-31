@@ -42,7 +42,9 @@ function Sidebar() {
         <AddPlaylist triggerReFetch={triggerReFetch} />
       </div>
       <GetPlaylist playlists={playlists} />
-    </div>
+    <AddPlaylist triggerReFetch={triggerReFetch} />
+  </div>
+ 
   );
 }
 
