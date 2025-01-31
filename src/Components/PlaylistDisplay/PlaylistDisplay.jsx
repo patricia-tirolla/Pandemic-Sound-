@@ -20,10 +20,13 @@ const PlaylistDisplay = () => {
     const seconds = ((ms % 60000) / 1000).toFixed(0);
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
+
+  const defaultImage = "https://static.vecteezy.com/system/resources/thumbnails/002/249/673/small/music-note-icon-song-melody-tune-flat-symbol-free-vector.jpg"; 
+  const defaultName = "Untitled Playlist";
   return (
     <div className="display-playlist-container">
-      <h2 className="display-playlist-title">Playlist: {playlist.name}</h2>
-      <img src={playlist.images[0].url} className="display-playlist-img" alt="playlist" />
+      <h2 className="display-playlist-title">Playlist: {playlist?.name || defaultName}</h2>
+      <img src={playlist?.images?.length > 0 ? playlist.images[0].url : defaultImage} className="display-playlist-img" alt="playlist" />
       <ul>
       {tracks.map(({ track }) => (
           <div key={track.id} className="track">
