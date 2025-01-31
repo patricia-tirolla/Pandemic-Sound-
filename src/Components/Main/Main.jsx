@@ -13,7 +13,7 @@ function Main() {
       <div className="app">
         <Nav />
         <Sidebar />
-        <GetNewReleases/>
+        {/* <GetNewReleases/> */}
         <div className="main">
           <Outlet />
         </div>
