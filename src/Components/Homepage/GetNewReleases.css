@@ -13,11 +13,11 @@
 }
 
 .new-releases-container {
-  max-height: 500px; 
-  overflow-y: auto;
+  /* max-height: 500px;  */
+  /* overflow-y: auto; */
   padding-right: 10px;
-  scrollbar-width: thin;
-  scrollbar-color: #888 #222;
+  /* scrollbar-width: thin;
+  scrollbar-color: #888 #222; */
   position: absolute; 
   right: 5%; 
   top: 50%; 
