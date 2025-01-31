@@ -8,13 +8,13 @@ import PlaylistDisplay from "./Components/PlaylistDisplay/PlaylistDisplay";
 import AuthCallback from "./Components/AuthCallback/AuthCallbackComponent";
 import LandingPage from "./Components/LandingPage/LandingPageComponent";
 import SearchPage from "./Components/SearchPage/SearchPageComponent";
+import Song from "./Components/Song/Song";
 import "./styles/reset.css";
 import "./styles/App.css";
 
 function App() {
   return (
 
-    // <div >
     <Routes>
       <Route path="/" element={<LandingPage />} />
 
@@ -22,10 +22,10 @@ function App() {
         <Route element={<Main />}>
           <Route path="/home" element={<Homepage />} />
           <Route path="playlist/:name" element={<PlaylistDisplay />} />
+          <Route path="track/:trackId" element={<Song />}/>
           <Route path="search" element={<SearchPage />} />
         </Route>
     </Routes>
-    // </div>
   );
 }
 

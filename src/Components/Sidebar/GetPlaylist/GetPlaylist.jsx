@@ -1,5 +1,6 @@
 import "./getPlaylist.css";
 import React from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 export const GetPlaylist = ({ playlists }) => {
@@ -7,10 +8,12 @@ export const GetPlaylist = ({ playlists }) => {
 
   const displayPlaylist = (playlist) => {
     navigate(`/playlist/${playlist.name}`, { state: { playlist, trackUrl: playlist.tracks.href } });
+    navigate(`/playlist/${playlist.name}`, { state: { playlist, trackUrl: playlist.tracks.href } });
   };
 
   const defaultImage = "https://static.vecteezy.com/system/resources/thumbnails/002/249/673/small/music-note-icon-song-melody-tune-flat-symbol-free-vector.jpg"; 
   const defaultName = "Untitled Playlist";
+
 
   return (
     <div className="playlistContainer">
@@ -33,8 +36,10 @@ export const GetPlaylist = ({ playlists }) => {
           <p>No playlists found</p>
         </div>
       )}
-    </div>
-  );
-};
+      </div>
+    )
+
+}
+
 
 export default GetPlaylist;
