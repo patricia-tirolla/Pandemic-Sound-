@@ -4,7 +4,6 @@ import "../../styles/App.css";
 import Nav from "../Nav/Nav";
 import Sidebar from "../Sidebar/Sidebar";
 import { ProfileProvider } from "../../Hooks/Profile";
-import GetNewReleases from "../Homepage/GetNewReleases";
 
 function Main() {
 
