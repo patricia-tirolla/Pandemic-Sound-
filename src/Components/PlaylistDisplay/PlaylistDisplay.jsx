@@ -43,9 +43,7 @@ const PlaylistDisplay = () => {
     .then((response) => {
       if (response.ok) {
         setTracks(tracks.filter((item) => item.track.uri !== track.uri));
-      } else {
-        console.error("nao deletou", response.status);
-      }
+      } 
     })
   }
 

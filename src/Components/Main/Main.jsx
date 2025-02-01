@@ -13,8 +13,8 @@ function Main() {
       <div className="app">
         <Nav />
         <Sidebar />
+        <NavigationArrows />
         <div className="main">
-          <NavigationArrows />
           <Outlet />
         </div>
       </div>
