@@ -1,5 +1,5 @@
 import React from "react";
-import AddToPlaylistButton from "./AddSongToPlaylist/AddToPlaylistButton";
+import AddToPlaylistButton from "../AddSongToPlaylist/AddToPlaylistButton";
 
 const Track = ({ track, playlists, activeTrackId, toggleDropdown, dropdownRef }) => {
     const formatDuration = (ms) => {
@@ -21,13 +21,13 @@ const Track = ({ track, playlists, activeTrackId, toggleDropdown, dropdownRef })
                 <p className="trackName">{track.name}</p>
                 <p className="trackArtist">{track.artists.map(artist => artist.name).join(", ")}</p>
                 <p className="trackDuration">{formatDuration(track.duration_ms)}</p>
-                <AddToPlaylistButton 
+                {/* <AddToPlaylistButton 
                     track={track}
                     playlists={playlists}
                     activeTrackId={activeTrackId}
                     toggleDropdown={toggleDropdown}
                     dropdownRef={dropdownRef}
-                />
+                /> */}
             </div>
         </div>
     );

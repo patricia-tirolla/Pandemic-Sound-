@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import useFetchTracks from "../Song/GetTrackUrl";
 import usePlaylistFetch from "../../Hooks/usePlaylistFetch";
-import TrackList from "../TrackList";
+import TrackList from "./TrackList";
 import PlaylistHeader from "./PlaylistHeader";
 import "./playlistDisplay.css";
 

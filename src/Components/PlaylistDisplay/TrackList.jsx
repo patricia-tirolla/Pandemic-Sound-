@@ -35,8 +35,7 @@ const TrackList = ({ tracks, playlists }) => {
           track={track} 
           playlists={playlists} 
           activeTrackId={activeTrackId}
-          toggleDropdown={toggleDropdown}
-          dropdownRef={dropdownRef}
+          // dropdownRef={dropdownRef}
         />
       ))}
     </ul>
