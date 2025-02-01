@@ -38,12 +38,27 @@ export const getAccessToken = async (clientId, code) => {
 };
 
 export const fetchProfile = async (token) => {
-    const result = await fetch("https://api.spotify.com/v1/me", {
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
-    });
+    try {
+        const result = await fetch("https://api.spotify.com/v1/me", {
+            method: "GET",
+            headers: { Authorization: `Bearer ${token}` }
+        });
 
-    return await result.json();
+        if (result.status === 401) {
+            localStorage.removeItem("accessToken");
+            window.location.href = '/';
+            throw new Error("Unauthorized - Please login again");
+        }
+
+        if (!result.ok) {
+            throw new Error(`HTTP error! status: ${result.status}`);
+        }
+
+        return await result.json();
+    } catch (error) {
+        console.error("Error fetching profile:", error);
+        throw new Error(error.message || "Failed to fetch profile");
+    }
 };
 
 const generateCodeVerifier = (length) => {
