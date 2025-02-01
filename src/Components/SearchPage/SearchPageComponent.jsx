@@ -1,13 +1,9 @@
 import { useNavigate } from "react-router";
-import React, { useState } from "react";
+import React from "react";
 import useFetch from "../../Hooks/useFetch";
 import "./searchpage.css"
-import usePlaylistFetch from "../../Hooks/usePlaylistFetch";
-import AddToPlaylistButton from "../AddSongToPlaylist/AddToPlaylistButton";
 
 const SearchPage = () => {
-    const [activeTrackId, setActiveTrackId] = useState(null);
-    const { playlists } = usePlaylistFetch();
 
     const params = new URLSearchParams(window.location.search);
     const token = localStorage.getItem("accessToken");
@@ -19,9 +15,7 @@ const SearchPage = () => {
     function onTrackClick(trackId) {
         navigate("/track/" + trackId);
     }
-    const toggleDropdown = (trackId) => {
-        setActiveTrackId(prevId => prevId === trackId ? null : trackId);
-    };
+    
     
 
     return (
@@ -35,8 +29,8 @@ const SearchPage = () => {
                         {result?.tracks?.items?.map((item) => (
                             <li key={item.id} className="single-track-container"> 
                             <a href={item.id} rel="noopener noreferrer" onClick={() => onTrackClick(item.id)}>
-                                    <div className="track-info">
-                                <img
+                            <div className="track-info">
+                            <img
                                     className="track-image"
                                     src={item.album?.images?.[0]?.url || "https://via.placeholder.com/150"}
                                     alt="Album Art"
