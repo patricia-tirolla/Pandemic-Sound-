@@ -34,7 +34,7 @@ const SearchPage = () => {
                     <ul className="search-list">
                         {result?.tracks?.items?.map((item) => (
                             <li key={item.id} className="single-track-container"> 
-                            {/* <a href={item.id} rel="noopener noreferrer" onClick={() => onTrackClick(item.id)}> */}
+                            <a href={item.id} rel="noopener noreferrer" onClick={() => onTrackClick(item.id)}>
                                     <div className="track-info">
                                 <img
                                     className="track-image"
@@ -43,15 +43,10 @@ const SearchPage = () => {
                                 />
                                 <div className="track-details">
                                     <p className="track-name">{item.name}</p>
-                                    <AddToPlaylistButton 
-                                        track={item}
-                                        playlists={playlists}
-                                        activeTrackId={activeTrackId}
-                                        toggleDropdown={toggleDropdown}
-                                    />
+                                    
                                 </div>
                                     </div>
-                                {/* </a> */}
+                                </a>
                             </li>
                         ))}
                     </ul>
