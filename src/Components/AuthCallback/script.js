@@ -10,7 +10,7 @@ export const redirectToAuthCodeFlow = async (clientId) => {
     params.append("client_id", clientId);
     params.append("response_type", "code");
     params.append("redirect_uri", "http://localhost:3000/callback");
-    params.append("scope", "user-read-private user-read-email playlist-modify-public playlist-modify-private");
+    params.append("scope", "user-library-modify user-read-private user-read-email playlist-modify-public playlist-modify-private");
     params.append("code_challenge_method", "S256");
     params.append("code_challenge", challenge);
 
@@ -38,27 +38,12 @@ export const getAccessToken = async (clientId, code) => {
 };
 
 export const fetchProfile = async (token) => {
-    try {
-        const result = await fetch("https://api.spotify.com/v1/me", {
-            method: "GET",
-            headers: { Authorization: `Bearer ${token}` }
-        });
+    const result = await fetch("https://api.spotify.com/v1/me", {
+        method: "GET",
+        headers: { Authorization: `Bearer ${token}` },
+    });
 
-        if (result.status === 401) {
-            localStorage.removeItem("accessToken");
-            window.location.href = '/';
-            throw new Error("Unauthorized - Please login again");
-        }
-
-        if (!result.ok) {
-            throw new Error(`HTTP error! status: ${result.status}`);
-        }
-
-        return await result.json();
-    } catch (error) {
-        console.error("Error fetching profile:", error);
-        throw new Error(error.message || "Failed to fetch profile");
-    }
+    return await result.json();
 };
 
 const generateCodeVerifier = (length) => {

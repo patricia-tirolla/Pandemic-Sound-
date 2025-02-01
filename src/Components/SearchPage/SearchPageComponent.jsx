@@ -6,11 +6,10 @@ import { useParams } from "react-router-dom";
 import AddToPlaylistButton from "../AddSongToPlaylist/AddToPlaylistButton";
 import usePlaylistFetch from "../../Hooks/usePlaylistFetch";
 import useSaveTrack from "../../Hooks/useSaveTrack";
-
+import AddToSavedTracks from "../AddSongToPlaylist/AddToSavedTracks";
 
 const SearchPage = () => {
     const [activeTrackId, setActiveTrackId] = useState(null);
-    const [embedUrl, setEmbedUrl] = useState();
     const [accessToken] = useState(localStorage.getItem("accessToken"));
     const { trackId } = useParams();
     const { data: trackData, error: trackError } = useFetch(`https://api.spotify.com/v1/tracks/${trackId}`, accessToken);
@@ -28,19 +27,6 @@ const SearchPage = () => {
     function onTrackClick(trackId) {
         navigate("/track/" + trackId);
     }
-    
-    
-     useEffect(() => {
-        if (trackData) {
-          console.log(trackData)
-    
-          fetch("https://open.spotify.com/oembed?url=" + trackData.external_urls.spotify)
-            .then((resp) => resp.json())
-            .then((json) => setEmbedUrl(json.iframe_url))
-            .catch((err) => console.error(err));
-        }
-      }, [trackData]);
-
       const toggleDropdown = (trackId) => {
         setActiveTrackId(prevId => prevId === trackId ? null : trackId);
       };
@@ -48,10 +34,6 @@ const SearchPage = () => {
       if (error || trackError) {
         return <div>Error: {error || trackError}</div>;
       }
-      const handleLike = () => {
-        saveTrack(trackData.id);
-      };
-
     return (
         <div className="search-container">
             {error &&
@@ -73,9 +55,11 @@ const SearchPage = () => {
                                                                 </a>
                                 <div className="track-details">
                                     <p className="track-name">{track.name}</p>
-                                    <button onClick={handleLike} disabled={isLoading}>
-                                    {isLoading ? 'Saving...' : 'Like'}
-                                    </button>      {error && <p>Error: {error}</p>}
+                                    <AddToSavedTracks
+                                        track={track}
+                                        playlists={playlists}
+                                        activeTrackId={activeTrackId}
+                                        />
                                     <AddToPlaylistButton
                                         track={track}
                                         playlists={playlists}
