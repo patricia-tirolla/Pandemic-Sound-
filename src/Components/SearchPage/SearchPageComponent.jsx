@@ -1,15 +1,28 @@
 import { useNavigate } from "react-router";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import useFetch from "../../Hooks/useFetch";
 import "./searchpage.css"
+import { useParams } from "react-router-dom";
+import AddToPlaylistButton from "../AddSongToPlaylist/AddToPlaylistButton";
+import usePlaylistFetch from "../../Hooks/usePlaylistFetch";
+import useSaveTrack from "../../Hooks/useSaveTrack";
+
 
 const SearchPage = () => {
+    const [activeTrackId, setActiveTrackId] = useState(null);
+    const [embedUrl, setEmbedUrl] = useState();
+    const [accessToken] = useState(localStorage.getItem("accessToken"));
+    const { trackId } = useParams();
+    const { data: trackData, error: trackError } = useFetch(`https://api.spotify.com/v1/tracks/${trackId}`, accessToken);
+    const { playlists } = usePlaylistFetch();
+    const { saveTrack, isLoading, error } = useSaveTrack();
+
 
     const params = new URLSearchParams(window.location.search);
     const token = localStorage.getItem("accessToken");
     const searchValue = params.get("q");
     const url = "https://api.spotify.com/v1/search?q=" + searchValue + "&type=artist%2Ctrack%2Calbum&limit=5";
-    const { data: result, error, loading } = useFetch(url, token);
+    const { data: result, loading } = useFetch(url, token);
     const navigate = useNavigate();
 
     function onTrackClick(trackId) {
@@ -17,6 +30,27 @@ const SearchPage = () => {
     }
     
     
+     useEffect(() => {
+        if (trackData) {
+          console.log(trackData)
+    
+          fetch("https://open.spotify.com/oembed?url=" + trackData.external_urls.spotify)
+            .then((resp) => resp.json())
+            .then((json) => setEmbedUrl(json.iframe_url))
+            .catch((err) => console.error(err));
+        }
+      }, [trackData]);
+
+      const toggleDropdown = (trackId) => {
+        setActiveTrackId(prevId => prevId === trackId ? null : trackId);
+      };
+    
+      if (error || trackError) {
+        return <div>Error: {error || trackError}</div>;
+      }
+      const handleLike = () => {
+        saveTrack(trackData.id);
+      };
 
     return (
         <div className="search-container">
@@ -26,21 +60,29 @@ const SearchPage = () => {
             {result && !loading &&
                 <div className="search-results">
                     <ul className="search-list">
-                        {result?.tracks?.items?.map((item) => (
-                            <li key={item.id} className="single-track-container"> 
-                            <a href={item.id} rel="noopener noreferrer" onClick={() => onTrackClick(item.id)}>
+                        {result?.tracks?.items?.map((track) => (
+                            <li key={track.id} className="single-track-container"> 
+                            <a href={track.id} rel="noopener noreferrer" onClick={() => onTrackClick(track.id)}>
                             <div className="track-info">
                             <img
                                     className="track-image"
-                                    src={item.album?.images?.[0]?.url || "https://via.placeholder.com/150"}
+                                    src={track.album?.images?.[0]?.url || "https://via.placeholder.com/150"}
                                     alt="Album Art"
                                 />
-                                <div className="track-details">
-                                    <p className="track-name">{item.name}</p>
-                                    
                                 </div>
-                                    </div>
-                                </a>
+                                                                </a>
+                                <div className="track-details">
+                                    <p className="track-name">{track.name}</p>
+                                    <button onClick={handleLike} disabled={isLoading}>
+                                    {isLoading ? 'Saving...' : 'Like'}
+                                    </button>      {error && <p>Error: {error}</p>}
+                                    <AddToPlaylistButton
+                                        track={track}
+                                        playlists={playlists}
+                                        activeTrackId={activeTrackId}
+                                        toggleDropdown={toggleDropdown}
+                                    />
+                                </div>
                             </li>
                         ))}
                     </ul>
