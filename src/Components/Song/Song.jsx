@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import useSpotifyTrackData from "./SongHook";
 import "./song.css";
 import { useParams } from "react-router-dom";
 import useFetch from "../../Hooks/useFetch";
@@ -21,8 +20,6 @@ const Song = () => {
         .catch((err) => console.error(err));
     }
   }, [trackData]);
-  console.log(trackData, embedUrl);
-
 
   if (error || trackError) {
     return <div>Error: {error || trackError}</div>;
@@ -54,7 +51,7 @@ const Song = () => {
               add to playlist
             </button>
             {embedUrl && 
-              <iframe src={embedUrl}></iframe>
+              <iframe src={embedUrl} title="Preview Player"></iframe>
             }
           </div>
         </div>
