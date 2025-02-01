@@ -30,7 +30,6 @@ function Sidebar() {
         .then((response) => response.json())
         .then((data) => {
           setPlaylists(data.items);
-          console.log(data)
         })
         .catch((error) => console.log("Error fetching playlists:", error));
     }
@@ -43,7 +42,9 @@ function Sidebar() {
         <AddPlaylist triggerReFetch={triggerReFetch} />
       </div>
       <GetPlaylist playlists={playlists} />
-    </div>
+    {/* <AddPlaylist triggerReFetch={triggerReFetch} /> */}
+  </div>
+ 
   );
 }
 

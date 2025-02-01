@@ -1,74 +1,47 @@
-import React, { useState, useEffect } from "react";
-import SearchBar from "./SearchBarComponent";
-import { Link } from "react-router";
+import React from "react";
+import { useNavigate } from "react-router";
+import useFetch from "../../Hooks/useFetch";
+import "./searchpage.css"
 
 const SearchPage = () => {
+    const params = new URLSearchParams(window.location.search);
     const token = localStorage.getItem("accessToken");
-    const [result, setResult] = useState(null);
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const searchValue = params.get("q");
+    const url = "https://api.spotify.com/v1/search?q=" + searchValue + "&type=artist%2Ctrack%2Calbum&limit=5";
+    const { data: result, error, loading } = useFetch(url, token);
+    const navigate = useNavigate();
 
-    const [url, setUrl] = useState("");
-    const [searchValue, setSearchValue] = useState("");
-
-    function handleSearchSubmit(e) {
-        e.preventDefault();
-        setUrl("https://api.spotify.com/v1/search?q=" + searchValue + "&type=artist%2Ctrack%2Calbum&limit=5");
+    function onTrackClick(trackId) {
+        navigate("/track/" + trackId);
     }
-
-    function onSearchChange(e) {
-        setSearchValue(e.target.value)
-    }
-
-    useEffect(() => {
-        const SearchFetcher = async () => {
-            if (url === "") {
-                return;
-            }
-            try {
-                const response = await fetch(url, {
-                    method: "GET",
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const trackData = await response.json();
-                setResult(trackData);
-            } catch (error) {
-                console.error("Error fetching the track:", error);
-                setError(error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        SearchFetcher()
-    }, [url, token])
 
     return (
-        <div>
-            <nav>
-                <SearchBar handleSearchSubmit={handleSearchSubmit} searchValue={searchValue} onChange={onSearchChange} />
-            </nav>
+        <div className="search-container">
             {error &&
-                <div>Error: {error}</div>
+                <div className="error-message">Error: {error}</div>
             }
             {result && !loading &&
-                <div>
-                    <ul>
+                <div className="search-results">
+                    <ul className="search-list">
                         {result?.tracks?.items?.map((item) => (
-                            <li key={item.id}>
-                                {item.name}
-                                <img src={item.album?.images?.[0]?.url || "https://via.placeholder.com/150"} alt="Album Art" width={80} />
-                            </li>))}
+                            <li key={item.id} className="single-track-container">
+                                <a href={item.id} rel="noopener noreferrer" onClick={() => onTrackClick(item.id)}>
+                                    <div className="track-info">
+                                        <img
+                                            className="track-image"
+                                            src={item.album?.images?.[0]?.url || "https://via.placeholder.com/150"}
+                                            alt="Album Art"
+                                        />
+                                        <div className="track-details">
+                                            <p className="track-name">{item.name}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        ))}
                     </ul>
                 </div>
             }
-            <Link to="/home">Go to home</Link>
         </div>
     );
 };
