@@ -23,9 +23,7 @@ const TrackList = ({ tracks, playlists }) => {
     }
   }, [activeTrackId]);
 
-  const toggleDropdown = (trackId) => {
-    setActiveTrackId(prevId => prevId === trackId ? null : trackId);
-  };
+ 
 
   return (
     <ul>
