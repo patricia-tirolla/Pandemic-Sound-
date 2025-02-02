@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Remove useParams
-import useFetch from "../../Hooks/useFetch";
+import useGet from "../../Hooks/useGetRequest";
 import usePlaylistFetch from "../../Hooks/usePlaylistFetch";
-import useSaveTrack from "../../Hooks/useSaveTrack";
+// import useSaveTrack from "../../Hooks/useSaveTrack";
+import usePutRequest from "../../Hooks/usePutRequest";
 import AddToPlaylistButton from "../AddSongToPlaylist/AddToPlaylistButton";
 import AddToSavedTracks from "../AddSongToPlaylist/AddToSavedTracks";
 import "./searchpage.css";
@@ -17,9 +18,9 @@ const SearchPage = () => {
   const searchValue = params.get("q");
   const searchUrl = `https://api.spotify.com/v1/search?q=${searchValue}&type=artist%2Ctrack%2Calbum&limit=5`;
 
-  const { data: result, loading, error: searchError } = useFetch(searchUrl, token);
+  const { data: result, loading, error: searchError } = useGet(searchUrl, token);
   const { playlists } = usePlaylistFetch();
-  const { error: saveError } = useSaveTrack();
+  const { error: saveError } = usePutRequest();
   const onTrackClick = (trackId) => navigate(`/track/${trackId}`);
   const toggleDropdown = (trackId) => setActiveTrackId(prev => prev === trackId ? null : trackId);
 

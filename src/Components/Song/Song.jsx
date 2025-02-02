@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./song.css";
 import { useParams } from "react-router-dom";
-import useFetch from "../../Hooks/useFetch";
+import useGet from "../../Hooks/useGetRequest";
 import AddToPlaylistButton from "../AddSongToPlaylist/AddToPlaylistButton";
 import usePlaylistFetch from "../../Hooks/usePlaylistFetch";
-import useSaveTrack from "../../Hooks/useSaveTrack";
+// import useSaveTrack from "../../Hooks/useSaveTrack";
+import usePutRequest from "../../Hooks/usePutRequest";
 import AddToSavedTracks from "../AddSongToPlaylist/AddToSavedTracks";
 
 const Song = () => {
@@ -12,9 +13,9 @@ const Song = () => {
   const [embedUrl, setEmbedUrl] = useState();
   const [accessToken] = useState(localStorage.getItem("accessToken"));
   const { trackId } = useParams();
-  const { data: trackData, error: trackError } = useFetch(`https://api.spotify.com/v1/tracks/${trackId}`, accessToken);
+  const { data: trackData, error: trackError } = useGet(`https://api.spotify.com/v1/tracks/${trackId}`, accessToken);
   const { playlists } = usePlaylistFetch();
-  const { error } = useSaveTrack();
+  const { error } = usePutRequest();
 
   useEffect(() => {
     if (trackData) {
