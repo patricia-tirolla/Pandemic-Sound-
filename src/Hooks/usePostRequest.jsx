@@ -1,55 +1,51 @@
-import { useState } from "react";
+import { useState, useCallback } from 'react';
 
-const usePost = () => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
-    
-    const sendPostRequest = async (playlistId, trackUri) => {
-        setIsLoading(true);
-        setError(null);
-        const token = localStorage.getItem("accessToken");
-        const url = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
-    
-        if (!token) {
-            setError("No access token found");
-            setIsLoading(false);
-            return;
-        }
+function usePostRequest() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ uris: [trackUri] })
-            });
+  const sendPostRequest = async (url, bodyData) => {
+    setIsLoading(true);
+    setError(null);
 
-            // if (response.status === 401) {
-            //     localStorage.removeItem("accessToken");
-            //     window.location.href = '/';
-            //     throw new Error("Session expired - Please login again");
-            // }
+    if (!bodyData?.uris?.length) {
+        setError("No track URIs provided");
+        setIsLoading(false);
+        return;
+      }
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(`Failed to add track to playlist: ${errorData.error.message}`);
-              }
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+        setError("No access token found");
+        setIsLoading(false);
+        return;
+      }
+      try {
+        const requestBody = JSON.stringify({
+            uris: Array.isArray(bodyData.uris) ? bodyData.uris : [bodyData.uris]
+          });
+          const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            },
+            body: requestBody
+          });
+        if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
-         alert('Track added successfully');
-      console.log('Track added successfully');
     } catch (error) {
-      console.error('Error adding track to playlist:', error);
-      alert('Failed to add track. Please check the console for more details.');
-    } finally {
-      setIsLoading(false);
-    }
-
-        
+        console.error('Request failed:', error);
+        setError(error.message);
+        throw error;
+      } finally {
+        setIsLoading(false);
+      }
     };
 
-    return { sendPostRequest, isLoading, error };
-};
+  return { sendPostRequest, isLoading, error };
+}
 
-export default usePost;
+export default usePostRequest;

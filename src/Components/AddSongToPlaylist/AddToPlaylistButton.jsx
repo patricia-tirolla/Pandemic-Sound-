@@ -7,8 +7,12 @@ const AddToPlaylistButton = ({ track, playlists, activeTrackId, toggleDropdown, 
     const [showSuccess, setShowSuccess] = useState(false);
 
     const handleAddToPlaylist = async (event, playlistId, trackUri) => {
-       event.stopPropagation();
+        
         try {
+            await sendPostRequest(
+                `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+                { uris: [track.uri] }
+            );
         sendPostRequest(playlistId, trackUri);
        } catch (error) {
         console.error('Failed to add track to playlist:', error);
