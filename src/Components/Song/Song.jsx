@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import useSpotifyTrackData from "./SongHook";
 import "./song.css";
 import { useParams } from "react-router-dom";
 import useFetch from "../../Hooks/useFetch";

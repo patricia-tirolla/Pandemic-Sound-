@@ -1,10 +1,10 @@
-import { useState } from "react";
+import {useState} from "react"
 
-const useSaveTrack = () => {
+const usePutRequest = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const saveTrack = async (trackId) => {
+  const sendPutRequest = async (url, bodyData) => {
     setIsLoading(true);
     setError(null);
     const token = localStorage.getItem("accessToken");
@@ -16,29 +16,27 @@ const useSaveTrack = () => {
     }
 
     try {
-      const response = await fetch(`https://api.spotify.com/v1/me/tracks`, {
+      const response = await fetch(url, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ ids: [trackId] })
+        body: JSON.stringify(bodyData)
       });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
- 
+      
     } catch (error) {
- 
       setError(error.message);
     } finally {
       setIsLoading(false);
     }
   };
 
-  return { saveTrack, isLoading, error };
+  return { sendPutRequest, isLoading, error };
 };
 
-export default useSaveTrack;
+export default usePutRequest;

@@ -10,7 +10,7 @@ const Nav = () => {
 
   return (
     <div className="Nav">
-  <Link to="/home" className="logo-link">
+  <Link to="/home">
         <h1 className="logo">Pandemic Sound</h1>
         </Link>
         <SearchBar />

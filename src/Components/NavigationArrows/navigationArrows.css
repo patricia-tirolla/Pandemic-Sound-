@@ -1,0 +1,11 @@
+.navigation-arrow-container {
+    position:fixed;
+    top: 150px;
+    left: 400px;
+}
+
+.navigation-arrow-btn {
+    width:3rem;
+    height:3rem;
+
+}

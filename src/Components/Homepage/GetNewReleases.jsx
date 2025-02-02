@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './GetNewReleases.css'; 
 
-
-import { Link } from "react-router";
-
 const GetNewReleases = () => {
   const [newReleases, setNewReleases] = useState([]);
   const [error, setError] = useState(null);
@@ -60,11 +57,7 @@ const GetNewReleases = () => {
      
       {error && <p className="error-message">{error}</p>}
 
-      {/* <h2 className="new-releases-heading">It's New Music Day! </h2> */}
-
-
       <div className="new-releases-container">
-        
         {newReleases.length === 0 ? (
           <p>No new releases available.</p>
         ) : (
@@ -83,8 +76,6 @@ const GetNewReleases = () => {
           </div>
         )}
       </div>
-
-      <Link to="/search">Go to search</Link>
     </div>
   );
 };

@@ -8,6 +8,10 @@
     font-size: var(--subtitle-size);
     padding: 2rem;
 }
+.playlist-title-input{
+    font-size: var(--subtitle-size);
+
+}
 .display-playlist-img{
    
     width: 40%;
@@ -40,9 +44,27 @@
     color: #a41b1b;
 
 }
-button {
-
+.edit-playlist-btn {
+    background-image: url("../../../public/assets/edit-btn.png");
+    background-size: contain;
+    width: 2rem;
+    height: 2rem;
+    margin-left: 2rem;
+    border-style: none;
+    cursor:pointer;
+    transition: all 0.3s ease;
 }
+
+.edit-playlist-btn:hover {
+    background-image: url("../../../public/assets/edit-btn-purple.png");
+    background-size: contain;
+    width: 2rem;
+    height: 2rem;
+    margin-left: 2rem;
+    border-style: none;
+    transform: scale(1.2);
+}
+
 .dropdown-item:last-child {
     border-bottom: none;
 }

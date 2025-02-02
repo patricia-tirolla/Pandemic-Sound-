@@ -4,6 +4,7 @@ import "../../styles/App.css";
 import Nav from "../Nav/Nav";
 import Sidebar from "../Sidebar/Sidebar";
 import { ProfileProvider } from "../../Hooks/Profile";
+import NavigationArrows from "../NavigationArrows/NavigationArrows";
 
 function Main() {
 
@@ -12,7 +13,7 @@ function Main() {
       <div className="app">
         <Nav />
         <Sidebar />
-        {/* <GetNewReleases/> */}
+        <NavigationArrows />
         <div className="main">
           <Outlet />
         </div>
