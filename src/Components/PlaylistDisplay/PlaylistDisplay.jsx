@@ -15,11 +15,13 @@ const PlaylistDisplay = () => {
 
   const { playlist, trackUrl } = location.state || {};
   const { tracks, error } = useFetchTracks(trackUrl);
-  const { playlists } = useGetRequest(`https://api.spotify.com/v1/users/${profile.id}/playlists`, accessToken);
-
+  const { data: playlistsData } = useGetRequest(profile ? `https://api.spotify.com/v1/users/${profile.id}/playlists` : null, accessToken);
+  const playlists = playlistsData ? playlistsData.items : [];
+  
   if (error) {
     return <div>Error: {error}</div>;
   }
+  if(!profile) return <div>Loading...</div>
 
   if (!trackUrl) {
     return <div>No track URL provided</div>;

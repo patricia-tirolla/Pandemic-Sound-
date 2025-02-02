@@ -13,18 +13,21 @@ const SearchPage = () => {
   const [activeTrackId, setActiveTrackId] = useState(null);
   const [filter, setFilter] = useState("all");
   const navigate = useNavigate();
-  const token = localStorage.getItem("accessToken");
+  const accessToken = localStorage.getItem("accessToken");
   const profile = useProfile();
 
   const params = new URLSearchParams(window.location.search);
   const searchValue = params.get("q");
   const searchUrl = `https://api.spotify.com/v1/search?q=${searchValue}&type=artist%2Ctrack%2Calbum&limit=5`;
 
-  const { data: result, loading, error: searchError } = useGetRequest(searchUrl, token);
-  const { playlists } = useGetRequest(`https://api.spotify.com/v1/users/${profile.id}/playlists`, token);
+  const { data: result, loading, error: searchError } = useGetRequest(searchUrl, accessToken);
+  const { data: playlistsData } = useGetRequest(profile ? `https://api.spotify.com/v1/users/${profile.id}/playlists` : null, accessToken);
+  const playlists = playlistsData ? playlistsData.items : [];
   const { error: saveError } = usePutRequest();
   const onTrackClick = (trackId) => navigate(`/track/${trackId}`);
   const toggleDropdown = (trackId) => setActiveTrackId(prev => prev === trackId ? null : trackId);
+
+  if(!profile) return <div>Loading...</div>
 
   if (searchError ||  saveError) {
     return <div className="error-message">Error: {searchError ||  saveError}</div>;
