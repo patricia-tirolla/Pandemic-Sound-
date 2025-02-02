@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router";
 import "./track.css";
 
-const Track = ({ track, playlists, activeTrackId, toggleDropdown, dropdownRef }) => {
+const Track = ({ track }) => {
 
     const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ const Track = ({ track, playlists, activeTrackId, toggleDropdown, dropdownRef })
     }
 
     return (
-        <div className="trackssss">
+        <div className="tracks-container">
             <ul className="search-list">
                 <li key={track.id} className="single-Track-Container">
                     <a href={track.id} rel="noopener noreferrer" onClick={() => onTrackClick(track.id)}>
@@ -35,13 +35,7 @@ const Track = ({ track, playlists, activeTrackId, toggleDropdown, dropdownRef })
                                 <p className="track-Artist" >{track.artists.map(artist => artist.name).join(", ")}</p>
                                 </div>
                                 <p className="track-Duration" >{formatDuration(track.duration_ms)}</p>
-                                {/* <AddToPlaylistButton 
-                    track={track}
-                    playlists={playlists}
-                    activeTrackId={activeTrackId}
-                    toggleDropdown={toggleDropdown}
-                    dropdownRef={dropdownRef}
-                /> */}
+                               
                             </div>
                         </div>
                     </a>

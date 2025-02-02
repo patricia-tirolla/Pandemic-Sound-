@@ -66,7 +66,6 @@ const SearchPage = () => {
                 ))}
               </ul>
                 ) : <p>No tracks found</p>;
-
       case "albums":
         return result?.albums?.items?.length > 0 ? (
           <ul className="search-list">
@@ -84,9 +83,6 @@ const SearchPage = () => {
             ))}
           </ul>
         ) : <p>No artists found</p>;
-
-    
-
       default:
         return null;
     }
@@ -98,7 +94,6 @@ const SearchPage = () => {
           <div className="searchHeader">
             <h2 className="search-heading">Search Results for "{searchValue}"</h2>
             <div className="filter-buttons">
-              
               <button
                 onClick={() => setFilter("tracks")}
                 className={`filter-btn ${filter === "tracks" ? "active" : ""}`}
@@ -121,42 +116,10 @@ const SearchPage = () => {
                     {renderResults("albums")}
                     {renderResults("artists")}
                     {renderResults("playlists")}
-           
-
-              {/* <ul className="search-list">
-                {result?.tracks?.items?.map((track) => (
-                  <li key={track.id} className="single-track-container">
-                    <a href={`#${track.id}`} onClick={() => onTrackClick(track.id)}>
-                      <div className="track-info">
-                        <img
-                          className="track-image"
-                          src={track.album?.images?.[0]?.url || "https://via.placeholder.com/150"}
-                          alt="Album Art"
-                        />
-                      </div>
-                    </a>
-                    <div className="track-details">
-                      <p className="track-name">{track.name}</p>
-                      <AddToSavedTracks
-                        track={track}
-                        playlists={playlists}
-                        activeTrackId={activeTrackId}
-                      />
-                      <AddToPlaylistButton
-                        track={track}
-                        playlists={playlists}
-                        activeTrackId={activeTrackId}
-                        toggleDropdown={toggleDropdown}
-                      />
-                    </div>
-                  </li>
-                ))}
-              </ul> */}
             </div>
       )}
           </div>
           );
-  
 };
 
           export default SearchPage;
