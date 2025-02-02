@@ -53,11 +53,12 @@ const GetNewReleases = () => {
   }, [token, fetchNewReleases]);
 
   return (
-    <div className="get-new-releases">
+    <div className="releases-main-container">
+       <h2 className='realeses-title'>Explore</h2>
      
       {error && <p className="error-message">{error}</p>}
 
-      <div className="new-releases-container">
+    
         {newReleases.length === 0 ? (
           <p>No new releases available.</p>
         ) : (
@@ -76,7 +77,7 @@ const GetNewReleases = () => {
           </div>
         )}
       </div>
-    </div>
+
   );
 };
 

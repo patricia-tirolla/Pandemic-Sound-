@@ -35,13 +35,6 @@ const Track = ({ track, playlists, activeTrackId, toggleDropdown, dropdownRef })
                                 <p className="track-Artist" >{track.artists.map(artist => artist.name).join(", ")}</p>
                                 </div>
                                 <p className="track-Duration" >{formatDuration(track.duration_ms)}</p>
-                                {/* <AddToPlaylistButton 
-                    track={track}
-                    playlists={playlists}
-                    activeTrackId={activeTrackId}
-                    toggleDropdown={toggleDropdown}
-                    dropdownRef={dropdownRef}
-                /> */}
                             </div>
                         </div>
                     </a>

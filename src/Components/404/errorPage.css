@@ -1,0 +1,36 @@
+.error-container{
+
+    display:flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../../../public/assets/sideBar-bakcground.png) no-repeat center center/cover;
+    opacity: 0.8;
+    animation: moveBackground 10s infinite alternate ease-in-out;
+
+
+}
+
+.error-page-title{
+    font-size: var(--title-size);
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--highlight-text-color);
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease-in-out;
+    margin-top: 30%;
+}
+
+.error-page-link-home{
+    font-size:   var(--subtitle-size);
+    text-decoration: none;
+    font-family: var(--logo-font);
+
+    
+}
