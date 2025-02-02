@@ -1,12 +1,18 @@
-import React from "react";
-import useAddTrackToPlaylist from "../../Hooks/useAddTrackToPlaylist";
+import React, { useState } from 'react';
+// import useAddTrackToPlaylist from "../../Hooks/useAddTrackToPlaylist";
+import usePost from "../../Hooks/usePostRequest";
 
 const AddToPlaylistButton = ({ track, playlists, activeTrackId, toggleDropdown, dropdownRef }) => {
-    const { addTrackToPlaylist, isLoading } = useAddTrackToPlaylist();
+    const { sendPostRequest, isLoading, error } = usePost();
+    const [showSuccess, setShowSuccess] = useState(false);
 
-    const handleAddToPlaylist = (event, playlistId, trackUri) => {
-        event.stopPropagation();
-        addTrackToPlaylist(playlistId, trackUri);
+    const handleAddToPlaylist = async (event, playlistId, trackUri) => {
+       event.stopPropagation();
+        try {
+        sendPostRequest(playlistId, trackUri);
+       } catch (error) {
+        console.error('Failed to add track to playlist:', error);
+       }
     };
 
     return (

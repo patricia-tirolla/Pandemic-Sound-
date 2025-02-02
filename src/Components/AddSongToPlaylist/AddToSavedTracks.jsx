@@ -13,8 +13,8 @@ const AddToSavedTracks = ({ track }) => {
             );
             setShowSuccess(true);
             setTimeout(() => setShowSuccess(false), 3000);
-        } catch (err) {
-            console.error('Failed to save track:', err);
+        } catch (error) {
+            console.error('Failed to save track:', error);
         }
     };
 
