@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useGet = (url, token) => {
+const useGetRequest = (url, token) => {
 
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
@@ -33,4 +33,4 @@ const useGet = (url, token) => {
     return { data, error, loading };
 }
 
-export default useGet;
+export default useGetRequest;

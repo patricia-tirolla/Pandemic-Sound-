@@ -1,25 +1,27 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Remove useParams
-import useGet from "../../Hooks/useGetRequest";
-import usePlaylistFetch from "../../Hooks/usePlaylistFetch";
+import useGetRequest from "../../Hooks/useGetRequest";
+// import usePlaylistFetch from "../../Hooks/usePlaylistFetch";
 // import useSaveTrack from "../../Hooks/useSaveTrack";
 import usePutRequest from "../../Hooks/usePutRequest";
 import AddToPlaylistButton from "../AddSongToPlaylist/AddToPlaylistButton";
 import AddToSavedTracks from "../AddSongToPlaylist/AddToSavedTracks";
 import "./searchpage.css";
+import {useProfile} from "../../Hooks/Profile";
 
 const SearchPage = () => {
   const [activeTrackId, setActiveTrackId] = useState(null);
   const [filter, setFilter] = useState("all");
   const navigate = useNavigate();
   const token = localStorage.getItem("accessToken");
+  const profile = useProfile();
 
   const params = new URLSearchParams(window.location.search);
   const searchValue = params.get("q");
   const searchUrl = `https://api.spotify.com/v1/search?q=${searchValue}&type=artist%2Ctrack%2Calbum&limit=5`;
 
-  const { data: result, loading, error: searchError } = useGet(searchUrl, token);
-  const { playlists } = usePlaylistFetch();
+  const { data: result, loading, error: searchError } = useGetRequest(searchUrl, token);
+  const { playlists } = useGetRequest(`https://api.spotify.com/v1/users/${profile.id}/playlists`, token);
   const { error: saveError } = usePutRequest();
   const onTrackClick = (trackId) => navigate(`/track/${trackId}`);
   const toggleDropdown = (trackId) => setActiveTrackId(prev => prev === trackId ? null : trackId);
