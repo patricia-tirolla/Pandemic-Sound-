@@ -33,7 +33,7 @@ function Sidebar() {
         })
         .catch((error) => console.log("Error fetching playlists:", error));
     }
-  }, [profile,reFetch]);
+  }, [profile, reFetch]);
 
   return (
     <div className="sideBar">
@@ -42,9 +42,7 @@ function Sidebar() {
         <AddPlaylist triggerReFetch={triggerReFetch} />
       </div>
       <GetPlaylist playlists={playlists} />
-    <AddPlaylist triggerReFetch={triggerReFetch} />
-  </div>
- 
+    </div>
   );
 }
 

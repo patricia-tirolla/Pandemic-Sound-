@@ -13,7 +13,6 @@ const Song = () => {
 
   useEffect(() => {
     if (trackData) {
-      console.log(trackData)
 
       fetch("https://open.spotify.com/oembed?url=" + trackData.external_urls.spotify)
         .then((resp) => resp.json())
@@ -21,8 +20,6 @@ const Song = () => {
         .catch((err) => console.error(err));
     }
   }, [trackData]);
-  console.log(trackData, embedUrl);
-
 
   if (error || trackError) {
     return <div>Error: {error || trackError}</div>;
@@ -54,7 +51,7 @@ const Song = () => {
               add to playlist
             </button>
             {embedUrl && 
-              <iframe src={embedUrl}></iframe>
+              <iframe src={embedUrl} title={"Play Preview"}></iframe>
             }
           </div>
         </div>

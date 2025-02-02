@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
-import { redirectToAuthCodeFlow, isUserAutheticated, clientId } from "../AuthCallback/script";
+import { redirectToAuthCodeFlow, isUserAutheticated } from "../AuthCallback/script";
+import clientId from "../AuthCallback/ClientId";
 import { useNavigate } from "react-router-dom";
 import "./LandingPage.css"
 
