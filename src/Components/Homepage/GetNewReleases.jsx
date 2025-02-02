@@ -61,7 +61,6 @@ const GetNewReleases = () => {
 
 
       <div className="new-releases-container">
-        
         {newReleases.length === 0 ? (
           <p>No new releases available.</p>
         ) : (

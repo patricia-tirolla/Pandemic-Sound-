@@ -1,11 +1,21 @@
 import { useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import useFetchTracks from "../Song/GetTrackUrl";
 import "./playlistDisplay.css";
 
 const PlaylistDisplay = () => {
   const location = useLocation();
   const { playlist, trackUrl } = location.state || {};
+  const { tracks: fetchedTracks, error } = useFetchTracks(trackUrl);
+  const [tracks, setTracks] = useState([]);
+  const token = localStorage.getItem("accessToken");
+
+  useEffect(() => {
+    if(fetchedTracks) {
+      setTracks([...fetchedTracks]);
+    }
+  }, [fetchedTracks])
   const { tracks: fetchedTracks, error } = useFetchTracks(trackUrl);
   const [tracks, setTracks] = useState([]);
   const token = localStorage.getItem("accessToken");
@@ -43,9 +53,7 @@ const PlaylistDisplay = () => {
     .then((response) => {
       if (response.ok) {
         setTracks(tracks.filter((item) => item.track.uri !== track.uri));
-      } else {
-        console.error("nao deletou", response.status);
-      }
+      } 
     })
   }
 
