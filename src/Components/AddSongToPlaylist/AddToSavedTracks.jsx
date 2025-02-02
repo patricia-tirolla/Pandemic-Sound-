@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useState }from 'react';
 import useSaveTrack from '../../Hooks/useSaveTrack';
 
 const AddToSavedTracks = ({ track }) => {
     const { saveTrack, isLoading, error } = useSaveTrack();
+    const [showSuccess, setShowSuccess] = useState(false);
 
     const handleSaveTrack = async () => {
         try {
-            await saveTrack(track.id);
+            const result = await saveTrack(track.id);
+            if (result) {
+                setShowSuccess(true);
+                alert('Track saved successfully!');
+                setTimeout(() => setShowSuccess(false), 3000);
+            }
         } catch (err) {
             console.error('Failed to save track:', err);
         }
     };
+
 
     return (
         <div >
@@ -19,8 +26,8 @@ const AddToSavedTracks = ({ track }) => {
                 onClick={handleSaveTrack}
                 disabled={isLoading}
             >
-                {isLoading ? 'Saving...' : 'Save to Library'}
-            </button>
+                {isLoading ? 'Saving...' : showSuccess ? '✓ Saved' : 'Save aaato Library'}
+                </button>
             {error && <div className="error-message">{error}</div>}
         </div>
     );

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Remove useParams
 import useFetch from "../../Hooks/useFetch";
 import usePlaylistFetch from "../../Hooks/usePlaylistFetch";
 import useSaveTrack from "../../Hooks/useSaveTrack";
@@ -11,7 +11,6 @@ const SearchPage = () => {
   const [activeTrackId, setActiveTrackId] = useState(null);
   const [filter, setFilter] = useState("all");
   const navigate = useNavigate();
-  const { trackId } = useParams();
   const token = localStorage.getItem("accessToken");
 
   const params = new URLSearchParams(window.location.search);
@@ -19,15 +18,13 @@ const SearchPage = () => {
   const searchUrl = `https://api.spotify.com/v1/search?q=${searchValue}&type=artist%2Ctrack%2Calbum&limit=5`;
 
   const { data: result, loading, error: searchError } = useFetch(searchUrl, token);
-  const { error: trackError } = useFetch(`https://api.spotify.com/v1/tracks/${trackId}`, token);
   const { playlists } = usePlaylistFetch();
   const { error: saveError } = useSaveTrack();
-
   const onTrackClick = (trackId) => navigate(`/track/${trackId}`);
   const toggleDropdown = (trackId) => setActiveTrackId(prev => prev === trackId ? null : trackId);
 
-  if (searchError || trackError || saveError) {
-    return <div className="error-message">Error: {searchError || trackError || saveError}</div>;
+  if (searchError ||  saveError) {
+    return <div className="error-message">Error: {searchError ||  saveError}</div>;
   }
 
   const renderResults = (type) => {
