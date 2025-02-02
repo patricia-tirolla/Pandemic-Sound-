@@ -57,9 +57,6 @@ const GetNewReleases = () => {
      
       {error && <p className="error-message">{error}</p>}
 
-      {/* <h2 className="new-releases-heading">It's New Music Day! </h2> */}
-
-
       <div className="new-releases-container">
         {newReleases.length === 0 ? (
           <p>No new releases available.</p>

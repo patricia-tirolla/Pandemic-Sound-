@@ -2,6 +2,7 @@
 import { Route, Routes } from "react-router-dom";
 import React from "react";
 import Main from "./Components/Main/Main";
+
 import GetNewReleases from "./Components/Homepage/GetNewReleases";
 import PlaylistDisplay from "./Components/PlaylistDisplay/PlaylistDisplay";
 import AuthCallback from "./Components/AuthCallback/AuthCallbackComponent";
