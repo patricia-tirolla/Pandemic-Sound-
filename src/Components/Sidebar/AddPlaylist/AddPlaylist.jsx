@@ -8,7 +8,7 @@ const AddPlaylist = ({triggerReFetch}) => {
   const [loading, setLoading] = useState(false);
 
   const createPlaylist = () => {  
-    const token = localStorage.getItem("accessToken");
+    const accessToken = localStorage.getItem("accessToken");
 
     if (profile !== null) {
       const addPlaylistURL = `https://api.spotify.com/v1/users/${profile.id}/playlists`;
@@ -22,7 +22,7 @@ const AddPlaylist = ({triggerReFetch}) => {
       const addPlaylistURLParameters = {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(playlistData),
