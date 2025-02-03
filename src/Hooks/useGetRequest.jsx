@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
 
-const useFetch = (url, token) => {
+const useGetRequest = (url, accessToken) => {
 
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(null);
 
     useEffect(() => {
+        if (!url) return;
+
         (async () => {
             try {
                 setLoading(true);
                 const response = await fetch(url, {
                     method: "GET",
-                    headers: { Authorization: `Bearer ${token}` }
+                    headers: { Authorization: `Bearer ${accessToken}` }
                 });
                 if (response.ok) {
                     const json = await response.json();
@@ -28,9 +30,9 @@ const useFetch = (url, token) => {
             }
         })()
 
-    }, [url, token]);
+    }, [url, accessToken]);
 
     return { data, error, loading };
 }
 
-export default useFetch;
+export default useGetRequest;

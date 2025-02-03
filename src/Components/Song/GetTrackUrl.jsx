@@ -6,9 +6,9 @@ const useFetchTracks = (trackUrl) => {
 
   useEffect(() => {
     const fetchTracks = async () => {
-      const token = localStorage.getItem("accessToken");
+      const accessToken = localStorage.getItem("accessToken");
 
-      if (!token) {
+      if (!accessToken) {
         setError("Access token is missing");
         return;
       }
@@ -16,7 +16,7 @@ const useFetchTracks = (trackUrl) => {
       try {
         const response = await fetch(`${trackUrl}?limit=10`, {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         });
 

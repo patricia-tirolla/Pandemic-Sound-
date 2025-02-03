@@ -7,9 +7,9 @@ const usePutRequest = () => {
   const sendPutRequest = async (url, bodyData) => {
     setIsLoading(true);
     setError(null);
-    const token = localStorage.getItem("accessToken");
+    const accessToken = localStorage.getItem("accessToken");
 
-    if (!token) {
+    if (!accessToken) {
       setError("No access token found");
       setIsLoading(false);
       return;
@@ -19,7 +19,7 @@ const usePutRequest = () => {
       const response = await fetch(url, {
         method: 'PUT',
         headers: {
-          'Authorization': `Bearer ${token}`,
+          'Authorization': `Bearer ${accessToken}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(bodyData)

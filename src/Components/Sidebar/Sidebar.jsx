@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import GetPlaylist from "./GetPlaylist/GetPlaylist";
 import AddPlaylist from "./AddPlaylist/AddPlaylist";
 import { useProfile } from "../../Hooks/Profile";
-import useFetch from "../../Hooks/useFetch"
+import useGet from "../../Hooks/useGetRequest";
 
 //this will be updated soon for a context to check playlist state 
 //right now sidebar is not updating
@@ -17,9 +17,9 @@ function Sidebar() {
   const triggerReFetch = () => {
     setReFetch((prev) => !prev);
   };
-  const token = localStorage.getItem("accessToken");
-  const playlistAPI = profile && token ? `https://api.spotify.com/v1/users/${profile.id}/playlists` : null;
-  const { data } = useFetch(playlistAPI, token);
+  const accessToken = localStorage.getItem("accessToken");
+  const playlistAPI = profile && accessToken ? `https://api.spotify.com/v1/users/${profile.id}/playlists` : null;
+  const { data, error, loading } = useGet(playlistAPI, accessToken);
 
   useEffect(() => {
     if (data) {

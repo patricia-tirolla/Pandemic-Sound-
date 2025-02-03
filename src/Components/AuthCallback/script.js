@@ -35,10 +35,10 @@ export const getAccessToken = async (clientId, code) => {
     return access_token;
 };
 
-export const fetchProfile = async (token) => {
+export const fetchProfile = async (accessToken) => {
     const result = await fetch("https://api.spotify.com/v1/me", {
         method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${accessToken}` },
     });
 
     return await result.json();
@@ -64,8 +64,8 @@ const generateCodeChallenge = async (codeVerifier) => {
 };
 
 export const isUserAutheticated = () => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
         return true
     } else {
         return false
