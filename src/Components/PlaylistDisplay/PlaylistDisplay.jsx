@@ -6,18 +6,11 @@ import TrackList from "./TrackList";
 import PlaylistHeader from "./PlaylistHeader";
 import "./playlistDisplay.css";
 
-
 const PlaylistDisplay = () => {
   const location = useLocation();
   const { playlist, trackUrl } = location.state || {};
   const { tracks, error } = useFetchTracks(trackUrl);
   const { playlists } = usePlaylistFetch();
-
-  useEffect(() => {
-    if(fetchedTracks) {
-      setTracks([...fetchedTracks]);
-    }
-  }, [fetchedTracks])
 
   if (error) {
     return <div>Error: {error}</div>;
