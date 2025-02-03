@@ -19,7 +19,7 @@ function Sidebar() {
   };
   const accessToken = localStorage.getItem("accessToken");
   const playlistAPI = profile && accessToken ? `https://api.spotify.com/v1/users/${profile.id}/playlists` : null;
-  const { data, error, loading } = useGet(playlistAPI, accessToken);
+  const { data } = useGet(playlistAPI, accessToken);
 
   useEffect(() => {
     if (data) {

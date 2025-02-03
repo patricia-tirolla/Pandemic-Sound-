@@ -82,9 +82,9 @@ const Song = () => {
               activeTrackId={activeTrackId}
               toggleDropdown={toggleDropdown}
             />
-            {/* {embedUrl &&
+            {embedUrl &&
               <iframe src={embedUrl} title="Spotify Embed"></iframe>
-            } */}
+            }
           </div>
         </div>
       )}
