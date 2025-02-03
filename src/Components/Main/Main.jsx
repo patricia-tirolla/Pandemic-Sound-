@@ -4,7 +4,7 @@ import "../../styles/App.css";
 import Nav from "../Nav/Nav";
 import Sidebar from "../Sidebar/Sidebar";
 import { ProfileProvider } from "../../Hooks/Profile";
-import NavigationArrows from "../NavigationArrows/NavigationArrows";
+import NavigationArrows from "./NavigationArrows/NavigationArrows";
 
 function Main() {
 
