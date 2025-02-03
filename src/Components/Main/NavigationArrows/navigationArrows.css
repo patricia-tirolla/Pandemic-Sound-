@@ -2,7 +2,7 @@
     position:fixed;
     z-index: 9999;
     top: 150px;
-    left: 30%;
+    right: 30%;
 }
 
 .navigation-arrow-btn {
