@@ -31,8 +31,6 @@ const PlaylistDisplay = () => {
     <div className="display-playlist-container">
       <PlaylistHeader playlist={playlist} />
       <TrackList tracks={tracks} playlists={playlists} />
-      <PlaylistHeader playlist={playlist} />
-      <TrackList tracks={tracks} playlists={playlists} />
     </div>
   );
 };
