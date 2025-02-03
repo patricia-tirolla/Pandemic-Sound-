@@ -7,6 +7,8 @@ const useGetRequest = (url, accessToken) => {
     const [loading, setLoading] = useState(null);
 
     useEffect(() => {
+        if (!url) return;
+
         (async () => {
             try {
                 setLoading(true);
