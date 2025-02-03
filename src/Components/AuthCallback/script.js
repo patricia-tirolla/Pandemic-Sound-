@@ -1,5 +1,3 @@
-export const clientId = "12c761ee4f7842109982ed4809eddd3a";
-
 export const redirectToAuthCodeFlow = async (clientId) => {
     const verifier = generateCodeVerifier(128);
     const challenge = await generateCodeChallenge(verifier);
