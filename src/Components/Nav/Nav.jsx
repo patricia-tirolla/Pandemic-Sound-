@@ -1,5 +1,5 @@
 import React from "react";
-import SearchBar from "../SearchPage/SearchBarComponent";
+import SearchBar from "./SearchBar/SearchBarComponent";
 import { useProfile } from "../../Hooks/Profile";
 import { isUserAutheticated } from "../AuthCallback/script";
 import "./nav.css";

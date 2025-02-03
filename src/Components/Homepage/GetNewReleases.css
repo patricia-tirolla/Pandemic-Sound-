@@ -1,28 +1,32 @@
-.releases-main-container {
+.releases-main-container{
   width: 100%;
   height: 100%;
   padding: 20px;
-  display: flex;
+  display:flex;
   flex-direction: column;
+
+
 }
 
 .realeses-title {
   font-size: var(--title-size);
-  color: var(--highlight-text-color);
+  color: var( --highlight-text-color);
   padding: 4rem 3rem;
+  
 }
 
 .new-releases {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3rem;
-  align-self: center;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 3rem; 
+  align-self: center ;
   max-height: 80%;
-  overflow: scroll;
+  overflow:scroll;
   scrollbar-width: thin;
   scrollbar-color: #888 #222;
   width: 90%;
 }
+
 
 .album-card {
   background: #121212;
@@ -39,6 +43,7 @@
 
 .album-card img {
   width: 100%;
+
 }
 
 .album-card h3 {

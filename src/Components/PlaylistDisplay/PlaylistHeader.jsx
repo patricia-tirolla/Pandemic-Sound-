@@ -10,7 +10,7 @@ const PlaylistHeader = ({ playlist }) => {
   const [newTitle, setTitle] = useState(playlist?.name || defaultName);
   const [isEditing, setEdit] = useState(false);
 
-  const { sendPutRequest} = usePutRequest();
+  const { sendPutRequest, isLoading, error } = usePutRequest();
 
   useEffect(() => {
     setTitle(playlist?.name || defaultName);
