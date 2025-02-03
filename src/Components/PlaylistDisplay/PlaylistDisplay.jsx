@@ -1,6 +1,5 @@
 import { useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import React, { useState, useEffect } from "react";
 import useFetchTracks from "../Song/GetTrackUrl";
 import "./playlistDisplay.css";
 
@@ -16,9 +15,6 @@ const PlaylistDisplay = () => {
       setTracks([...fetchedTracks]);
     }
   }, [fetchedTracks])
-  const { tracks: fetchedTracks, error } = useFetchTracks(trackUrl);
-  const [tracks, setTracks] = useState([]);
-  const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
     if(fetchedTracks) {
