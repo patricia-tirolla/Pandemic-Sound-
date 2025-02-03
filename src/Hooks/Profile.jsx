@@ -5,17 +5,17 @@ const ProfileContext = createContext();
 
 export const ProfileProvider = ({children}) => {
     const [profile, setProfile] = useState(null);
-    const token = localStorage.getItem("accessToken");
+    const accessToken = localStorage.getItem("accessToken");
 
     useEffect(() => {
         (async () => {
-          if (token) {
-            const fetchedProfile = await fetchProfile(token);
+          if (accessToken) {
+            const fetchedProfile = await fetchProfile(accessToken);
             setProfile(fetchedProfile);
             localStorage.setItem("profileId", fetchedProfile.id);
           }
         })();
-      }, [token]);
+      }, [accessToken]);
 
     return <ProfileContext.Provider value={profile}>
         {children}

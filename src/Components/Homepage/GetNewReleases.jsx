@@ -4,11 +4,11 @@ import './GetNewReleases.css';
 const GetNewReleases = () => {
   const [newReleases, setNewReleases] = useState([]);
   const [error, setError] = useState(null);
-  const token = localStorage.getItem("accessToken"); 
+  const accessToken = localStorage.getItem("accessToken"); 
 
   
   const fetchNewReleases = useCallback(async () => {
-    if (!token) {
+    if (!accessToken) {
       console.error("Access token is missing");
       setError("Access token is missing.");
       return;
@@ -20,7 +20,7 @@ const GetNewReleases = () => {
         {
           method: 'GET',
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       );
@@ -42,15 +42,15 @@ const GetNewReleases = () => {
       console.error("Error fetching new releases:", err.message);
       setError(`Failed to fetch new releases: ${err.message}`);
     }
-  }, [token]);
+  }, [accessToken]);
 
   useEffect(() => {
-    if (token) {
+    if (accessToken) {
       fetchNewReleases();
     } else {
       setError("Token is missing or invalid.");
     }
-  }, [token, fetchNewReleases]);
+  }, [accessToken, fetchNewReleases]);
 
   return (
     <div className="get-new-releases">

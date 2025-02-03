@@ -14,8 +14,8 @@ function usePostRequest() {
         return;
       }
 
-    const token = localStorage.getItem("accessToken");
-    if (!token) {
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) {
         setError("No access token found");
         setIsLoading(false);
         return;
@@ -27,7 +27,7 @@ function usePostRequest() {
           const response = await fetch(url, {
             method: 'POST',
             headers: {
-              'Authorization': `Bearer ${token}`,
+              'Authorization': `Bearer ${accessToken}`,
               'Content-Type': 'application/json'
             },
             body: requestBody

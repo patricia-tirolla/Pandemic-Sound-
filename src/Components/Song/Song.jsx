@@ -23,15 +23,17 @@ const Song = () => {
   const { error } = usePutRequest();
 
   useEffect(() => {
+    console.log("Fetching track data with URL:", `https://api.spotify.com/v1/tracks/${trackId}`);
+  
     if (trackData) {
-      console.log(trackData)
+      console.log("trackdata", trackData)
 
       fetch("https://open.spotify.com/oembed?url=" + trackData.external_urls.spotify)
         .then((resp) => resp.json())
         .then((json) => setEmbedUrl(json.iframe_url))
         .catch((err) => console.error(err));
     }
-  }, [trackData]);
+  }, [trackData, trackId, accessToken]);
 
   const toggleDropdown = (trackId) => {
     setActiveTrackId(prevId => prevId === trackId ? null : trackId);

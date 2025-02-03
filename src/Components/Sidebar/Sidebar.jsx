@@ -17,9 +17,9 @@ function Sidebar() {
   const triggerReFetch = () => {
     setReFetch((prev) => !prev);
   };
-  const token = localStorage.getItem("accessToken");
-  const playlistAPI = profile && token ? `https://api.spotify.com/v1/users/${profile.id}/playlists` : null;
-  const { data, error, loading } = useGet(playlistAPI, token);
+  const accessToken = localStorage.getItem("accessToken");
+  const playlistAPI = profile && accessToken ? `https://api.spotify.com/v1/users/${profile.id}/playlists` : null;
+  const { data, error, loading } = useGet(playlistAPI, accessToken);
 
   useEffect(() => {
     if (data) {
