@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "./navigationArrows.css"
 
 const NavigationArrows = () => {
     const navigate = useNavigate();
@@ -11,9 +12,9 @@ const NavigationArrows = () => {
         navigate(+1);
     }
     return (
-        <div>
-            <button onClick={goBack}>&lt;</button>
-            <button onClick={goForward}>&gt;</button>
+        <div className="navigation-arrow-container">
+            <button className="navigation-arrow-btn" onClick={goBack}>&lt;</button>
+            <button className="navigation-arrow-btn" onClick={goForward}>&gt;</button>
         </div>
     )
 }

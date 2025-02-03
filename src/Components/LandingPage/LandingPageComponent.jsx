@@ -17,7 +17,7 @@ const LandingPage = () => {
         <main className="landing-page">
             <h1 className="landing-page-title">Welcome to Pandemic Sound!</h1>
             {!isUserAutheticated() &&
-                <button onClick={() => redirectToAuthCodeFlow(clientId)}>Loging to Spotify</button>
+                <button onClick={() => redirectToAuthCodeFlow(clientId)}>Log in with Spotify</button>
             }
         </main>
     )

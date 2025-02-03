@@ -13,10 +13,7 @@ html, body {
     padding: 20px;
 }
 
-.trackDetails {
-    display: flex;
-    align-items: center;
-}
+
 
 .trackImage {
     width: 100px;
