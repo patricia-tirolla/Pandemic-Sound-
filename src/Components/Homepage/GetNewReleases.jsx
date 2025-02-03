@@ -53,7 +53,8 @@ const GetNewReleases = () => {
   }, [accessToken, fetchNewReleases]);
 
   return (
-    <div className="get-new-releases">
+    <div className="releases-main-container">
+       <h2 className='realeses-title'>Explore</h2>
      
       {error && <p className="error-message">{error}</p>}
 
@@ -76,7 +77,8 @@ const GetNewReleases = () => {
           </div>
         )}
       </div>
-    </div>
+      </div>
+
   );
 };
 

@@ -52,6 +52,7 @@ const Song = () => {
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
   
+  
   return (
     <div className="songContainer">
       {trackData && (

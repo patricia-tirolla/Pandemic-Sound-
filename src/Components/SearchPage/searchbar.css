@@ -1,4 +1,4 @@
-/*.searchContainer {
+.searchContainer {
     display: flex;
     justify-content: center;
     padding: 2rem;
@@ -23,8 +23,8 @@
   }
   
   .searchBarWrapper:hover {
-    background-color: var(--secondary-background-color);
-    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    /* background-color: var(--secondary-background-color);
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px; */
     transform: translateY(-2px);
   }
   
@@ -89,7 +89,7 @@
     color: var(--highlight-text-color);
     text-decoration: underline;
   }
-    */
+/*    
     .searchContainer {
       display: flex;
       justify-content: center;
@@ -141,5 +141,5 @@
     .searchButton:hover {
       color: rgba(255, 255, 255, 1);
       transform: scale(1.1); /* Slight button zoom on hover */
-    }
-    
+    /* } */
+     

@@ -9,6 +9,7 @@ import AuthCallback from "./Components/AuthCallback/AuthCallbackComponent";
 import LandingPage from "./Components/LandingPage/LandingPageComponent";
 import SearchPage from "./Components/SearchPage/SearchPageComponent";
 import Song from "./Components/Song/Song";
+import ErrorPage from "./Components/404/ErrorPage"
 import "./styles/reset.css";
 import "./styles/App.css";
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="track/:trackId" element={<Song />}/>
           <Route path="search" element={<SearchPage />} />
         </Route>
+        <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
 }
