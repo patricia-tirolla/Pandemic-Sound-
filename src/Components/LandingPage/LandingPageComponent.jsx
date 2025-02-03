@@ -9,7 +9,7 @@ const LandingPage = () => {
 
     useEffect(() => {
         if (isUserAutheticated()) {
-            navigate("/home");
+            navigate("/");
         }
     }, [navigate]);
 
