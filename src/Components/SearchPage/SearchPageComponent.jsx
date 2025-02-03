@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Remove useParams
+import { useNavigate } from "react-router-dom";
 import useGetRequest from "../../Hooks/useGetRequest";
-// import usePlaylistFetch from "../../Hooks/usePlaylistFetch";
-// import useSaveTrack from "../../Hooks/useSaveTrack";
 import usePutRequest from "../../Hooks/usePutRequest";
 import AddToPlaylistButton from "../AddSongToPlaylist/AddToPlaylistButton";
 import AddToSavedTracks from "../AddSongToPlaylist/AddToSavedTracks";
 import "./searchpage.css";
 import { useProfile } from "../../Hooks/Profile";
+import { usePlaylists } from "../PlaylistsProvider/PlaylistsProvider";
 
 const SearchPage = () => {
     const [activeTrackId, setActiveTrackId] = useState(null);
@@ -21,8 +20,7 @@ const SearchPage = () => {
     const searchUrl = `https://api.spotify.com/v1/search?q=${searchValue}&type=artist%2Ctrack%2Calbum&limit=10`;
 
     const { data: result, loading, error: searchError } = useGetRequest(searchUrl, accessToken);
-    const { data: playlistsData } = useGetRequest(profile ? `https://api.spotify.com/v1/users/${profile.id}/playlists` : null, accessToken);
-    const playlists = playlistsData ? playlistsData.items : [];
+    const { playlists } = usePlaylists();
     const { error: saveError } = usePutRequest();
     const onTrackClick = (trackId) => navigate(`/track/${trackId}`);
     const toggleDropdown = (trackId) => setActiveTrackId(prev => prev === trackId ? null : trackId);
@@ -41,8 +39,8 @@ const SearchPage = () => {
                 return result?.tracks?.items?.length > 0 ? (
                     <ul className="search-list">
                         {result.tracks.items.map((track) => (
-                            <a href={`#${track.id}`} onClick={() => onTrackClick(track.id)}>
-                                <li key={track.id} className="single-track-container">
+                            <a key={track.id} href={`#${track.id}`} onClick={() => onTrackClick(track.id)}>
+                                <li className="single-track-container">
 
                                     <div className="track-info">
                                         <img

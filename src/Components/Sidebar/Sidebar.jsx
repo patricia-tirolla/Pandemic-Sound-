@@ -1,55 +1,18 @@
 import "./sidebar.css";
-import React, { useState, useEffect } from "react";
-import GetPlaylist from "./GetPlaylist/GetPlaylist";
+import React from "react";
 import AddPlaylist from "./AddPlaylist/AddPlaylist";
-import { useProfile } from "../../Hooks/Profile";
-import useGet from "../../Hooks/useGetRequest";
+import { usePlaylists } from "../PlaylistsProvider/PlaylistsProvider";
+import GetPlaylist from "./GetPlaylist/GetPlaylist"
 
-//this will be updated soon for a context to check playlist state 
-//right now sidebar is not updating
-//we are working for you!
 
 function Sidebar() {
-  const [playlists, setPlaylists] = useState([]);
-  const [reFetch, setReFetch] = useState(false);
-  const profile = useProfile();
-
-  const triggerReFetch = () => {
-    setReFetch((prev) => !prev);
-  };
-  const accessToken = localStorage.getItem("accessToken");
-  const playlistAPI = profile && accessToken ? `https://api.spotify.com/v1/users/${profile.id}/playlists` : null;
-  const { data } = useGet(playlistAPI, accessToken);
-
-  useEffect(() => {
-    if (data) {
-    
-      setPlaylists((prevPlaylists) => {
-        if (prevPlaylists.length === 0 || hasPlaylistChanged(prevPlaylists, data.items)) {
-          return data.items;
-        }
-        return prevPlaylists; 
-      });
-    }
-  }, [data, reFetch]);
-
-  const hasPlaylistChanged = (oldPlaylists, newPlaylists) => {
-    if (oldPlaylists.length !== newPlaylists.length) return true; //checking changes on items
-
-    for (let i = 0; i < oldPlaylists.length; i++) {
-      if (oldPlaylists[i].name !== newPlaylists[i].name) {
-        return true; //cheking name change
-      }
-    }
-
-    return false;
-  };
+  const {playlists, fetchPlaylists} = usePlaylists();
 
   return (
     <div className="sideBar">
       <div className="title-sidebar-container">
         <h2 className="sideBar-title">Playlists</h2>
-        <AddPlaylist triggerReFetch={triggerReFetch} />
+        <AddPlaylist fetchPlaylists={fetchPlaylists} />
       </div>
       <GetPlaylist playlists={playlists} />
     </div>
