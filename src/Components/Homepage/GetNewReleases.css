@@ -1,68 +1,53 @@
-.get-new-releases {
+.releases-main-container{
   width: 100%;
+  height: 100%;
   padding: 20px;
-  background-color: #000; 
-  color: #fff;
+  display:flex;
+  flex-direction: column;
+
+
 }
 
-.new-releases-heading {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
+.realeses-title {
+  font-size: var(--title-size);
+  color: var( --highlight-text-color);
+  padding: 4rem 3rem;
   
 }
 
-.new-releases-container {
-  /* max-height: 500px;  */
-  /* overflow-y: auto; */
-  padding-right: 10px;
-  /* scrollbar-width: thin;
-  scrollbar-color: #888 #222; */
-  position: absolute; 
-  right: 5%; 
-  top: 50%; 
-  transform: translateY(-50%); 
-  width: 60%; }
-
-
-.new-releases-container::-webkit-scrollbar {
-  width: 6px;
-}
-
-.new-releases-container::-webkit-scrollbar-thumb {
-  background: #888; 
-}
-
-.new-releases-container::-webkit-scrollbar-track {
-  background: #222; }
-
 .new-releases {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); 
-  gap: 16px; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 3rem; 
+  align-self: center ;
+  max-height: 80%;
+  overflow:scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #222;
+  width: 90%;
 }
+
 
 .album-card {
   background: #121212;
   padding: 15px;
-  border-radius: 10px;
+  border-radius: none;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s;
 }
 
 .album-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .album-card img {
   width: 100%;
-  border-radius: 8px;
+
 }
 
 
 .album-card h3 {
-  font-size: 16px;
   margin-top: 10px;
   overflow: hidden; 
   text-overflow: ellipsis; 
@@ -76,7 +61,7 @@
   overflow: hidden;
 }
 
-.play-button {
+/* .play-button {
   display: block;
   position: absolute;
   top: 10px;
@@ -95,42 +80,4 @@
 
 .play-button:hover {
   background: rgba(255, 255, 255, 0.5);
-}
-.new-releases-heading {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  text-align: center; 
-  
-  position: absolute; 
-  top: 10%; 
-  left: 50%;
-  transform: translateX(-50%); 
-  width: 100%; 
-}
-.new-releases-heading {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  text-align: center;
-  
-  position: absolute;
-  top: 5%; 
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-}
-
-.new-releases-container {
-  max-height: 500px;
-  overflow-y: auto;
-  padding-right: 10px;
-  scrollbar-width: thin;
-  scrollbar-color: #888 #222;
-
-  position: absolute;
-  right: 5%;
-  top: 60%; 
-  transform: translateY(-50%);
-  width: 60%;
-}
+} */

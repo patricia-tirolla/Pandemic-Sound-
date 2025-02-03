@@ -3,6 +3,11 @@ import React, { useState, useEffect } from "react";
 import GetPlaylist from "./GetPlaylist/GetPlaylist";
 import AddPlaylist from "./AddPlaylist/AddPlaylist";
 import { useProfile } from "../../Hooks/Profile";
+import useFetch from "../../Hooks/useFetch"
+
+//this will be updated soon for a context to check playlist state 
+//right now sidebar is not updating
+//we are working for you!
 
 function Sidebar() {
   const [playlists, setPlaylists] = useState([]);
@@ -12,28 +17,33 @@ function Sidebar() {
   const triggerReFetch = () => {
     setReFetch((prev) => !prev);
   };
+  const token = localStorage.getItem("accessToken");
+  const playlistAPI = profile && token ? `https://api.spotify.com/v1/users/${profile.id}/playlists` : null;
+  const { data, error, loading } = useFetch(playlistAPI, token);
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-
-
-    if (profile && token) {
-      const playlistAPI = `https://api.spotify.com/v1/users/${profile.id}/playlists`;
-      const playlistParameters = {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-
-      fetch(playlistAPI, playlistParameters)
-        .then((response) => response.json())
-        .then((data) => {
-          setPlaylists(data.items);
-        })
-        .catch((error) => console.log("Error fetching playlists:", error));
+    if (data) {
+    
+      setPlaylists((prevPlaylists) => {
+        if (prevPlaylists.length === 0 || hasPlaylistChanged(prevPlaylists, data.items)) {
+          return data.items;
+        }
+        return prevPlaylists; 
+      });
     }
-  }, [profile,reFetch]);
+  }, [data, reFetch]);
+
+  const hasPlaylistChanged = (oldPlaylists, newPlaylists) => {
+    if (oldPlaylists.length !== newPlaylists.length) return true; //checking changes on items
+
+    for (let i = 0; i < oldPlaylists.length; i++) {
+      if (oldPlaylists[i].name !== newPlaylists[i].name) {
+        return true; //cheking name change
+      }
+    }
+
+    return false;
+  };
 
   return (
     <div className="sideBar">
@@ -42,9 +52,7 @@ function Sidebar() {
         <AddPlaylist triggerReFetch={triggerReFetch} />
       </div>
       <GetPlaylist playlists={playlists} />
-    <AddPlaylist triggerReFetch={triggerReFetch} />
-  </div>
- 
+    </div>
   );
 }
 

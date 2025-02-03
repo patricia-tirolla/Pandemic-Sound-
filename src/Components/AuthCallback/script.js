@@ -1,4 +1,4 @@
-export const clientId = "bab8a1bc1b6348759c3cd4efb8b959e9";
+export const clientId = "12c761ee4f7842109982ed4809eddd3a";
 
 export const redirectToAuthCodeFlow = async (clientId) => {
     const verifier = generateCodeVerifier(128);
@@ -10,7 +10,7 @@ export const redirectToAuthCodeFlow = async (clientId) => {
     params.append("client_id", clientId);
     params.append("response_type", "code");
     params.append("redirect_uri", "http://localhost:3000/callback");
-    params.append("scope", "user-read-private user-read-email playlist-modify-public playlist-modify-private");
+    params.append("scope", "user-library-modify user-read-private user-read-email playlist-modify-public playlist-modify-private");
     params.append("code_challenge_method", "S256");
     params.append("code_challenge", challenge);
 
