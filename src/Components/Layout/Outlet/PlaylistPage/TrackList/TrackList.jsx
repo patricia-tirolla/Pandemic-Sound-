@@ -27,7 +27,7 @@ import Track from "./Track";
 
   return (
     <ul>
-      {tracks.map(({ track }) => (
+      {tracks && tracks.map(({ track }) => ( // Check if tracks exists and is not null or undefined
         <Track 
           key={track.id} 
           track={track} 

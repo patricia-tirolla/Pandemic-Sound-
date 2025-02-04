@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import usePost from "../../../../../Hooks/usePostRequest";
+import usePostRequest from "../../../../../Hooks/usePostRequest";
 import { usePlaylists } from '../../../../../Hooks/PlaylistsProvider';
 
 const AddToPlaylistButton = ({ track, activeTrackId, toggleDropdown, dropdownRef }) => {
     const {playlists, fetchPlaylists} = usePlaylists();
-    const { sendPostRequest, isLoading, error: requestError } = usePost();
+    const { sendPostRequest, isLoading, error: requestError } = usePostRequest();
     const [showSuccess, setShowSuccess] = useState(false);
     const [error, setError] = useState(null);
     const handleAddToPlaylist = async (event, playlistId) => {
