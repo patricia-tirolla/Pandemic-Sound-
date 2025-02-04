@@ -14,7 +14,7 @@ const useFetchTracks = (trackUrl) => {
       }
 
       try {
-        const response = await fetch(`${trackUrl}?limit=10`, {
+        const response = await fetch(`${trackUrl}?limit=100`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },

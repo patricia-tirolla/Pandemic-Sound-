@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import "./track.css";
-import DeleteTrackFromPlaylist from "../../AddSongToPlaylist/DeleteSongFromPlaylist";
+import DeleteTrackFromPlaylist from "../DeleteSongFromPlaylist/DeleteTrackFromPlaylist";
 
 const Track = ({ track , playlistId, onDeleteTrack}) => {
 

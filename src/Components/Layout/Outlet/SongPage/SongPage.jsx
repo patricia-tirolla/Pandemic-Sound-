@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import {useProfile} from "../../../../Hooks/Profile";
 import useGetRequest from "../../../../Hooks/useGetRequest";
 import usePutRequest from "../../../../Hooks/usePutRequest";
-import AddToSavedTracks from "../AddSongToPlaylist/AddToSavedTracks";
-import AddToPlaylistButton from "../AddSongToPlaylist/AddToPlaylistButton";
+import AddToSavedTracks from "../PlaylistPage/AddSongToPlaylist/AddToSavedTracks";
+import AddToPlaylistButton from "../PlaylistPage/AddSongToPlaylist/AddToPlaylistButton";
 import { usePlaylists } from "../../../../Hooks/PlaylistsProvider";
 import "./songPage.css";
 
