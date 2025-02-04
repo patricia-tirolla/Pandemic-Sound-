@@ -39,33 +39,39 @@ const SearchPage = () => {
                 return result?.tracks?.items?.length > 0 ? (
                     <ul className="search-list">
                         {result.tracks.items.map((track) => (
-                            <a key={track.id} href={`#${track.id}`} onClick={() => onTrackClick(track.id)}>
-                                <li className="single-track-container">
-
-                                    <div className="track-info">
-                                        <img
-                                            className="track-image"
-                                            src={track.album?.images?.[0]?.url || "https://via.placeholder.com/150"}
-                                            alt="Album Art"
-                                        />
-                                    </div>
-
-                                    <div className="track-details">
-                                        <p className="track-name">{track.name}</p>
-                                        <AddToSavedTracks
-                                            track={track}
-                                            playlists={playlists}
-                                            activeTrackId={activeTrackId}
-                                        />
-                                        <AddToPlaylistButton
-                                            track={track}
-                                            playlists={playlists}
-                                            activeTrackId={activeTrackId}
-                                            toggleDropdown={toggleDropdown}
-                                        />
-                                    </div>
-                                </li>
-                            </a>
+                            <li 
+                                key={track.id} 
+                                className="single-track-container"
+                                onClick={(e) => {
+                                    // Only navigate if clicking the track area, not buttons
+                                    if (!e.target.closest('button')) {
+                                        onTrackClick(track.id);
+                                    }
+                                }}
+                            >
+                                <div className="track-info">
+                                    <img
+                                        className="track-image"
+                                        src={track.album?.images?.[0]?.url || "https://via.placeholder.com/150"}
+                                        alt="Album Art"
+                                    />
+                                </div>
+            
+                                <div className="track-details">
+                                    <p className="track-name">{track.name}</p>
+                                    <AddToSavedTracks
+                                        track={track}
+                                        playlists={playlists}
+                                        activeTrackId={activeTrackId}
+                                    />
+                                    <AddToPlaylistButton
+                                        track={track}
+                                        playlists={playlists}
+                                        activeTrackId={activeTrackId}
+                                        toggleDropdown={toggleDropdown}
+                                    />
+                                </div>
+                            </li>
                         ))}
                     </ul>
                 ) : <p>No tracks found</p>;
