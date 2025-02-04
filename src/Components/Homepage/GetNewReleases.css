@@ -54,27 +54,26 @@
 
 .album-card p {
   font-size: 14px;
-  color: #b3b3b3;
+
   overflow: hidden;
 }
 
-/* .play-button {
-  display: block;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
+.play-button {
+  /* display: block; */
+
+  background: rgba(255, 255, 255, 0.773);
+  color: #000000;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 3rem;
+  height: 3rem;
   text-align: center;
   line-height: 30px;
   font-size: 18px;
+  font-weight: bold;
   text-decoration: none;
   transition: background 0.3s;
 }
 
 .play-button:hover {
   background: rgba(255, 255, 255, 0.5);
-} */
+}

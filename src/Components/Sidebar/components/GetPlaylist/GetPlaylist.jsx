@@ -39,8 +39,8 @@ export const GetPlaylist = ({ playlists }) => {
               className="playlist-image"
             />
             <div className="playlist-info">
-              <h4>{playlist?.name || defaultName}</h4>
-              <p>{playlist?.tracks?.total || 0} songs</p>
+              <h4 className="playlist-name">{playlist?.name || defaultName}</h4>
+              <p className="playlist-total-tracks">{playlist?.tracks?.total || 0} songs</p>
             </div>
           </div>
         ))

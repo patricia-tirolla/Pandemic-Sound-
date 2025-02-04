@@ -1,74 +1,97 @@
-.display-playlist-container{
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.display-playlist-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.display-playlist-title{
-    font-size: var(--subtitle-size);
-    padding: 2rem;
+.display-playlist-title {
+  font-size: var(--subtitle-size);
+  padding: 4rem 2rem 2rem ;
+  font-weight: 400;
+  letter-spacing: 2px;
 }
-.playlist-title-input{
-    font-size: var(--subtitle-size);
-
+.playlist-title-input {
+  font-size: var(--subtitle-size);
 }
-.display-playlist-img{
-   
-    width: 40%;
-    height:auto;
+.display-playlist-img {
+  width: 30%;
+  height: auto;
 }
 .track img {
-    width: 10%;
-    height: auto;
+  width: 10%;
+  height: auto;
 }
-.track{
-    display: flex;
-    align-items: center;
-    margin: 10px;
+.track {
+  display: flex;
+  align-items: center;
+  margin: 10px;
 }
 .trackDetails {
-    margin-left: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
+  margin-left: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .dropdown-item {
-    cursor: pointer;
-    background-color: #ffffff;
-    color: #333333;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #333333;
 }
 
 .dropdown-item:hover {
-    background-color: #f5f5f5;
-    color: #a41b1b;
-
+  background-color: #f5f5f5;
+  color: #a41b1b;
 }
 .edit-playlist-btn {
-    background-image: url("../../../public/assets/edit-btn.png");
-    background-size: contain;
-    width: 2rem;
-    height: 2rem;
-    margin-left: 2rem;
-    border-style: none;
-    cursor:pointer;
-    transition: all 0.3s ease;
+  background-image: url("../../../public/assets/edit-btn.png");
+  background-size: contain;
+  width: 2rem;
+  height: 2rem;
+  margin-left: 2rem;
+  border-style: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .edit-playlist-btn:hover {
-    background-image: url("../../../public/assets/edit-btn-purple.png");
-    background-size: contain;
-    width: 2rem;
-    height: 2rem;
-    margin-left: 2rem;
-    border-style: none;
-    transform: scale(1.2);
+  background-image: url("../../../public/assets/edit-btn-purple.png");
+  background-size: contain;
+  width: 2rem;
+  height: 2rem;
+  margin-left: 2rem;
+  border-style: none;
+  transform: scale(1.2);
 }
 
 .dropdown-item:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 .dropdown {
-    right: 0;
+  right: 0;
 }
 
+
+@media (max-width: 600px) {
+    .display-playlist-img {
+        width: 15%;
+        height: auto;
+      }
+      .track img {
+        width: 5%;
+        height: auto;
+      }
+
+      .display-playlist-title {
+        font-size: 1.5rem;
+        padding: 2rem 2rem 1rem ;
+        font-weight: 400;
+        letter-spacing: 2px;
+      }
+   
+   }
+   
+   @media (min-width: 768px) {
+   
+
+   
+   }

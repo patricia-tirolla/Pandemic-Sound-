@@ -1,7 +1,7 @@
 import "./sidebar.css";
 import React, { useState, useEffect } from "react";
-import GetPlaylist from "./GetPlaylist/GetPlaylist";
-import AddPlaylist from "./AddPlaylist/AddPlaylist";
+import GetPlaylist from "./components/GetPlaylist/GetPlaylist";
+import AddPlaylist from "./components/AddPlaylist/AddPlaylist";
 import { useProfile } from "../../Hooks/Profile";
 import useGetRequest from "../../Hooks/useGetRequest";
 

@@ -37,6 +37,17 @@
 }
 
 
+@media (max-width: 600px) {
+  .app {
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr 20fr;
+  }
+}
+
+@media (max-width: 768px) {
+
+
+}
 
 
 

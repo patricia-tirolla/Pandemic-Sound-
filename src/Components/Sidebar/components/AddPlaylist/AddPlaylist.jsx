@@ -1,4 +1,4 @@
-import { useProfile } from "../../../Hooks/Profile";
+import { useProfile } from "../../../../Hooks/Profile";
 import { useState } from "react";  
 import "./addPlaylist.css"
 

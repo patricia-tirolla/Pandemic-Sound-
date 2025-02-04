@@ -57,11 +57,11 @@ const Song = () => {
     <div className="songContainer">
       {trackData && (
         <div className="trackDetails">
-          {/* <img
+          <img
             className="trackImage"
             src={trackData.album.images[0].url}
             alt="Track Art"
-          /> */}
+          />
           <div className="trackInfo">
             <p className="trackName">{trackData.name}</p>
             <p className="trackArtistName">{trackData.artists[0].name}</p>
@@ -82,9 +82,9 @@ const Song = () => {
               activeTrackId={activeTrackId}
               toggleDropdown={toggleDropdown}
             />
-            {/* {embedUrl &&
+            {embedUrl &&
               <iframe src={embedUrl} title="Spotify Embed"></iframe>
-            } */}
+            }
           </div>
         </div>
       )}
