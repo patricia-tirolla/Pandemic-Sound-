@@ -1,16 +1,21 @@
-// Components/DeleteTrackFromPlaylist.jsx
 import React, { useState } from "react";
 import useDeleteRequest from "../../Hooks/useDeleteRequest";
 
-const DeleteTrackFromPlaylist = ({ track, playlistId, onDeleteSuccess }) => {
+const DeleteTrackFromPlaylist = ({ 
+    track, 
+    playlistId, 
+    onDeleteSuccess = () => {} 
+}) => {
     const [showSuccess, setShowSuccess] = useState(false);
-    const { sendDeleteRequest, isLoading, error } = useDeleteRequest();
+    const [error, setError] = useState(null);
+    const { sendDeleteRequest, isLoading } = useDeleteRequest();
 
     const handleDeleteTrack = async (event) => {
         event.preventDefault();
+        setError(null);
         
-        if (!playlistId) {
-            console.error("No playlist ID provided");
+        if (!playlistId || !track?.uri) {
+            setError("Missing required data");
             return;
         }
 
@@ -23,9 +28,13 @@ const DeleteTrackFromPlaylist = ({ track, playlistId, onDeleteSuccess }) => {
             );
             setShowSuccess(true);
             setTimeout(() => setShowSuccess(false), 3000);
-            onDeleteSuccess(track.id);
-        } catch (error) {
-            console.error("Failed to delete track:", error);
+            
+            if (typeof onDeleteSuccess === 'function') {
+                onDeleteSuccess(track.id);
+            }
+        } catch (err) {
+            setError(err.message);
+            console.error("Failed to delete track:", err);
         }
     };
 
@@ -36,7 +45,7 @@ const DeleteTrackFromPlaylist = ({ track, playlistId, onDeleteSuccess }) => {
                 disabled={isLoading}
                 className="delete-track-button"
             >
-                {isLoading ? "Deleting..." : showSuccess ? "Deleted!" : "Delete"}
+                {isLoading ? "Deleting..." : showSuccess ? "Deleted!" : "Remove"}
             </button>
             {error && <div className="error-message">{error}</div>}
         </div>
