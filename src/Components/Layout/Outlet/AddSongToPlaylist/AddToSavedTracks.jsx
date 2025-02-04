@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import usePutRequest from '../../../../Hooks/usePutRequest';
+import "./addToSavedTracks.css"
 // done
 const AddToSavedTracks = ({ track }) => {
     const { sendPutRequest, isLoading, error } = usePutRequest();
@@ -19,7 +20,7 @@ const AddToSavedTracks = ({ track }) => {
     };
 
     return (
-        <div>
+        <>
             <button 
                 onClick={handleSaveTrack}
                 disabled={isLoading}
@@ -28,7 +29,7 @@ const AddToSavedTracks = ({ track }) => {
                 {isLoading ? 'Saving...' : showSuccess ? '✓ Saved' : 'Save to Library'}
             </button>
             {error && <div className="error-message">{error}</div>}
-        </div>
+        </>
     );
 };
 

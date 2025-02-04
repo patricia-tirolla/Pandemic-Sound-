@@ -28,6 +28,7 @@
   border: 1.5px solid #ffffff; 
   cursor: pointer; 
   transition: transform 0.3s ease-in-out;
+  margin-right: 1rem;
 
 }
 
@@ -50,8 +51,8 @@
 }
 
 .profile-image {
-  width: 2rem; 
-  height: 2rem; 
+  width: 1.5rem; 
+  height: 1.5rem; 
 
 }
 

@@ -1,38 +1,145 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.songContainer {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  /* max-width: 1000px; */
+  flex-direction: column;
+  gap: 20px;
 }
 
-html, body {
-    font-family: Arial, sans-serif;
-}.songContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+.trackDetails {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 4rem 0 0 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-
-
-.trackImage {
-    width: 100px;
-    height: 100px;
-    margin-right: 20px;
+.buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding: 4rem 1rem;
 }
-
 .trackInfo {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--primary-text-color);
 }
 
-.trackName,
-.trackArtistName,
+.trackName {
+  font-size: var(--title-size);
+  font-weight: 700;
+  text-align: center;
+  color: var(--highlight-text-color);
+}
+
+.trackArtistName {
+  font-size: var(--subtitle-size);
+  text-align: center;
+  font-weight: 500;
+}
+
 .trackLength {
-    margin: 5px 0;
+  font-size: var(--normal-text-size);
+  text-align: center;
+  font-weight: 400;
+}
+
+iframe {
+  border: none;
+  border-radius: 10px;
+  margin-top: 20px;
+  width: 30rem;
+  height: 20rem;
 }
 
 .trackButtonHeart,
 .trackButtonAddtoPlaylist {
-    margin: 5px 0;
+  background-color: var(--secondary-background-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.trackButtonHeart:hover,
+.trackButtonAddtoPlaylist:hover {
+  background-color: var(--button-hover-color);
+}
+
+@media (max-width: 600px) {
+  .songContainer {
+    padding: 10px;
+    gap: 15px;
+  }
+
+  .buttons-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .trackDetails {
+    padding: 2rem 0 0 0;
+  }
+
+  iframe {
+    margin-top: 10px;
+    width: 13rem;
+    height: 5rem;
+  }
+
+  .trackName {
+    font-size: 1.5rem;
+  }
+
+  .trackArtistName {
+    font-size: 1rem;
+  }
+
+  .trackLength {
+    font-size: 0.9rem;
+  }
+
+  .trackButtonAddtoPlaylist {
+    font-size: 0.5rem;
+    padding: 8px 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .songContainer {
+    padding: 15px;
+  }
+
+  iframe {
+    height: 18rem;
+  }
+
+  .trackName {
+    font-size: 1.8rem;
+  }
+
+  .trackArtistName {
+    font-size: 1.2rem;
+  }
+
+  .trackLength {
+    font-size: 1rem;
+  }
+
+  .trackButtonHeart,
+  .trackButtonAddtoPlaylist {
+    font-size: 1rem;
+  }
 }

@@ -12,7 +12,6 @@
   
 .single-Track-Container:hover {
     color: var(--primary-text-color);
-    /* background-color: var(--secondary-background-color); */
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
     transform: translateY(-2px);
     background-color:#333333;
@@ -47,6 +46,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width:100%;
     flex: 1;
 }
 
@@ -69,6 +69,70 @@
   }
   .track-Duration {
     margin-left: auto;
-    min-width: 600px;
+    min-width: 300px;
     text-align: right;
+}
+
+@media (max-width: 768px) {
+
+  .track-Info {
+    gap: 1rem;
+  }
+
+  .track-Image {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .track-Name {
+    font-size: 1rem;
+  }
+
+  .track-Duration {
+    min-width: 0; 
+
+  }
+
+  .track-Details {
+
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .track-Info {
+    /* align-items: flex-start; */
+    gap: 0.5rem;
+  }
+
+  .track-Image {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .track-Name {
+    font-size: 0.8rem; 
+  }
+
+  .track-Artist {
+    font-size: 0.7rem;
+  }
+
+  .track-Duration {
+    text-align: left;
+    margin-left: 2px;
+    min-width: 10px;
+    font-size: 0.7rem;
+
+  }
+
+  .single-Track-Container {
+    padding: 0.8rem; 
+  }
+
+  .track-Details {
+    /* flex-direction: column; */
+    gap: 0.4rem;
+  }
 }

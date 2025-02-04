@@ -66,11 +66,12 @@ const GetNewReleases = () => {
            
             {newReleases.map((album) => (
               <div key={album.id} className="album-card">
+          
+                <img src={album.images?.[0]?.url} alt={album.name} />
+                <h3>{album.name}</h3>
                 <a href={album.external_urls?.spotify} target="_blank" rel="noopener noreferrer" className="play-button">
                   ▷
                 </a>
-                <img src={album.images?.[0]?.url} alt={album.name} />
-                <h3>{album.name}</h3>
                 
               </div>
             ))}

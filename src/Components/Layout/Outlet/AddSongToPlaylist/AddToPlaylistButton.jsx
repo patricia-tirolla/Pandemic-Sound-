@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import usePost from "../../../../Hooks/usePostRequest";
 import { usePlaylists } from '../../../../Hooks/PlaylistsProvider';
+import "./addToPlaylist.css"
 
 const AddToPlaylistButton = ({ track, activeTrackId, toggleDropdown, dropdownRef }) => {
     const {playlists, fetchPlaylists} = usePlaylists();
@@ -38,7 +39,7 @@ const AddToPlaylistButton = ({ track, activeTrackId, toggleDropdown, dropdownRef
                 }
                 disabled={isLoading}
             >
-                {isLoading ? 'Adding...' : showSuccess ? '✓ Added!' : 'Add to Playlist'}
+                {isLoading ? 'Adding...' : showSuccess ? '✓ Added!' : 'Add to Playlist...'}
             </button>
 
             {activeTrackId === track.id && (

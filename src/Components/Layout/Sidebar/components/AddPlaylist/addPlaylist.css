@@ -1,4 +1,46 @@
-.add-new-playlist{
-    width:2rem;
-    height:2rem;
-}
+.add-new-playlist {
+    width: 3.5rem; 
+    height: 3.5rem; 
+    background-color: var(--secondary-background-color); 
+    color: var(--primary-text-color);  
+    font-size: 3rem;  
+    font-weight: 400;
+    border: none;
+    border-radius: 50%;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.284);  
+    transition: background-color 0.3s ease, transform 0.2s ease;  
+  }
+  
+  .add-new-playlist:hover {
+    background-color: var(--button-hover-color);  
+    transform: scale(1.1); 
+  }
+  
+  .add-new-playlist:focus {
+    outline: none;  
+  }
+  
+
+@media (max-width: 600px) {
+
+    .add-new-playlist {
+        width: 2rem; 
+        height: 2rem; 
+        font-size: 3rem;  
+       
+      }
+
+  }
+  
+  @media (max-width: 768px) {
+
+  }
+  
+  @media (min-width: 992px) {
+
+  }
+  
