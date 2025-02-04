@@ -2,7 +2,7 @@
 import { Route, Routes } from "react-router-dom";
 import React from "react";
 import Layout from "./Components/Layout/Layout";
-
+import { Navigate } from "react-router-dom";
 import Homepage from "./Components/Layout/Outlet/Homepage/Homepage";
 import PlaylistPage from "./Components/Layout/Outlet/PlaylistPage/PlaylistPage";
 import AuthCallback from "./Components/AuthCallback/AuthCallbackComponent";
@@ -19,13 +19,14 @@ function App() {
     <Routes>
       <Route path="/welcome" element={<LandingPage />} />
       <Route path="/callback" element={<AuthCallback />} />
-        <Route element={<Layout />}>
-          <Route path="/" element={<Homepage />} />
-          <Route path="playlist/:playlistId" element={<PlaylistPage />} />
-          <Route path="track/:trackId" element={<Song />}/>
-          <Route path="search" element={<SearchPage />} />
-        </Route>
-        <Route path="*" element={<ErrorPage />} />
+      <Route element={<Layout />}>
+        <Route index element={<Navigate to="/welcome" replace />} />
+        <Route path="/home" element={<Homepage />} />
+        <Route path="playlist/:playlistId" element={<PlaylistPage />} />
+        <Route path="track/:trackId" element={<Song />} />
+        <Route path="search" element={<SearchPage />} />
+      </Route>
+      <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
 }
