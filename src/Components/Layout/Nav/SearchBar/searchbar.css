@@ -1,0 +1,114 @@
+.searchContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .searchBarWrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 90%;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.093);
+    transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    cursor: pointer;
+    will-change: transform;
+  }
+  
+
+  .searchBarWrapper input {
+    
+    padding: 0.75rem 1rem;
+    border: 2px solid #444;
+    border-radius: 25px;
+    background-color: var(--searchBar-color);
+    color: var(--primary-text-color);
+    font-size: var(--normal-text-size);
+    width: 100%;
+    max-width: 450px;
+    transition: all 0.3s ease;
+  }
+  
+  .searchBarWrapper input:focus {
+    outline: none;
+    border-color: var(--highlight-text-color);
+    background-color: #444;
+  }
+  
+  .searchBarWrapper input::placeholder {
+    color: var(--secondary-text-color);
+  }
+  
+  .searchButton {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--button-hover-color);
+    border: none;
+    color: var(--primary-text-color);
+    font-size: var(--normal-text-size);
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: rgba(0, 0, 0, 0.15) 0 3px 8px;
+  }
+  
+  .searchButton:hover {
+    background-color: #7e6ecf; 
+}
+  
+  .searchButton:focus {
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  }
+  
+
+  @media (max-width: 600px) {
+
+    .searchContainer {
+      display: flex;
+      justify-content: center;
+      padding: 0rem;
+      width: 100%;
+      font-size: 0.7rem;
+    }
+    
+    .searchBarWrapper {
+      min-width: 300px;
+   
+      background-color: rgba(0, 0, 0, 0.093);
+      border-radius: 25px;
+    
+    }
+
+    .searchBarWrapper input {
+      padding: 0.1rem 1rem;
+      max-width: 450px;
+    
+    }
+
+    .searchButton {
+      display:none;
+      padding: 0.3rem 0.5rem;
+      font-size:0.7rem;
+      font-weight: 500;
+   
+
+    }
+    .searchBarWrapper input::placeholder {
+      font-size: 0.7rem;;
+    }
+   
+   
+   }
+   
+   @media (min-width: 768px) {
+   
+
+   
+   }
+     
