@@ -1,7 +1,7 @@
 import React from "react";
 import SearchBar from "./SearchBar/SearchBarComponent";
-import { useProfile } from "../../Hooks/Profile";
-import { isUserAutheticated } from "../AuthCallback/script";
+import { useProfile } from "../../../Hooks/Profile";
+import { isUserAutheticated } from "../../AuthCallback/script";
 import "./nav.css";
 import { Link } from "react-router-dom";
 
@@ -10,7 +10,7 @@ const Nav = () => {
 
   return (
     <div className="Nav">
-  <Link to="/home">
+  <Link to="/">
         <h1 className="logo">Pandemic Sound</h1>
         </Link>
         <SearchBar />

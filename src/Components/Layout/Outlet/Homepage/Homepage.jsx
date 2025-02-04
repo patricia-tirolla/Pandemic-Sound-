@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import './GetNewReleases.css'; 
+import './homepage.css'; 
 
 const GetNewReleases = () => {
   const [newReleases, setNewReleases] = useState([]);

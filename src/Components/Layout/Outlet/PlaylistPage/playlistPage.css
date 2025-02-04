@@ -43,7 +43,7 @@
   color: #a41b1b;
 }
 .edit-playlist-btn {
-  background-image: url("../../../public/assets/edit-btn.png");
+  background-image: url("../../../../../public/assets/edit-btn.png");
   background-size: contain;
   width: 2rem;
   height: 2rem;
@@ -54,7 +54,7 @@
 }
 
 .edit-playlist-btn:hover {
-  background-image: url("../../../public/assets/edit-btn-purple.png");
+  background-image: url("../../../../../public/assets/edit-btn-purple.png");
   background-size: contain;
   width: 2rem;
   height: 2rem;

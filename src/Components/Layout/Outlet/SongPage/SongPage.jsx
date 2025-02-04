@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
-import {useProfile} from "../../Hooks/Profile";
-import useGetRequest from "../../Hooks/useGetRequest";
-import usePutRequest from "../../Hooks/usePutRequest";
-
+import {useProfile} from "../../../../Hooks/Profile";
+import useGetRequest from "../../../../Hooks/useGetRequest";
+import usePutRequest from "../../../../Hooks/usePutRequest";
 import AddToSavedTracks from "../AddSongToPlaylist/AddToSavedTracks";
 import AddToPlaylistButton from "../AddSongToPlaylist/AddToPlaylistButton";
-// import usePlaylistFetch from "../../Hooks/usePlaylistFetch";
-// import useSaveTrack from "../../Hooks/useSaveTrack";
-import "./song.css";
+import { usePlaylists } from "../../../../Hooks/PlaylistsProvider";
+import "./songPage.css";
 
 const Song = () => {
   const [accessToken] = useState(localStorage.getItem("accessToken"));
@@ -18,16 +15,11 @@ const Song = () => {
   const [embedUrl, setEmbedUrl] = useState();
   const { trackId } = useParams();
   const { data: trackData, error: trackError } = useGetRequest(`https://api.spotify.com/v1/tracks/${trackId}`, accessToken);
-  const { data: playlistsData } = useGetRequest(profile ? `https://api.spotify.com/v1/users/${profile.id}/playlists` : null, accessToken);
-  const playlists = playlistsData ? playlistsData.items : [];
+  const {playlists} = usePlaylists();
   const { error } = usePutRequest();
 
-  useEffect(() => {
-    console.log("Fetching track data with URL:", `https://api.spotify.com/v1/tracks/${trackId}`);
-  
+  useEffect(() => {  
     if (trackData) {
-      console.log("trackdata", trackData)
-
       fetch("https://open.spotify.com/oembed?url=" + trackData.external_urls.spotify)
         .then((resp) => resp.json())
         .then((json) => setEmbedUrl(json.iframe_url))
@@ -45,23 +37,16 @@ const Song = () => {
     return <div>Error: {error || trackError}</div>;
   }
   
-
   const formatDuration = (ms) => {
     const minutes = Math.floor(ms / 60000);
     const seconds = ((ms % 60000) / 1000).toFixed(0);
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
   
-  
   return (
     <div className="songContainer">
       {trackData && (
         <div className="trackDetails">
-          <img
-            className="trackImage"
-            src={trackData.album.images[0].url}
-            alt="Track Art"
-          />
           <div className="trackInfo">
             <p className="trackName">{trackData.name}</p>
             <p className="trackArtistName">{trackData.artists[0].name}</p>
@@ -74,11 +59,8 @@ const Song = () => {
                         activeTrackId={activeTrackId}
                       />
       {error && <p>Error: {error}</p>}
-
-
             <AddToPlaylistButton
               track={trackData}
-              playlists={playlists}
               activeTrackId={activeTrackId}
               toggleDropdown={toggleDropdown}
             />
