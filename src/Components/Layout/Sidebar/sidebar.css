@@ -1,0 +1,68 @@
+.sideBar{
+    grid-column: 1;
+    grid-row: 2/3;
+    justify-content: center;
+    background-image:url("../../../../public/assets/sideBar-bakcground.png") ;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 0px 20px 0px 0px;
+    overflow: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #000000;
+  
+  }
+
+  .title-sidebar-container{
+    display:flex;
+    height: fit-content;
+    justify-content: center;
+    gap:1rem;
+    padding:3rem 0rem;
+
+  }
+
+  .sideBar-title{
+    font-size: var(--subtitle-size);
+    font-weight: 400;
+    letter-spacing: 2px;
+  }
+
+  @media (max-width: 600px) {
+
+    .sideBar-title{
+      font-size: 1.1rem;
+      font-weight: bold;
+  
+
+    }
+
+    .title-sidebar-container{
+      flex-direction: column;
+      justify-items: center;
+      align-items: center;
+      gap:1rem;
+      padding:1.5rem 0rem;
+  
+    }
+  }
+
+  @media (max-width: 768px) {
+
+    .title-sidebar-container{
+   
+      justify-items: center;
+      align-items: center;
+      gap:1rem;
+      padding:1.5rem 0rem;
+  
+    }
+
+    .sideBar-title{
+      font-size: var(--normal-text-size);
+      font-weight: bold;
+  
+
+    }
+  }
+
+  @media  (min-width: 992px) {}

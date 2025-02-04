@@ -1,0 +1,12 @@
+.navigation-arrow-container {
+    position:fixed;
+    z-index: 9999;
+    top: 150px;
+    right: 30%;
+}
+
+.navigation-arrow-btn {
+    width:3rem;
+    height:2rem;
+
+}
