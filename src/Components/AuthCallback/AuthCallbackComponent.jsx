@@ -19,7 +19,7 @@ const AuthCallback = () => {
                         localStorage.setItem("accessToken", accessToken);
                     }
 
-                    navigate("/");
+                    navigate("/home");
                 } catch (err) {
                     console.error("Error during authentication:", err);
                 }
