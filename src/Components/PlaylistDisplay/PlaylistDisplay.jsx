@@ -1,35 +1,31 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import useFetchTracks from "../Song/GetTrackUrl";
-// import usePlaylistFetch from "../../Hooks/usePlaylistFetch";
 import TrackList from "./TrackList";
 import PlaylistHeader from "./PlaylistHeader";
 import "./playlistDisplay.css";
 import {useProfile} from "../../Hooks/Profile";
-import useGetRequest from "../../Hooks/useGetRequest";
+import { usePlaylists } from "../PlaylistsProvider/PlaylistsProvider";
 
 const PlaylistDisplay = () => {
-  const location = useLocation();
+  const {playlistId} = useParams();
   const profile = useProfile();
-  const [accessToken] = useState(localStorage.getItem("accessToken"));
-
-  const { playlist, trackUrl } = location.state || {};
-  const { tracks, error } = useFetchTracks(trackUrl);
-  const { data: playlistsData } = useGetRequest(profile ? `https://api.spotify.com/v1/users/${profile.id}/playlists` : null, accessToken);
-  const playlists = playlistsData ? playlistsData.items : [];
+  const { tracks, error } = useFetchTracks(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`);
+  const {playlists}  = usePlaylists();
+  const [playlist, setPlaylist] = useState();
   
+  useEffect(() => {
+    setPlaylist(playlists.find(playlist => playlist.id === playlistId))
+  }, [playlists, playlistId])
+
   if (error) {
     return <div>Error: {error}</div>;
   }
   if(!profile) return <div>Loading...</div>
 
-  if (!trackUrl) {
-    return <div>No track URL provided</div>;
-  }
-
   return (
     <div className="display-playlist-container">
-      <PlaylistHeader playlist={playlist} />
+      <PlaylistHeader tracks={tracks} playlist={playlist} />
       <TrackList tracks={tracks} playlists={playlists} />
     </div>
   );

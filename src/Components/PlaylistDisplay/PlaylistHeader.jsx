@@ -2,15 +2,14 @@ import React from "react";
 import { useState, useEffect } from "react";
 import usePutRequest from "../../Hooks/usePutRequest";
 
-const PlaylistHeader = ({ playlist }) => {
+const PlaylistHeader = ({ playlist, tracks }) => {
   const defaultImage =
     "https://static.vecteezy.com/system/resources/thumbnails/002/249/673/small/music-note-icon-song-melody-tune-flat-symbol-free-vector.jpg";
   const defaultName = "Untitled Playlist";
 
-  const [newTitle, setTitle] = useState(playlist?.name || defaultName);
+  const [title, setTitle] = useState(playlist?.name || defaultName);
   const [isEditing, setEdit] = useState(false);
-
-  const { sendPutRequest, isLoading, error } = usePutRequest();
+  const { sendPutRequest } = usePutRequest();
 
   useEffect(() => {
     setTitle(playlist?.name || defaultName);
@@ -21,10 +20,10 @@ const PlaylistHeader = ({ playlist }) => {
   };
   const handleSave = async () => {
     setEdit(false);
-    const bodyData = { name: newTitle };
-
+    const bodyData = { name: title };
     const url = `https://api.spotify.com/v1/playlists/${playlist.id}`;
     await sendPutRequest(url, bodyData);
+    // Spotify takes around 30 secs to the change take effect, refetch the playlist will return old name
   };
 
   return (
@@ -32,13 +31,16 @@ const PlaylistHeader = ({ playlist }) => {
       <h3 className="display-playlist-title">
         {isEditing ? (
           <input
-            value={newTitle}
+            value={title}
             onChange={(e) => setTitle(e.target.value)}
             onBlur={handleSave}
             className="playlist-title-input"
           ></input>
         ) : (
-          newTitle
+          <>
+          {title}
+          <p>{tracks?.length || 0} songs</p>
+          </>
         )}
         <button
           onClick={handleEditClick}

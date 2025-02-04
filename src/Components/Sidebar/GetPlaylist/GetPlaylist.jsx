@@ -6,10 +6,7 @@ export const GetPlaylist = ({ playlists }) => {
   const navigate = useNavigate();
 
   const displayPlaylist = (playlist) => {
-    const trackUrl = playlist?.tracks?.href || '';
-    navigate(`/playlist/${playlist.name}`, {
-      state: { playlist, trackUrl },
-    });
+    navigate(`/playlist/${playlist.id}`);
   };
 
   const defaultImage =
@@ -40,7 +37,7 @@ export const GetPlaylist = ({ playlists }) => {
             />
             <div className="playlist-info">
               <h4>{playlist?.name || defaultName}</h4>
-              <p>{playlist?.tracks?.total || 0} songs</p>
+              {/* <p>{playlist?.tracks?.total || 0} songs</p> */}
             </div>
           </div>
         ))

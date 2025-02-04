@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import usePost from "../../Hooks/usePostRequest";
+import { usePlaylists } from '../PlaylistsProvider/PlaylistsProvider';
 
-const AddToPlaylistButton = ({ track, playlists, activeTrackId, toggleDropdown, dropdownRef }) => {
+const AddToPlaylistButton = ({ track, activeTrackId, toggleDropdown, dropdownRef }) => {
+    const {playlists, fetchPlaylists} = usePlaylists();
     const { sendPostRequest, isLoading, error: requestError } = usePost();
     const [showSuccess, setShowSuccess] = useState(false);
     const [error, setError] = useState(null);
-
     const handleAddToPlaylist = async (event, playlistId) => {
         event.preventDefault();
+        event.stopPropagation();
         setError(null);
         try {
             await sendPostRequest(
@@ -17,6 +19,7 @@ const AddToPlaylistButton = ({ track, playlists, activeTrackId, toggleDropdown, 
             setShowSuccess(true);
             toggleDropdown(null);
             setTimeout(() => setShowSuccess(false), 3000);
+            fetchPlaylists();
         } catch (err) {
             setError('Failed to add track to playlist');
             console.error('Failed to add track:', err);
@@ -24,20 +27,23 @@ const AddToPlaylistButton = ({ track, playlists, activeTrackId, toggleDropdown, 
         }
     };
 
-
     return (
         <div className="dropdown" ref={dropdownRef}>
-        <button 
-            className="dropdown-button" 
-            onClick={() => toggleDropdown(track.id)}
-            disabled={isLoading}
-        >
-             {isLoading ? 'Adding...' : showSuccess ? '✓ Added!' : 'Add to Playlist'}
+            <button
+                className="dropdown-button"
+                onClick={(e) => {
+                    e.stopPropagation();
+                    toggleDropdown(track.id)
+                }
+                }
+                disabled={isLoading}
+            >
+                {isLoading ? 'Adding...' : showSuccess ? '✓ Added!' : 'Add to Playlist'}
             </button>
 
             {activeTrackId === track.id && (
                 <div className="dropdown-menu">
-                    {playlists.slice(0,10).map(playlist => (
+                    {playlists.slice(0, 10).map(playlist => (
                         <div
                             key={playlist.id}
                             className="dropdown-item"
@@ -48,7 +54,7 @@ const AddToPlaylistButton = ({ track, playlists, activeTrackId, toggleDropdown, 
                     ))}
                 </div>
             )}
-       {error && <div className="error-message">{error}</div>}
+            {error && <div className="error-message">{error}</div>}
             {requestError && <div className="error-message">{requestError}</div>}
         </div>
     );
