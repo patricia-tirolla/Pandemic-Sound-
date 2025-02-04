@@ -1,85 +1,60 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import './homepage.css'; 
+import React from 'react';
+import useGetRequest from "../../../../Hooks/useGetRequest";
+import "./homepage.css";
 
-const GetNewReleases = () => {
-  const [newReleases, setNewReleases] = useState([]);
-  const [error, setError] = useState(null);
-  const accessToken = localStorage.getItem("accessToken"); 
+const Homepage = () => {
+  const accessToken = localStorage.getItem("accessToken");
+  const { data: newReleases, error, isLoading } = useGetRequest(
+    "https://api.spotify.com/v1/browse/new-releases?offset=0",
+    accessToken
+  );
 
-  
-  const fetchNewReleases = useCallback(async () => {
-    if (!accessToken) {
-      console.error("Access token is missing");
-      setError("Access token is missing.");
-      return;
-    }
+  if (!accessToken) {
+    return <div className="error-container">Please login to view new releases</div>;
+  }
 
-    try {
-      const response = await fetch(
-        "https://api.spotify.com/v1/browse/new-releases?offset=0",  
-        {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
+  if (isLoading) {
+    return <div className="loading-container">Loading new releases...</div>;
+  }
 
-      if (!response.ok) {
-        console.error("Error status:", response.status, response.statusText);
-        throw new Error(`Error fetching new releases: ${response.statusText}`);
-      }
+  if (error) {
+    return (
+      <div className="error-container">
+        <h2>Error loading new releases</h2>
+        <p>{error}</p>
+      </div>
+    );
+  }
 
-      const data = await response.json();
-
-     
-      if (data?.albums?.items?.length > 0) {
-        setNewReleases(data.albums.items);
-      } else {
-        setError("No new releases found.");
-      }
-    } catch (err) {
-      console.error("Error fetching new releases:", err.message);
-      setError(`Failed to fetch new releases: ${err.message}`);
-    }
-  }, [accessToken]);
-
-  useEffect(() => {
-    if (accessToken) {
-      fetchNewReleases();
-    } else {
-      setError("Token is missing or invalid.");
-    }
-  }, [accessToken, fetchNewReleases]);
+  if (!newReleases?.albums?.items) {
+    return <div className="error-container">No new releases found</div>;
+  }
 
   return (
     <div className="releases-main-container">
-       <h2 className='realeses-title'>Explore</h2>
-     
-      {error && <p className="error-message">{error}</p>}
-
-      <div className="new-releases-container">
-        {newReleases.length === 0 ? (
-          <p>No new releases available.</p>
-        ) : (
-          <div className="new-releases">
-           
-            {newReleases.map((album) => (
-              <div key={album.id} className="album-card">
-                <a href={album.external_urls?.spotify} target="_blank" rel="noopener noreferrer" className="play-button">
-                  ▷
-                </a>
-                <img src={album.images?.[0]?.url} alt={album.name} />
-                <h3>{album.name}</h3>
-                
-              </div>
-            ))}
+      <h2 className='realeses-title'>Explore</h2>
+      <div className="new-releases">
+        {newReleases.albums.items.map((album) => (
+          <div key={album.id} className="album-card">
+            <a 
+              href={album.external_urls?.spotify} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="play-button"
+            >
+              ▷
+            </a>
+            {album.images?.[0]?.url ? (
+              <img src={album.images[0].url} alt={album.name || 'Album cover'} />
+            ) : (
+              <div className="no-image">No Image Available</div>
+            )}
+            <h3>{album.name || 'Untitled Album'}</h3>
           </div>
-        )}
+        ))}
       </div>
-      </div>
-
+    </div>
   );
 };
 
-export default GetNewReleases;
+export default Homepage;
