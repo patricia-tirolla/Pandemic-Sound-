@@ -17,10 +17,10 @@ function App() {
   return (
 
     <Routes>
-      <Route path="/" element={<LandingPage />} />
+      <Route path="/welcome" element={<LandingPage />} />
       <Route path="/callback" element={<AuthCallback />} />
         <Route element={<Main />}>
-          <Route path="/home" element={<GetNewReleases />} />
+          <Route path="/" element={<GetNewReleases />} />
           <Route path="playlist/:playlistId" element={<PlaylistDisplay />} />
           <Route path="track/:trackId" element={<Song />}/>
           <Route path="search" element={<SearchPage />} />

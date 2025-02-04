@@ -1,0 +1,45 @@
+import { useContext, useState, useEffect, useCallback } from "react"
+import PlaylistsContext from "../../Context/Playlists";
+import { useProfile } from "../../Hooks/Profile";
+
+export function usePlaylists() {
+    return useContext(PlaylistsContext);
+}
+
+function PlaylistsProvider({ children }) {
+    const [playlists, setPlaylists] = useState([]);
+    const profile = useProfile();
+    const accessToken = localStorage.getItem("accessToken");
+
+    const fetchPlaylists = useCallback(async function() {
+        if (!profile || !accessToken) {
+            return;
+        }
+        try {
+            const response = await fetch(`https://api.spotify.com/v1/users/${profile.id}/playlists`, {
+                method: "GET",
+                headers: { Authorization: `Bearer ${accessToken}` }
+            });
+            if (response.ok) {
+                const json = await response.json();
+                setPlaylists(json.items);
+            } else {
+                console.error("failed to feth", response.status);
+            }
+        } catch (err) {
+            console.error("Couldn't fetch:", err);
+        }
+    }, [profile, accessToken])
+
+    useEffect(() => {
+        fetchPlaylists();
+    }, [fetchPlaylists]);
+
+    return (
+        <PlaylistsContext.Provider value={{playlists, fetchPlaylists}}>
+            {children}
+        </PlaylistsContext.Provider>
+    )
+}
+
+export default PlaylistsProvider

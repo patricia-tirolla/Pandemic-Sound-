@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./addPlaylist.css"
 
 
-const AddPlaylist = ({triggerReFetch}) => {
+const AddPlaylist = ({fetchPlaylists}) => {
   const profile = useProfile();
   const [loading, setLoading] = useState(false);
 
@@ -36,8 +36,7 @@ const AddPlaylist = ({triggerReFetch}) => {
           if (data.error) {
             throw new Error(data.error.message);
           }
-          console.log("Playlist created:", data);
-          triggerReFetch(); 
+          fetchPlaylists(); 
         })
         .catch((error) => {
           console.error("Error creating playlist:", error);

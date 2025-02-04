@@ -5,6 +5,7 @@ import Nav from "../Nav/Nav";
 import Sidebar from "../Sidebar/Sidebar";
 import { ProfileProvider } from "../../Hooks/Profile";
 import NavigationArrows from "../NavigationArrows/NavigationArrows";
+import PlaylistsProvider from "../PlaylistsProvider/PlaylistsProvider";
 
 function Main() {
 
@@ -12,11 +13,13 @@ function Main() {
     <ProfileProvider>
       <div className="app">
         <Nav />
-        <Sidebar />
-        <NavigationArrows />
-        <div className="main">
-          <Outlet />
-        </div>
+        <PlaylistsProvider>
+          <Sidebar />
+          <NavigationArrows />
+          <div className="main">
+            <Outlet />
+          </div>
+        </PlaylistsProvider>
       </div>
     </ProfileProvider>
   );

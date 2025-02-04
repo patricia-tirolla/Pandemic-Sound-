@@ -1,4 +1,5 @@
-import { redirectToAuthCodeFlow, getAccessToken, clientId } from "./script";
+import { redirectToAuthCodeFlow, getAccessToken } from "./script";
+import clientId from "./ClientId";
 import { useEffect } from "react"
 import { useNavigate } from "react-router";
 
@@ -15,11 +16,10 @@ const AuthCallback = () => {
                 try {
                     let accessToken = await getAccessToken(clientId, code);
                     if (!localStorage.getItem("accessToken")) {
-                        console.log("access token = " + accessToken)
                         localStorage.setItem("accessToken", accessToken);
                     }
 
-                    navigate("/home");
+                    navigate("/");
                 } catch (err) {
                     console.error("Error during authentication:", err);
                 }
