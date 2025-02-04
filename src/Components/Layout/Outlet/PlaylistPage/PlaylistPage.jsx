@@ -25,9 +25,15 @@ const PlaylistDisplay = () => {
 
   return (
     <div className="display-playlist-container">
-      <PlaylistHeader tracks={tracks} playlist={playlist} />
-      <TrackList tracks={tracks} playlists={playlists} />
-    </div>
+    <PlaylistHeader
+     tracks={tracks}
+      playlist={playlist} />
+    <TrackList 
+    tracks={tracks}
+     playlists={playlists} 
+     playlistId={playlistId}
+/>
+  </div>
   );
 };
 

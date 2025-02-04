@@ -1,8 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import "./track.css";
+import DeleteTrackFromPlaylist from "../DeleteSongFromPlaylist/DeleteTrackFromPlaylist";
 
-const Track = ({ track }) => {
+const Track = ({ track , playlistId, onDeleteTrack}) => {
 
     const navigate = useNavigate();
 
@@ -16,7 +17,7 @@ const Track = ({ track }) => {
         navigate("/track/" + trackId);
     }
 
-    return (
+   return (
         <div className="tracks-container">
             <ul className="search-list">
                 <li key={track.id} className="single-Track-Container">
@@ -31,14 +32,19 @@ const Track = ({ track }) => {
                             )}
                             <div className="track-Details">
                                 <div className="track-Info-Container">
-                                <p className="track-Name">{track.name}</p>
-                                <p className="track-Artist" >{track.artists.map(artist => artist.name).join(", ")}</p>
+                                    <p className="track-Name">{track.name}</p>
+                                    <p className="track-Artist">{track.artists.map(artist => artist.name).join(", ")}</p>
                                 </div>
-                                <p className="track-Duration" >{formatDuration(track.duration_ms)}</p>
-                               
+                                <p className="track-Duration">{formatDuration(track.duration_ms)}</p>
                             </div>
                         </div>
                     </a>
+
+                    <DeleteTrackFromPlaylist 
+                        track={track} 
+                        playlistId={playlistId} 
+                        onDeleteSuccess={onDeleteTrack} 
+                    />
                 </li>
             </ul>
         </div>

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Track from "./Track";
 
-const TrackList = ({ tracks, playlists }) => {
-  const [activeTrackId, setActiveTrackId] = useState(null);
+  const TrackList = ({ tracks, playlists, playlistId, onDeleteTrack }) => {
+    const [activeTrackId, setActiveTrackId] = useState(null);
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -33,7 +33,8 @@ const TrackList = ({ tracks, playlists }) => {
           track={track} 
           playlists={playlists} 
           activeTrackId={activeTrackId}
-          // dropdownRef={dropdownRef}
+          playlistId={playlistId} 
+          onDeleteTrack={onDeleteTrack} 
         />
       ))}
     </ul>

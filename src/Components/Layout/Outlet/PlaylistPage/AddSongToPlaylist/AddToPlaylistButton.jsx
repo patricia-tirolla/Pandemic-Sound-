@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import usePost from "../../../../Hooks/usePostRequest";
-import { usePlaylists } from '../../../../Hooks/PlaylistsProvider';
+import usePost from "../../../../../Hooks/usePostRequest";
+import { usePlaylists } from '../../../../../Hooks/PlaylistsProvider';
 
 const AddToPlaylistButton = ({ track, activeTrackId, toggleDropdown, dropdownRef }) => {
     const {playlists, fetchPlaylists} = usePlaylists();
