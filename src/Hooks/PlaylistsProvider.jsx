@@ -16,7 +16,7 @@ function PlaylistsProvider({ children }) {
             return;
         }
         try {
-            const response = await fetch(`https://api.spotify.com/v1/users/${profile.id}/playlists`, {
+            const response = await fetch(`https://api.spotify.com/v1/me/playlists`, {
                 method: "GET",
                 headers: { Authorization: `Bearer ${accessToken}` }
             });
