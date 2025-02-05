@@ -18,8 +18,11 @@
   touch-action: manipulation;
   cursor: pointer;
   will-change: transform;
-  font-weight: 300;
-  font-size: 1.3rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+
+  word-wrap: break-word;
+
 }
 
 .single-playlist-container:hover {
@@ -56,7 +59,7 @@
 }
 .playlist-name {
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 800;
 }
 
 @media (max-width: 600px) {
@@ -116,15 +119,41 @@
   .playlist-info {
     width: 100%;
     gap: 0.5rem;
-    font-size: 0.8rem;
+    font-size: 1rem;
  
   }
   .playlist-image {
 
-    width: 2.9rem;
-    height: 2.9rem;
+    width: 2rem;
+    height: 2rem;
 
   }
+
+  .single-playlist-container {
+   
+    padding: 1rem 0.5rem;
+    gap: 0rem;
+
+
+  }
+}
+
+@media (min-width: 768px) and (max-width: 950px) {
+  .playlist-image {
+
+    width: 2.5rem;
+    height: 2.5rem;
+
+  }
+
+  .playlist-info {
+  
+    gap: 0.5rem;
+    font-size: 1rem;
+ 
+  }
+
+
 }
 
 

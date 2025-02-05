@@ -44,7 +44,7 @@ const Song = () => {
   };
   
   return (
-    <div className="songContainer">
+    <main className="songContainer">
       {trackData && (
         <div className="trackDetails">
           <div className="trackInfo">
@@ -74,7 +74,7 @@ const Song = () => {
           </div>
         </div>
       )}
-    </div>
+    </main>
   );
 };
 

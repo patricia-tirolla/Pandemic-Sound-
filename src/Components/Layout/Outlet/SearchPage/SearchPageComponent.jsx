@@ -114,7 +114,7 @@ const SearchPage = () => {
     }
   };
   return (
-    <div className="search-container">
+    <main className="search-container">
       {result && !loading && (
         <div className="search-results">
           <div className="searchHeader">
@@ -148,7 +148,7 @@ const SearchPage = () => {
           {renderResults("playlists")}
         </div>
       )}
-    </div>
+    </main>
   );
 };
 

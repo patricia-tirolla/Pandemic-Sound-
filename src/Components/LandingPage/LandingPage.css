@@ -1,87 +1,96 @@
-/* :root {
-    --primary-text-color: #ffffff;
-    --secondary-text-color: #000000;
-    --highlight-text-color: #B09FFF;
-    --main-background-color: #000000;
-    --secondary-background-color: #B09FFF;
-    --searchBar-color: white;
-} */
-
 .landing-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    color: var(--primary-text-color);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: var(--primary-text-color);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.323);
+
 }
 
-.landing-page::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url(/public/assets/sideBar-bakcground.png) no-repeat center center/cover;
-    opacity: 0.8;
-    animation: moveBackground 10s infinite alternate ease-in-out;
-    z-index: -1;
+.landing-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 85%;
+  height: 85%;
+  background-color: #B09FFF;
+  background-color: rgb(0, 0, 0);
+  padding: 3rem;
+
 }
 
-@keyframes moveBackground {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(1.1);
-    }
-}
 
-.landing-page-title {
-    font-size: 3rem;
-    font-weight: bold;
-    color: var(--highlight-text-color);
-    margin-bottom: 20px;
-    animation: fadeIn 2s ease-in-out;
+.landing-page-description {
+  min-width: 70%;
+  max-width: 80%;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.3;
 }
 
 .landing-page button {
-    background-color: var(--highlight-text-color);
-    color: var(--secondary-text-color);
-    font-size: 1.2rem;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-    animation: bounce 1.5s infinite alternate ease-in-out;
+  background-color: var(--highlight-text-color);
+  color: var(--secondary-text-color);
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  animation: bounce 1.5s infinite alternate ease-in-out;
 }
 
 .landing-page button:hover {
-    background-color: var(--primary-text-color);
-    color: var(--secondary-background-color);
+  background-color: var(--primary-text-color);
+  color: var(--secondary-background-color);
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
+
+.logo-video {
+  width: 70%;
+  height: auto;
+  object-fit: contain;
+  z-index: 1;
+}
+
+
 
 @keyframes bounce {
-    from {
-        transform: translateY(0);
-    }
-    to {
-        transform: translateY(-5px);
-    }
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-5px);
+  }
+}
+
+@media (max-width: 600px) {
+  .landing-page-description {
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+  .landing-page-description {
+    font-size: 1.2rem;
+    line-height: 1.3;
+  }
 }

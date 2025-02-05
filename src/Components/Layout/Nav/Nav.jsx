@@ -9,7 +9,7 @@ const Nav = () => {
   const profile = useProfile(); 
 
   return (
-    <div className="Nav">
+    <nav className="Nav">
   <Link to="/">
         <h1 className="logo">Pandemic Sound</h1>
         </Link>
@@ -25,7 +25,7 @@ const Nav = () => {
       </Link>
         </div>
       )}
-    </div>
+    </nav>
   );
 };
 
