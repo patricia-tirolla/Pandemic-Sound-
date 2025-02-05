@@ -44,7 +44,7 @@ const Song = () => {
   };
   
   return (
-    <div className="songContainer">
+    <main className="songContainer">
       {trackData && (
         <div className="trackDetails">
           <div className="trackInfo">
@@ -66,7 +66,7 @@ const Song = () => {
               toggleDropdown={toggleDropdown}
             />
           </div>
-          <div>
+          <div className="iframe-container">
             {embedUrl &&
               <iframe src={embedUrl} title="Spotify Embed"></iframe>
             }
@@ -74,7 +74,7 @@ const Song = () => {
           </div>
         </div>
       )}
-    </div>
+    </main>
   );
 };
 

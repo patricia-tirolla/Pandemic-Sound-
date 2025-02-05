@@ -45,10 +45,11 @@ const PlaylistDisplay = () => {
   if (!profile || !playlist) return <div>Loading...</div>;
 
   return (
-    <div className="playlist-page">
+   
+    <main className="playlist-page">
       <PlaylistHeader playlist={playlist} tracks={tracks} />
       <TrackList tracks={tracks} playlistId={playlistId} onDeleteTrack={fetchPlaylists} />
-    </div>
+    </main>
   );
 };
 

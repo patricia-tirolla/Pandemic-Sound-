@@ -44,7 +44,7 @@ const AddToPlaylistButton = ({ track, activeTrackId, toggleDropdown, dropdownRef
 
             {activeTrackId === track.id && (
                 <div className="dropdown-menu">
-                    {playlists.slice(0, 10).map(playlist => (
+                    {playlists.slice(0, 30).map(playlist => (
                         <div
                             key={playlist.id}
                             className="dropdown-item"

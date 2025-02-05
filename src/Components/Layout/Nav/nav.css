@@ -64,6 +64,9 @@
     font-size: 1.3rem;
   
   }
+  .Nav {
+    grid-template-columns: 2fr 5fr 0.5fr; 
+}
 
 
 }

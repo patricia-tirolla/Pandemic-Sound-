@@ -31,6 +31,7 @@ const Homepage = () => {
   }
 
   return (
+    <main>
     <div className="releases-main-container">
       <h2 className='realeses-title'>Explore</h2>
       <div className="new-releases">
@@ -54,6 +55,7 @@ const Homepage = () => {
         ))}
       </div>
     </div>
+    </main>
   );
 };
 
