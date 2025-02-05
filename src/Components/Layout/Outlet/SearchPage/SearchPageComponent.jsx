@@ -119,12 +119,12 @@ const SearchPage = () => {
                                                 src={artist.images?.[0]?.url || "https://via.placeholder.com/150"}
                                                 alt="Artist"
                                             />
-                                            <div className="artist-details">
-                                                <p className="artist-name">{artist.name}</p>
-                                                <p className="artist-followers">
+                                            <div className="artist-search-details">
+                                                <p className="artist-search-name">{artist.name}</p>
+                                                <p className="artist-search-followers">
                                                     {artist.followers?.total?.toLocaleString()} followers
                                                 </p>
-                                                <p className="artist-type">Artist</p>
+                                                <p className="artist-search-type">Artist</p>
                                             </div>
                                         </div>
                                     </li>

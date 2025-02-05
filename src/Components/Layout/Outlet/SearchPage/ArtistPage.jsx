@@ -37,14 +37,14 @@ const ArtistPage = () => {
     if (!artist || !topTracks || !albums) return <div>Loading...</div>;
 
     return (
-        <div className="artist-container">
-            <div className="artist-header">
+        <div className="artist-search-container">
+            <div className="artist-search-header">
                 <img 
                     src={artist.images?.[0]?.url} 
                     alt={artist.name} 
-                    className="artist-cover"
+                    className="artist-search-cover"
                 />
-                <div className="artist-info">
+                <div className="artist-search-info">
                     <h1>{artist.name}</h1>
                     <p>{artist.followers?.total.toLocaleString()} followers</p>
                 </div>
@@ -77,18 +77,18 @@ const ArtistPage = () => {
                 </div>
             </section>
 
-            <section className="albums-section">
+            <section className="albums-search-section">
                 <h2>Albums</h2>
-                <div className="albums-grid">
+                <div className="albums-search-grid">
                     {albums.items?.map((album) => (
-                        <div key={album.id} className="album-card">
+                        <div key={album.id} className="album-search-card">
                             <img 
                                 src={album.images?.[1]?.url} 
                                 alt={album.name}
-                                className="album-cover" 
+                                className="album-search-cover" 
                             />
-                            <p className="album-name">{album.name}</p>
-                            <p className="album-year">
+                            <p className="album-search-name">{album.name}</p>
+                            <p className="album-search-year">
                                 {new Date(album.release_date).getFullYear()}
                             </p>
                         </div>

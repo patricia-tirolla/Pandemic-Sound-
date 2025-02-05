@@ -23,21 +23,21 @@ const AlbumPage = () => {
   if (!album) return <div>Loading...</div>;
 
   return (
-    <div className="album-container">
-      <div className="album-header">
+    <div className="album-search-container">
+      <div className="album-search-header">
         <img 
           src={album.images?.[0]?.url} 
           alt={album.name} 
-          className="album-cover"
+          className="album-search-cover"
         />
-        <div className="album-info">
+        <div className="album-search-info">
           <h1>{album.name}</h1>
           <p>{album.artists?.[0]?.name}</p>
           <p>{album.release_date}</p>
         </div>
       </div>
 
-      <div className="album-tracks">
+      <div className="album-search-tracks">
         {album.tracks?.items?.map((track) => (
           <div key={track.id} className="track-item">
             <div className="track-info">
