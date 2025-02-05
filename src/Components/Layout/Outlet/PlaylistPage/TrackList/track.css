@@ -57,6 +57,7 @@
     align-items: center;
     justify-content: space-between;
     width:100%;
+    width:100%;
     flex: 1;
     transition: all 0.3s ease;
 }
@@ -81,6 +82,7 @@
   }
   .track-Duration {
     margin-left: auto;
+    min-width: 300px;
     min-width: 300px;
     text-align: right;
     transition: min-width 0.3s ease, text-align 0.3s ease;

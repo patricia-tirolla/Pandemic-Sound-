@@ -1,11 +1,11 @@
-:root {
+/* :root {
     --primary-text-color: #ffffff;
     --secondary-text-color: #000000;
     --highlight-text-color: #B09FFF;
     --main-background-color: #000000;
     --secondary-background-color: #B09FFF;
     --searchBar-color: white;
-}
+} */
 
 .landing-page {
     display: flex;
