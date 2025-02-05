@@ -36,7 +36,7 @@ function PlaylistsProvider({ children }) {
     }, [fetchPlaylists]);
 
     return (
-        <PlaylistsContext.Provider value={{playlists, fetchPlaylists}}>
+        <PlaylistsContext.Provider value={{playlists, fetchPlaylists, setPlaylists}}>
             {children}
         </PlaylistsContext.Provider>
     )
