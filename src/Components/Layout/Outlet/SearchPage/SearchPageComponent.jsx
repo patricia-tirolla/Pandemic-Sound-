@@ -12,7 +12,7 @@ const SearchPage = () => {
   const [activeTrackId, setActiveTrackId] = useState(null);
   const [filter, setFilter] = useState("all");
   const navigate = useNavigate();
-  const accessToken = localStorage.getItem("accessToken");
+  const accessToken = localStorage.getItem("access_token");
   const profile = useProfile();
 
   const params = new URLSearchParams(window.location.search);

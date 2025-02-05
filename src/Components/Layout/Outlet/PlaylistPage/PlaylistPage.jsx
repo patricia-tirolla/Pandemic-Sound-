@@ -9,7 +9,7 @@ import { usePlaylists } from "../../../../Hooks/PlaylistsProvider";
 const PlaylistDisplay = () => {
   const { playlistId } = useParams();
   const profile = useProfile();
-  const accessToken = localStorage.getItem("accessToken");
+  const accessToken = localStorage.getItem("access_token");
   const [tracks, setTracks] = useState([]);
   const [error, setError] = useState();
   const { playlists, fetchPlaylists } = usePlaylists();

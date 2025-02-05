@@ -9,7 +9,7 @@ export function usePlaylists() {
 function PlaylistsProvider({ children }) {
     const [playlists, setPlaylists] = useState([]);
     const profile = useProfile();
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken = localStorage.getItem("access_token");
 
     const fetchPlaylists = useCallback(async function() {
         if (!profile || !accessToken) {

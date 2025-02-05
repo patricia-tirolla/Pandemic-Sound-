@@ -6,17 +6,20 @@ import "./LandingPage.css"
 
 const LandingPage = () => {
     const navigate = useNavigate();
+    const accessToken = localStorage.getItem("access_token");
 
     useEffect(() => {
-        if (isUserAutheticated()) {
-            navigate("/home");
-        }
+        (async () => {
+            if (await isUserAutheticated()) {
+                navigate("/home");
+            }
+        })();
     }, [navigate]);
 
     return (
         <main className="landing-page">
             <h1 className="landing-page-title">Welcome to Pandemic Sound!</h1>
-            {!isUserAutheticated() &&
+            {!accessToken &&
                 <button onClick={() => redirectToAuthCodeFlow(clientId)}>Log in with Spotify</button>
             }
         </main>

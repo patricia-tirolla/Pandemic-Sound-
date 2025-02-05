@@ -8,7 +8,7 @@ const useDeleteRequest = () => {
   const sendDeleteRequest = async (url, data) => {
     setIsLoading(true);
     setError(null);
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken = localStorage.getItem("access_token");
 
     try {
       const response = await fetch(url, {
