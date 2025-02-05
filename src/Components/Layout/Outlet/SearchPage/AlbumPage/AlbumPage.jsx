@@ -47,6 +47,8 @@ const AlbumPage = () => {
                 {((track.duration_ms % 60000) / 1000).toFixed(0).padStart(2, '0')}
               </p>
             </div>
+            <div className="button-add-results-container">
+
             <div className="track-actions">
               <AddToSavedTracks track={track} />
               <AddToPlaylistButton
@@ -56,6 +58,7 @@ const AlbumPage = () => {
                 toggleDropdown={toggleDropdown}
               />
             </div>
+             </div>
           </div>
         ))}
       </div>
