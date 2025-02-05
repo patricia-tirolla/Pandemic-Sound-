@@ -4,6 +4,14 @@
   padding: 4rem;
   flex-direction: column;
   gap: 20px;
+
+}
+.songContainer {
+  display: flex;
+  justify-content: center;
+  padding: 4rem;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .trackDetails {
@@ -21,11 +29,27 @@
 .buttons-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  justify-items: center;
   gap: 3rem;
   padding: 4rem 1rem;
 }
+
+.dropdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.save-track-button {
+  margin-left: 80%;
+ 
+}
 .trackInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--primary-text-color);
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -45,7 +69,31 @@
   font-weight: 500;
 }
 
+.trackName {
+  font-size: var(--subtitle-size);
+  font-weight: 400;
+  text-align: center;
+  color: var(--highlight-text-color);
+}
+
+.trackArtistName {
+  font-size: var(--subtitle-size);
+  text-align: center;
+  font-weight: 500;
+}
+
 .trackLength {
+  font-size: var(--normal-text-size);
+  text-align: center;
+  font-weight: 400;
+}
+
+iframe {
+  border: none;
+  border-radius: 10px;
+  margin-top: 20px;
+  width: 30rem;
+  height: 20rem;
   font-size: var(--normal-text-size);
   text-align: center;
   font-weight: 400;
@@ -86,7 +134,27 @@ iframe {
 
   .buttons-container {
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
+    padding: 1rem 1rem;
+    justify-items: center;
+    align-items: center;
+  }
+  .dropdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .save-track-button {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    width:100%
+  }
+
+  .dropdown-button {
+    font-size: 0.7rem;
   }
 
   .trackDetails {
@@ -141,5 +209,33 @@ iframe {
   .trackButtonHeart,
   .trackButtonAddtoPlaylist {
     font-size: 1rem;
+  }
+
+  .buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+  }
+  .dropdown,
+  .save-track-button,
+  .dropdown-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+  }
+  .save-track-button {
+    font-size: 0.8rem;
+    margin-left: 40%;
+    width: 100%;
+  }
+
+  .dropdown-button {
+    font-size: 0.8rem;
   }
 }

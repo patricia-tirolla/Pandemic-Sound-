@@ -42,7 +42,7 @@ const Homepage = () => {
               rel="noopener noreferrer" 
               className="play-button"
             >
-              ▷
+              Listen in Spotify
             </a>
             {album.images?.[0]?.url ? (
               <img src={album.images[0].url} alt={album.name || 'Album cover'} />

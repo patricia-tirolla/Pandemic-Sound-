@@ -1,3 +1,9 @@
+.tracks-container{
+  display:flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
 .single-Track-Container {
     
     padding: 1rem;
@@ -31,23 +37,29 @@
   
   .track-Info {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     gap: 1rem;
+    transition: all 0.3s ease;
 }
   
   .track-Image {
     width: 4rem;
     height: 4rem;
     border-radius: 4px;
+    transition: width 0.3s ease, height 0.3s ease;
   }
   .track-Details {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     width:100%;
+    width:100%;
     flex: 1;
+    transition: all 0.3s ease;
 }
 
 .track-Info-Container {
@@ -62,6 +74,7 @@
     color: var(--primary-text-color);
     text-decoration: none;
     margin: 0;
+    transition: font-size 0.3s ease; 
 }
   .single-Track-Container  a{
     text-decoration: none; 
@@ -70,7 +83,9 @@
   .track-Duration {
     margin-left: auto;
     min-width: 300px;
+    min-width: 300px;
     text-align: right;
+    transition: min-width 0.3s ease, text-align 0.3s ease;
 }
 
 .delete-track-container {
@@ -85,7 +100,7 @@
   color: white;
   border: 1px solid white;
   border-radius: 50px; 
-  padding: 0.1rem 1rem; 
+  padding: 0.2rem 1rem; 
   font-size: 0.8rem;
   font-weight: bold;
   cursor:pointer;
@@ -132,6 +147,8 @@
 
   .track-Info {
     gap: 1rem;
+    flex-direction: row;
+    transition: all 0.3s ease;
   }
 
   .track-Image {
@@ -145,28 +162,42 @@
 
   .track-Duration {
     min-width: 0; 
+    transition: min-width 0.3s ease;
 
   }
 
   .track-Details {
-
+    flex-direction: row;
     gap: 0.5rem;
+  }
+
+  .delete-track-button {
+   top: -10px; 
+    right: -10px;
+    padding: 0.2rem 1rem; 
+    font-size: 0.6rem;
+
+  
   }
 }
 
 @media (max-width: 480px) {
 
   .track-Info {
+    flex-direction: row;
     gap: 0.5rem;
+    transition: all 0.3s ease;
   }
 
   .track-Image {
     width: 3rem;
     height: 3rem;
+    transition: width 0.3s ease, height 0.3s ease;
   }
 
   .track-Name {
     font-size: 0.8rem; 
+    transition: font-size 0.3s ease;
   }
 
   .track-Artist {
@@ -178,14 +209,27 @@
     margin-left: 2px;
     min-width: 10px;
     font-size: 0.7rem;
+    transition: text-align 0.3s ease, min-width 0.3s ease; 
 
   }
 
   .single-Track-Container {
     padding: 0.8rem; 
+    transition: padding 0.3s ease;
   }
 
   .track-Details {
     gap: 0.4rem;
+    flex-direction: row;
   }
+
+  .delete-track-button {
+    top: -10px; 
+     right: -10px;
+     padding: 0.1rem 0.3rem; 
+     font-size: 0.6rem;
+     transition: padding 0.3s ease, font-size 0.3s ease;
+ 
+   
+   }
 }
