@@ -1,4 +1,4 @@
-.display-playlist-container {
+.playlist-page{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,11 +6,9 @@
   width:90%;
   padding-top: 4rem;
 }
-.title-container{
-  display: flex;
-  
-}
+
 .display-playlist-title {
+
   font-size: var(--subtitle-size);
   font-weight: 400;
   text-align: center;
@@ -23,6 +21,11 @@
 .display-playlist-img {
   width: 20%;
   height: auto;
+  display: block; 
+  margin-top: 20px; 
+  margin-left: auto;
+  margin-right: auto; 
+
 }
 
 .songs-total{
@@ -36,8 +39,8 @@
 .edit-playlist-btn {
   background-image: url("../../../../../public/assets/edit-btn.png");
   background-size: contain;
-  width: 2rem;
-  height: 2rem;
+  width: 1.8rem;
+  height: 1.8rem;
   margin-left: 2rem;
   border-style: none;
   cursor: pointer;
@@ -67,6 +70,8 @@
         width: 30%;
         height: auto;
         padding-bottom: 1.3rem;
+        align-self: center;
+ 
       }
       .track img {
         width: 10%;
@@ -109,6 +114,7 @@
       width: 40%;
       height: auto;
       padding-bottom: 1.3rem;
+
     }
    
 

@@ -1,8 +1,7 @@
 .songContainer {
   display: flex;
   justify-content: center;
-  padding: 20px;
-  /* max-width: 1000px; */
+  padding: 4rem;
   flex-direction: column;
   gap: 20px;
 }
@@ -33,8 +32,8 @@
 }
 
 .trackName {
-  font-size: var(--title-size);
-  font-weight: 700;
+  font-size: var(--subtitle-size);
+  font-weight: 400;
   text-align: center;
   color: var(--highlight-text-color);
 }
