@@ -12,8 +12,8 @@ import Song from "./Components/Layout/Outlet/SongPage/SongPage";
 import ErrorPage from "./Components/404/ErrorPage"
 import "./styles/reset.css";
 import "./styles/App.css";
-import AlbumPage from "./Components/Layout/Outlet/SearchPage/AlbumPage";
-import ArtistPage from "./Components/Layout/Outlet/SearchPage/ArtistPage";
+import AlbumPage from "./Components/Layout/Outlet/SearchPage/AblumPage/AlbumPage";
+import ArtistPage from "./Components/Layout/Outlet/SearchPage/ArtistPage/ArtistPage";
 
 function App() {
   return (

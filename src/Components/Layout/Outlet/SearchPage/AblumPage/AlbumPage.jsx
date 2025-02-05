@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import useGetRequest from '../../../../Hooks/useGetRequest';
-import AddToPlaylistButton from "../PlaylistPage/AddTrackToPlaylist/AddToPlaylistButton";
-import AddToSavedTracks from "../PlaylistPage/AddTrackToPlaylist/AddToSavedTracks";
-import { usePlaylists } from '../../../../Hooks/PlaylistsProvider';
-
+import useGetRequest from '../../../../../Hooks/useGetRequest';
+import AddToPlaylistButton from "../../PlaylistPage/AddTrackToPlaylist/AddToPlaylistButton";
+import AddToSavedTracks from "../../PlaylistPage/AddTrackToPlaylist/AddToSavedTracks";
+import { usePlaylists } from '../../../../../Hooks/PlaylistsProvider';
+import "./albumpage.css";
 const AlbumPage = () => {
   const { albumId } = useParams();
   const [activeTrackId, setActiveTrackId] = useState(null);
