@@ -25,35 +25,39 @@ const LandingPage = () => {
 
   return (
     <main className="landing-page">
-      <video
+    <video
         className="background-video"
         ref={backgroundVideoRef}
         src="/assets/pandemic-sound-bakcground.mp4"
         type="video/mp4"
         autoPlay
         muted
-      />
-      <div className="landing-info-container">
-        <video
-          className="logo-video"
-          src="/assets/ps-logo-video.mp4"
-          type="video/mp4"
-          autoPlay
-          loop
-          muted
-        />
-        <h1 className="landing-page-description">
-          Create, customize, and perfect your playlists using Spotify
-          integration. Discover new music and stay updated on trending new
-          releases.
-        </h1>
-        {!accessToken && (
-          <button onClick={() => redirectToAuthCodeFlow(clientId)}>
-            Log in with Spotify
-          </button>
-        )}
-      </div>
-    </main>
+        aria-hidden="true"
+    />
+    <section className="landing-info-container">
+        <div className="landing-info-container">
+            <video
+                className="logo-video"
+                src="/assets/ps-logo-video.mp4"
+                type="video/mp4"
+                autoPlay
+                loop
+                muted
+                aria-label="Pandemic Sound Logo"
+            />
+            <h1 className="landing-page-description">
+                Create, customize, and perfect your playlists using Spotify
+                integration. Discover new music and stay updated on trending new
+                releases.
+            </h1>
+            {!accessToken && (
+                <button onClick={() => redirectToAuthCodeFlow(clientId)}>
+                    Log in with Spotify
+                </button>
+            )}
+        </div>
+    </section>
+</main>
   );
 };
 

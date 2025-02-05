@@ -32,6 +32,7 @@ const PlaylistHeader = ({ playlist, tracks }) => {
 
   return (
     <>
+    
     <div className="title-container">
       <h3 className="display-playlist-title">
         {isEditing ? (

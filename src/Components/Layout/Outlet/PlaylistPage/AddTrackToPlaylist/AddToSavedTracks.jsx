@@ -1,10 +1,11 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import usePutRequest from '../../../../../Hooks/usePutRequest';
 import "./addToSavedTracks.css"
 const AddToSavedTracks = ({ track }) => {
     const { sendPutRequest, isLoading, error } = usePutRequest();
     const [showSuccess, setShowSuccess] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
     const handleSaveTrack = async () => {
         try {
@@ -18,6 +19,14 @@ const AddToSavedTracks = ({ track }) => {
             console.error('Failed to save track:', error);
         }
     };
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     return (
         <div>
@@ -26,8 +35,10 @@ const AddToSavedTracks = ({ track }) => {
                 disabled={isLoading}
                 className="save-track-button"
             >
-                {isLoading ? 'Saving...' : showSuccess ? '✓ Saved' : 'Save to Library'}
-            </button>
+                {isLoading ? '...' : 
+                 showSuccess ? '✓' : 
+                 isMobile ? '♥' : 'Save to Library'}
+                    </button>
             {error && <div className="error-message">{error}</div>}
         </div>
     );
