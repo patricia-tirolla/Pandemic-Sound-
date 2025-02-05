@@ -9,7 +9,7 @@ import { usePlaylists } from "../../../../Hooks/PlaylistsProvider";
 const PlaylistDisplay = () => {
   const { playlistId } = useParams();
   const profile = useProfile();
-  const accessToken = localStorage.getItem("accessToken");
+  const accessToken = localStorage.getItem("access_token");
   const [tracks, setTracks] = useState([]);
   const [error, setError] = useState();
   const { playlists, fetchPlaylists } = usePlaylists();
@@ -45,10 +45,11 @@ const PlaylistDisplay = () => {
   if (!profile || !playlist) return <div>Loading...</div>;
 
   return (
-    <div className="playlist-page">
+   
+    <main className="playlist-page">
       <PlaylistHeader playlist={playlist} tracks={tracks} />
       <TrackList tracks={tracks} playlistId={playlistId} onDeleteTrack={fetchPlaylists} />
-    </div>
+    </main>
   );
 };
 

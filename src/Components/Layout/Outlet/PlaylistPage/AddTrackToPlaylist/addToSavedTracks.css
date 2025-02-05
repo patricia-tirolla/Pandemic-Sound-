@@ -27,3 +27,39 @@ font-size: 0.9rem;
 margin-top: 10px;
 text-align: center;
 }
+
+        padding: 0.75rem 1.5rem;
+        background-color: var(--button-hover-color);
+        border: none;
+        color: var(--primary-text-color);
+        font-size: var(--normal-text-size);
+        font-weight: bold;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: rgba(0, 0, 0, 0.15) 0 3px 8px;
+        width: 100%;
+  }
+  
+  .dropdown-menu {
+    max-height: 300px;      
+    overflow-y: scroll;  
+    overflow-x: hidden;  
+
+  }
+  .save-track-button:hover {
+    background-color: var(--button-hover-color);
+  }
+  
+  .save-track-button:disabled {
+    background-color: var(--secondary-text-color);
+    cursor: not-allowed;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-align: center;
+  }
+  

@@ -30,8 +30,16 @@
     .add-playlist-button {
         width: 2rem; 
         height: 2rem; 
-        font-size: 3rem;  
+        font-size: 2rem;  
        
+      }
+
+      .loading-text{
+        font-size: 1rem;  
+      }
+
+      .created-text{
+        font-size: 1rem; 
       }
 
   }

@@ -3,7 +3,7 @@ import useGetRequest from "../../../../Hooks/useGetRequest";
 import "./homepage.css";
 
 const Homepage = () => {
-  const accessToken = localStorage.getItem("accessToken");
+  const accessToken = localStorage.getItem("access_token");
   const { data: newReleases, error, isLoading } = useGetRequest(
     "https://api.spotify.com/v1/browse/new-releases?offset=0",
     accessToken
@@ -31,6 +31,7 @@ const Homepage = () => {
   }
 
   return (
+    <main>
     <div className="releases-main-container">
       <h2 className='realeses-title'>Explore</h2>
       <div className="new-releases">
@@ -54,6 +55,7 @@ const Homepage = () => {
         ))}
       </div>
     </div>
+    </main>
   );
 };
 

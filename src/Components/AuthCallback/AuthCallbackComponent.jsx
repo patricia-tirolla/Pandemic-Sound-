@@ -15,8 +15,8 @@ const AuthCallback = () => {
             } else {
                 try {
                     let accessToken = await getAccessToken(clientId, code);
-                    if (!localStorage.getItem("accessToken")) {
-                        localStorage.setItem("accessToken", accessToken);
+                    if (!localStorage.getItem("access_token")) {
+                        localStorage.setItem("access_token", accessToken);
                     }
 
                     navigate("/home");

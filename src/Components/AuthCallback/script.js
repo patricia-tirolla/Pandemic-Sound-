@@ -1,3 +1,5 @@
+import clientId from "./ClientId";
+
 export const redirectToAuthCodeFlow = async (clientId) => {
     const verifier = generateCodeVerifier(128);
     const challenge = await generateCodeChallenge(verifier);
@@ -31,17 +33,44 @@ export const getAccessToken = async (clientId, code) => {
         body: params,
     });
 
-    const { access_token } = await result.json();
-    return access_token;
+    const response = await result.json();
+
+    localStorage.setItem("access_token", response.access_token);
+    if (response.refresh_token) {
+        localStorage.setItem("refresh_token", response.refresh_token);
+    }
+
+    return response.access_token;
 };
 
-export const fetchProfile = async (accessToken) => {
-    const result = await fetch("https://api.spotify.com/v1/me", {
-        method: "GET",
-        headers: { Authorization: `Bearer ${accessToken}` },
-    });
+export const fetchProfile = async () => {
+    let accessToken = localStorage.getItem("access_token");
 
-    return await result.json();
+    if (!accessToken) {
+        accessToken = await getRefreshToken(clientId);
+        if (!accessToken) {
+            return null;
+        }
+    }
+
+    try {
+        const result = await fetch("https://api.spotify.com/v1/me", {
+            method: "GET",
+            headers: { Authorization: `Bearer ${accessToken}` },
+        });
+
+        if (result.status === 401) {
+            accessToken = await getRefreshToken(clientId);
+            if (!accessToken) return null;
+
+            return await fetchProfile();
+        }
+
+        return await result.json();
+    } catch (error) {
+        console.error("Error fetching profile:", error);
+        return null;
+    }
 };
 
 const generateCodeVerifier = (length) => {
@@ -63,11 +92,55 @@ const generateCodeChallenge = async (codeVerifier) => {
         .replace(/=+$/, "");
 };
 
-export const isUserAutheticated = () => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (accessToken) {
-        return true
-    } else {
-        return false
+export const isUserAutheticated = async () => {
+    let accessToken = localStorage.getItem("access_token");
+
+    if (!accessToken) {
+        accessToken = await getRefreshToken(clientId);
     }
+
+    return !!accessToken;
 }
+
+export const getRefreshToken = async (clientId) => {
+    const refreshToken = localStorage.getItem("refresh_token");
+    if (!refreshToken) return null;
+
+    const url = "https://accounts.spotify.com/api/token";
+    const payload = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+            grant_type: "refresh_token",
+            refresh_token: refreshToken,
+            client_id: clientId,
+        }),
+    };
+
+    try {
+        const response = await fetch(url, payload);
+        if (response.status === 400) {
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("refresh_token");
+            window.location.replace("/");
+            
+        }
+        const body = await response.json();
+
+        if (body.access_token) {
+            localStorage.setItem("access_token", body.access_token);
+
+            if (body.refresh_token) {
+                localStorage.setItem("refresh_token", body.refresh_token);
+            }
+            return body.access_token;
+        } else {
+            return null;
+        }
+    } catch (error) {
+        console.error("Failed to refresh token:", error);
+        return null;
+    }
+};

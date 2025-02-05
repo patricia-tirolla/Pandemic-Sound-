@@ -12,7 +12,7 @@ const SearchPage = () => {
   const [activeTrackId, setActiveTrackId] = useState(null);
   const [filter, setFilter] = useState("all");
   const navigate = useNavigate();
-  const accessToken = localStorage.getItem("accessToken");
+  const accessToken = localStorage.getItem("access_token");
   const profile = useProfile();
 
   const params = new URLSearchParams(window.location.search);
@@ -167,7 +167,7 @@ const SearchPage = () => {
         
     };
     return (
-        <div className="search-container">
+        <main className="search-container">
             {result && !loading && (
                 <div className="search-results">
                     <div className="search-header">
@@ -199,7 +199,7 @@ const SearchPage = () => {
                     {renderResults("artists")}
                 </div>
             )}
-        </div>
+        </main>
     );
 };
 

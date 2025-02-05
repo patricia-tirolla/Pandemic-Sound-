@@ -9,7 +9,7 @@ import { usePlaylists } from "../../../../Hooks/PlaylistsProvider";
 import "./songPage.css";
 
 const Song = () => {
-  const [accessToken] = useState(localStorage.getItem("accessToken"));
+  const [accessToken] = useState(localStorage.getItem("access_token"));
   const profile = useProfile();
   const [activeTrackId, setActiveTrackId] = useState(null);
   const [embedUrl, setEmbedUrl] = useState();
@@ -44,7 +44,7 @@ const Song = () => {
   };
   
   return (
-    <div className="songContainer">
+    <main className="songContainer">
       {trackData && (
         <div className="trackDetails">
           <div className="trackInfo">
@@ -66,7 +66,7 @@ const Song = () => {
               toggleDropdown={toggleDropdown}
             />
           </div>
-          <div>
+          <div className="iframe-container">
             {embedUrl &&
               <iframe src={embedUrl} title="Spotify Embed"></iframe>
             }
@@ -74,7 +74,7 @@ const Song = () => {
           </div>
         </div>
       )}
-    </div>
+    </main>
   );
 };
 

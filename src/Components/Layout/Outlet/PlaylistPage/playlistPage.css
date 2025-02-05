@@ -15,7 +15,7 @@
   color: var(--highlight-text-color);
 }
 .playlist-title-input {
-  font-size: var(--subtitle-size);
+  font-size: 1.9;
 
 }
 .display-playlist-img {
@@ -99,6 +99,11 @@
         margin-left: 1rem;
       
       }
+
+      .playlist-title-input {
+        font-size: 1rem;
+      
+      }
    
    }
    
@@ -115,6 +120,10 @@
       height: auto;
       padding-bottom: 1.3rem;
 
+    }
+    .playlist-title-input {
+      font-size: 1.3rem;
+    
     }
    
 
