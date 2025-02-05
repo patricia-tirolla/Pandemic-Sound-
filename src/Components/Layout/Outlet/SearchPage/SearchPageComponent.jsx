@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useGetRequest from "../../../../Hooks/useGetRequest";
 import usePutRequest from "../../../../Hooks/usePutRequest";
-import AddToPlaylistButton from "../AddSongToPlaylist/AddToPlaylistButton";
-import AddToSavedTracks from "../AddSongToPlaylist/AddToSavedTracks";
+import AddToPlaylistButton from "../PlaylistPage/AddTrackToPlaylist/AddToPlaylistButton";
+import AddToSavedTracks from "../PlaylistPage/AddTrackToPlaylist/AddToSavedTracks";
 import "./searchpage.css";
 import { useProfile } from "../../../../Hooks/Profile";
 import { usePlaylists } from "../../../../Hooks/PlaylistsProvider";
@@ -65,10 +65,7 @@ const SearchPage = () => {
                     />
                   </div>
 
-                  {/* <div className="track-details"> */}
                     <p className="track-name">{track.name}</p>
-                  {/* </div> */}
-
                   </div>
                   <div className="button-add-results-container">
                     <AddToSavedTracks

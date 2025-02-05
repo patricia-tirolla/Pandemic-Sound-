@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import usePostRequest from "../../../../../Hooks/usePostRequest";
 import { usePlaylists } from '../../../../../Hooks/PlaylistsProvider';
-
+import "./addToPlaylistButton.css"
 const AddToPlaylistButton = ({ track, activeTrackId, toggleDropdown, dropdownRef }) => {
     const {playlists, fetchPlaylists} = usePlaylists();
     const { sendPostRequest, isLoading, error: requestError } = usePostRequest();
