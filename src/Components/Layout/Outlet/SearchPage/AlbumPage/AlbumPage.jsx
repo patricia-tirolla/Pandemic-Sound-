@@ -8,7 +8,7 @@ import "./albumpage.css";
 const AlbumPage = () => {
   const { albumId } = useParams();
   const [activeTrackId, setActiveTrackId] = useState(null);
-  const accessToken = localStorage.getItem("accessToken");
+  const accessToken = localStorage.getItem("access_token");
   const { data: album, error } = useGetRequest(
     `https://api.spotify.com/v1/albums/${albumId}`,
     accessToken
