@@ -8,7 +8,7 @@ import "./artistpage.css";
 const ArtistPage = () => {
     const { artistId } = useParams();
     const [activeTrackId, setActiveTrackId] = useState(null);
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken = localStorage.getItem("access_token");
     const navigate = useNavigate();
 
     const { data: artist, error: artistError } = useGetRequest(
