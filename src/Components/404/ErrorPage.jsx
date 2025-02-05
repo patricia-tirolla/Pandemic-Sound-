@@ -4,11 +4,16 @@ import { Link } from "react-router-dom";
 const ErrorPage =()=> {
     return (
       <main className="error-container">
-        <h2 className="error-page-title">404! Page cannot be found :(</h2>
-        <Link to="/home" className="error-page-link-home">
-             <h3>Go back to Pandemic Sound</h3>
-            </Link>
-      </main>
+      <section className="error-content">
+          <h2 className="error-page-title">404! Page cannot be found &#9785;</h2>
+          
+          <nav className="error-navigation">
+              <Link to="/home" className="error-page-link-home">
+                  Return to Pandemic Sound
+              </Link>
+          </nav>
+      </section>
+    </main>
     );
   }
   

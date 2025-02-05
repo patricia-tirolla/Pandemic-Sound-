@@ -32,11 +32,11 @@ const Homepage = () => {
 
   return (
     <main>
-    <div className="releases-main-container">
+    <section className="releases-main-container">
       <h2 className='realeses-title'>Explore</h2>
-      <div className="new-releases">
+      <section className="new-releases">
         {newReleases.albums.items.map((album) => (
-          <div key={album.id} className="album-card">
+          <article key={album.id} className="album-card">
             <a 
               href={album.external_urls?.spotify} 
               target="_blank" 
@@ -51,10 +51,10 @@ const Homepage = () => {
               <div className="no-image">No Image Available</div>
             )}
             <h3>{album.name || 'Untitled Album'}</h3>
-          </div>
+          </article>
         ))}
-      </div>
-    </div>
+      </section>
+    </section>
     </main>
   );
 };
