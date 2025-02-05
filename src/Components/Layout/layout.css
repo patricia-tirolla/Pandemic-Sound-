@@ -4,4 +4,5 @@
     justify-items: center;
     align-items: center;
     overflow: scroll;
+    min-width: 100px;
   }

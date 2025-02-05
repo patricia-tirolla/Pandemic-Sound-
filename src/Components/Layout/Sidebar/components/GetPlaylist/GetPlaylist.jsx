@@ -37,7 +37,6 @@ export const GetPlaylist = ({ playlists }) => {
             />
             <div className="playlist-info">
               <h4>{playlist?.name || defaultName}</h4>
-              {/* <p>{playlist?.tracks?.total || 0} songs</p> */}
             </div>
           </div>
         ))

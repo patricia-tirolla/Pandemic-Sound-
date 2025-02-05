@@ -48,11 +48,12 @@ const Song = () => {
       {trackData && (
         <div className="trackDetails">
           <div className="trackInfo">
-            <p className="trackName">{trackData.name}</p>
-            <p className="trackArtistName">{trackData.artists[0].name}</p>
+            <h2 className="trackName">{trackData.name}</h2>
+            <h3 className="trackArtistName">{trackData.artists[0].name}</h3>
             <p className="trackLength">
               Duration: {formatDuration(trackData.duration_ms)}
             </p>
+          <div className="buttons-container">
             <AddToSavedTracks
                         track={trackData}
                         playlists={playlists}
@@ -64,9 +65,12 @@ const Song = () => {
               activeTrackId={activeTrackId}
               toggleDropdown={toggleDropdown}
             />
+          </div>
+          <div>
             {embedUrl &&
               <iframe src={embedUrl} title="Spotify Embed"></iframe>
             }
+            </div>
           </div>
         </div>
       )}

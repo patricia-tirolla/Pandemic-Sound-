@@ -12,7 +12,6 @@
   
 .single-Track-Container:hover {
     color: var(--primary-text-color);
-    /* background-color: var(--secondary-background-color); */
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
     transform: translateY(-2px);
     background-color:#333333;
@@ -47,6 +46,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width:100%;
     flex: 1;
 }
 
@@ -69,6 +69,123 @@
   }
   .track-Duration {
     margin-left: auto;
-    min-width: 600px;
+    min-width: 300px;
     text-align: right;
+}
+
+.delete-track-container {
+  position: relative; 
+}
+
+.delete-track-button {
+  position: absolute; 
+  top: -10px; 
+  right: -10px;
+  background-color: #000000;
+  color: white;
+  border: 1px solid white;
+  border-radius: 50px; 
+  padding: 0.1rem 1rem; 
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor:pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px; 
+  align-items: center;
+  justify-content: center;
+
+}
+
+
+.delete-track-button:hover {
+  background-color: #7d6cd7; 
+  transform: scale(1.05); 
+}
+
+
+.delete-track-button:active {
+  background-color: #6a5bb9; 
+  transform: scale(0.95); 
+}
+
+
+.delete-track-button:disabled {
+  background-color: #d3d3d3; 
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+
+.delete-track-button.success {
+  background-color: #4caf50; 
+ 
+}
+
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+
+  .track-Info {
+    gap: 1rem;
+  }
+
+  .track-Image {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .track-Name {
+    font-size: 1rem;
+  }
+
+  .track-Duration {
+    min-width: 0; 
+
+  }
+
+  .track-Details {
+
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .track-Info {
+    gap: 0.5rem;
+  }
+
+  .track-Image {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .track-Name {
+    font-size: 0.8rem; 
+  }
+
+  .track-Artist {
+    font-size: 0.7rem;
+  }
+
+  .track-Duration {
+    text-align: left;
+    margin-left: 2px;
+    min-width: 10px;
+    font-size: 0.7rem;
+
+  }
+
+  .single-Track-Container {
+    padding: 0.8rem; 
+  }
+
+  .track-Details {
+    gap: 0.4rem;
+  }
 }
