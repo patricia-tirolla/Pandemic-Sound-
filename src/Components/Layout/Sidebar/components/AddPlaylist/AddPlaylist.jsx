@@ -39,7 +39,7 @@ const AddPlaylist = () => {
                 disabled={isLoading || !profile}
                 className="add-playlist-button"
             >
-                {isLoading ? 'Creating...' : showSuccess ? 'Created!' : '+ Create Playlist'}
+                {isLoading ? 'Creating...' : showSuccess ? 'Created!' : '+'}
             </button>
             {error && <div className="error-message">{error}</div>}
         </div>

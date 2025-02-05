@@ -9,30 +9,37 @@ import { useProfile } from "../../../../Hooks/Profile";
 import { usePlaylists } from "../../../../Hooks/PlaylistsProvider";
 
 const SearchPage = () => {
-    const [activeTrackId, setActiveTrackId] = useState(null);
-    const [filter, setFilter] = useState("all");
-    const navigate = useNavigate();
-    const accessToken = localStorage.getItem("accessToken");
-    const profile = useProfile();
+  const [activeTrackId, setActiveTrackId] = useState(null);
+  const [filter, setFilter] = useState("all");
+  const navigate = useNavigate();
+  const accessToken = localStorage.getItem("accessToken");
+  const profile = useProfile();
 
-    const params = new URLSearchParams(window.location.search);
-    const searchValue = params.get("q");
-    const searchUrl = `https://api.spotify.com/v1/search?q=${searchValue}&type=artist%2Ctrack%2Calbum&limit=10`;
+  const params = new URLSearchParams(window.location.search);
+  const searchValue = params.get("q");
+  const searchUrl = `https://api.spotify.com/v1/search?q=${searchValue}&type=artist%2Ctrack%2Calbum&limit=10`;
 
-    const { data: result, loading, error: searchError } = useGetRequest(searchUrl, accessToken);
-    const { playlists } = usePlaylists();
-    const { error: saveError } = usePutRequest();
-    const onTrackClick = (trackId) => navigate(`/track/${trackId}`);
-    const toggleDropdown = (trackId) => setActiveTrackId(prev => prev === trackId ? null : trackId);
+  const {
+    data: result,
+    loading,
+    error: searchError,
+  } = useGetRequest(searchUrl, accessToken);
+  const { playlists } = usePlaylists();
+  const { error: saveError } = usePutRequest();
+  const onTrackClick = (trackId) => navigate(`/track/${trackId}`);
+  const toggleDropdown = (trackId) =>
+    setActiveTrackId((prev) => (prev === trackId ? null : trackId));
 
-    if (!profile) return <div>Loading...</div>
+  if (!profile) return <div>Loading...</div>;
 
-    if (searchError || saveError) {
-        return <div className="error-message">Error: {searchError || saveError}</div>;
-    }
+  if (searchError || saveError) {
+    return (
+      <div className="error-message">Error: {searchError || saveError}</div>
+    );
+  }
 
-    const renderResults = (type) => {
-        if (filter !== "all" && filter !== type) return null;
+  const renderResults = (type) => {
+    if (filter !== "all" && filter !== type) return null;
 
         switch (type) {
             case "tracks":
@@ -49,16 +56,18 @@ const SearchPage = () => {
                                     }
                                 }}
                             >
+                               <div className="track-img-name-container">
                                 <div className="track-info">
                                     <img
                                         className="track-image"
                                         src={track.album?.images?.[0]?.url || "https://via.placeholder.com/150"}
                                         alt="Album Art"
                                     />
+                                    
                                 </div>
-            
-                                <div className="track-details">
-                                    <p className="track-name">{track.name}</p>
+                                <p className="track-name">{track.name}</p>
+                                </div>
+                                <div className="button-add-results-container">
                                     <AddToSavedTracks
                                         track={track}
                                         playlists={playlists}

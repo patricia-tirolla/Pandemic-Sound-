@@ -1,52 +1,46 @@
-.display-playlist-container {
+.playlist-page{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width:90%;
+  padding-top: 4rem;
 }
+
 .display-playlist-title {
+
   font-size: var(--subtitle-size);
-  padding: 4rem 2rem 2rem ;
   font-weight: 400;
-  letter-spacing: 2px;
+  text-align: center;
+  color: var(--highlight-text-color);
 }
 .playlist-title-input {
   font-size: var(--subtitle-size);
+
 }
 .display-playlist-img {
-  width: 30%;
+  width: 20%;
   height: auto;
-}
-.track img {
-  width: 10%;
-  height: auto;
-}
-.track {
-  display: flex;
-  align-items: center;
-  margin: 10px;
-}
-.trackDetails {
-  margin-left: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.dropdown-item {
-  cursor: pointer;
-  background-color: #ffffff;
-  color: #333333;
+  display: block; 
+  margin-top: 20px; 
+  margin-left: auto;
+  margin-right: auto; 
+
 }
 
-.dropdown-item:hover {
-  background-color: #f5f5f5;
-  color: #a41b1b;
+.songs-total{
+  font-size: var(--subtitle-size);
+  text-align: center;
+  font-weight: 500;
+  padding: 2rem 2rem;
+
 }
+
 .edit-playlist-btn {
   background-image: url("../../../../../public/assets/edit-btn.png");
   background-size: contain;
-  width: 2rem;
-  height: 2rem;
+  width: 1.8rem;
+  height: 1.8rem;
   margin-left: 2rem;
   border-style: none;
   cursor: pointer;
@@ -73,24 +67,55 @@
 
 @media (max-width: 600px) {
     .display-playlist-img {
-        width: 15%;
+        width: 30%;
         height: auto;
+        padding-bottom: 1.3rem;
+        align-self: center;
+ 
       }
       .track img {
-        width: 5%;
+        width: 10%;
         height: auto;
       }
 
       .display-playlist-title {
-        font-size: 1.5rem;
-        padding: 2rem 2rem 1rem ;
+        font-size: 1.2rem;
+        padding: 0rem ;
         font-weight: 400;
         letter-spacing: 2px;
+      }
+      .songs-total{
+        font-size: var(--normal-text-size);
+        text-align: center;
+        font-weight: 500;
+        padding: 1rem 1rem;
+      
+      }
+
+      .edit-playlist-btn {
+       
+        width: 1.6rem;
+        height: 1.6rem;
+        margin-left: 1rem;
+      
       }
    
    }
    
    @media (min-width: 768px) {
+    .songs-total{
+      font-size: 1.5rem;
+      text-align: center;
+      font-weight: 500;
+      padding: 1.2rem 1rem;
+    
+    }
+    .display-playlist-img {
+      width: 40%;
+      height: auto;
+      padding-bottom: 1.3rem;
+
+    }
    
 
    

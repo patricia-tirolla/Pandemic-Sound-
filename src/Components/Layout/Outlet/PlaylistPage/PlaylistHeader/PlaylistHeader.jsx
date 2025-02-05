@@ -28,6 +28,7 @@ const PlaylistHeader = ({ playlist, tracks }) => {
 
   return (
     <>
+    <div className="title-container">
       <h3 className="display-playlist-title">
         {isEditing ? (
           <input
@@ -39,7 +40,7 @@ const PlaylistHeader = ({ playlist, tracks }) => {
         ) : (
           <>
           {title}
-          <p>{tracks?.length || 0} songs</p>
+          
           </>
         )}
         <button
@@ -47,6 +48,10 @@ const PlaylistHeader = ({ playlist, tracks }) => {
           className="edit-playlist-btn"
         ></button>
       </h3>
+
+    </div>
+    <p className="songs-total">{tracks?.length || 0} songs</p>
+      
       <img
         src={
           playlist?.images?.length > 0 ? playlist.images[0].url : defaultImage
