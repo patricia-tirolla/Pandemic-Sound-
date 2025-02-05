@@ -1,4 +1,4 @@
-.add-new-playlist {
+.add-playlist-button {
     width: 3.5rem; 
     height: 3.5rem; 
     background-color: var(--secondary-background-color); 
@@ -15,19 +15,19 @@
     transition: background-color 0.3s ease, transform 0.2s ease;  
   }
   
-  .add-new-playlist:hover {
+  .add-playlist-button:hover {
     background-color: var(--button-hover-color);  
     transform: scale(1.1); 
   }
   
-  .add-new-playlist:focus {
+  .add-playlist-button:focus {
     outline: none;  
   }
   
 
 @media (max-width: 600px) {
 
-    .add-new-playlist {
+    .add-playlist-button {
         width: 2rem; 
         height: 2rem; 
         font-size: 3rem;  
