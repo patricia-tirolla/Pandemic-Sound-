@@ -66,7 +66,7 @@ const Song = () => {
               toggleDropdown={toggleDropdown}
             />
           </div>
-          <div>
+          <div className="iframe-container">
             {embedUrl &&
               <iframe src={embedUrl} title="Spotify Embed"></iframe>
             }

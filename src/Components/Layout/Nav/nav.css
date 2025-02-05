@@ -4,6 +4,9 @@
     display:grid;
     grid-template-columns: 2fr 5.5fr 0.5fr;
     align-items: center;
+    /* height: 60px;  */
+    /* min-height: 60px; 
+    max-height: 60px; */
   
   }
 .logo{
@@ -64,6 +67,9 @@
     font-size: 1.3rem;
   
   }
+  .Nav {
+    grid-template-columns: 2fr 5fr 0.5fr; 
+}
 
 
 }

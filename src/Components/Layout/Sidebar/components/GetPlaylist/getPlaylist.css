@@ -69,7 +69,6 @@
     text-align: center;
     font-size: 0.8rem;
     overflow: hidden;
-
     width: 90%;
   }
 
@@ -93,8 +92,8 @@
 
   .playlist-image {
     display: flex;
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 3rem;
+    height: 3rem;
     align-self: center;
   }
 
@@ -109,7 +108,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 601px) and (max-width: 768px) {
   .playlistContainer {
     max-height: 85vh;
   }
@@ -119,6 +118,12 @@
     gap: 0.5rem;
     font-size: 0.8rem;
  
+  }
+  .playlist-image {
+
+    width: 2.9rem;
+    height: 2.9rem;
+
   }
 }
 
