@@ -239,12 +239,18 @@ iframe {
     width: 60%;
   }
   .save-track-button {
-    font-size: 0.8rem;
+    font-size: 2rem;
     margin-left: 40%;
-    width: 100%;
+    width: 65px;
+    height: 50px;
+    border-radius: 35px;
   }
 
   .dropdown-button {
-    font-size: 0.8rem;
+    font-size: 2.5rem;
+    width: fit-content;
+    width: 65px;
+    height: 50px;
+    border-radius: 25px;
   }
 }

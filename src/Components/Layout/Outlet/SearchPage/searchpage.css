@@ -305,75 +305,98 @@
 }
 
 @media screen and (max-width: 768px) {
-  .search-artist-container {
-      padding: 0.8rem;
-      gap: 1rem;
-  }
+  .search-single-track-container {
+    display: grid;
+    grid-template-columns: 4rem 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    width: 100%;
+}
 
-  .search-artist-name {
-      font-size: 1.2rem;
-  }
+.search-track-img-name-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.search-track-info {
+    width: 4rem;
+    flex-shrink: 0;
+}
+
+.search-track-image {
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+}
+
+.search-track-name {
+  font-size: 1rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: calc(100vw - 12rem);
+}
+
+.search-button-add-results-container {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
 }
 @media (max-width: 600px) {
   .search-results {
-    padding: 0.5rem;
+      padding: 0;
+      width: 100%;
   }
+    /* Shared container styles */
+    .search-single-track-container
+    {
+        display: grid;
+        grid-template-columns: 20rem 1fr auto;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 0.4rem;
+        width: 100%;
+        min-width: unset;
+        max-width: 100%;
+        margin: 0;
+    }
+    .search-artist-container,
+    .search-album-container {
+      margin: 10px;
+    padding-left: 100px;
+    }
+   /* Shared info container styles */
+   .search-track-img-name-container,
+   .search-album-info,
+   .search-artist-info {
+       width: 100%;
+       gap: 0.5rem;
+       padding-left: 0;
+   }
+   .search-track-info,
+    .search-album-info,
+    .search-artist-info {
+        width: 3rem;
+        min-width: 3rem;
+    }
 
-  .search-single-track-container {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-  }
-
-
-  .search-track-info {
-   
-    gap: 0.5rem;
-  }
-
-  .search-track-image {
-    width: 3rem;
-    height: 3rem;
-  }
-  .search-track-name {
-    font-size: 1.4rem;
-  }
-
-  .search-track-details {
-    align-items: center;
-    text-align: center;
-  }
-
-  .error-message {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 768px) {
-
-  .search-single-track-container {
-    gap: 1.5rem;
-    padding: 1rem;
-  }
-
-  .search-track-info {
-    /* flex-direction: column; */
-    gap: 1rem;
-  }
-
-  .search-track-image {
-    width: 3.5rem;
-    height: 3.5rem;
-  }
-
-  .search-track-name {
-    font-size: 1.6rem;
-  }
+      /* Shared image styles */
+      .search-track-image,
+      .search-album-image,
+      .search-artist-image {
+          width: 3rem;
+          height: 3rem;
+          object-fit: cover;
+      }
+  
 }
 
 @media screen and (min-width: 1200px) {
   :root {
-      --container-width: 900px;
+      --container-width: 800px;
   }
 }
 
@@ -392,5 +415,6 @@
 @media screen and (max-width: 576px) {
   :root {
       --container-width: 300px;
+
   }
 }

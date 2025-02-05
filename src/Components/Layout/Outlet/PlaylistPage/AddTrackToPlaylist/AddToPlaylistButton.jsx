@@ -53,8 +53,8 @@ const AddToPlaylistButton = ({ track, activeTrackId, toggleDropdown, dropdownRef
                 disabled={isLoading}
             >
 
-                               {isLoading ? 'Adding...' : 
-                 showSuccess ? '✓ Added!' : 
+                               {isLoading ? '...' : 
+                 showSuccess ? '✓ ' : 
                  isMobile ? '+' : 'Add to Playlist'}            </button>
 
             {activeTrackId === track.id && (
