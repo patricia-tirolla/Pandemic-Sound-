@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useProfile } from '../../../../../Hooks/Profile';
 import usePostRequest from '../../../../../Hooks/usePostRequest';
+import { usePlaylists } from '../../../../../Hooks/PlaylistsProvider';
 import './addPlaylist.css';
 
 const AddPlaylist = () => {
     const profile = useProfile();
     const { sendPostRequest, isLoading, error } = usePostRequest();
     const [showSuccess, setShowSuccess] = useState(false);
+    const { fetchPlaylists } = usePlaylists();
 
     const createPlaylist = async () => {
         if (!profile) {
@@ -27,6 +29,7 @@ const AddPlaylist = () => {
             );
             setShowSuccess(true);
             setTimeout(() => setShowSuccess(false), 3000);
+            fetchPlaylists();
         } catch (err) {
             console.error('Failed to create playlist:', err);
         }
