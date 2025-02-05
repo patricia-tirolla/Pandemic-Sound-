@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import usePutRequest from "../../../../../Hooks/usePutRequest";
+import { usePlaylists } from "../../../../../Hooks/PlaylistsProvider";
 
 const PlaylistHeader = ({ playlist, tracks }) => {
   const defaultImage =
@@ -10,6 +11,7 @@ const PlaylistHeader = ({ playlist, tracks }) => {
   const [title, setTitle] = useState(playlist?.name || defaultName);
   const [isEditing, setEdit] = useState(false);
   const { sendPutRequest } = usePutRequest();
+  const { playlists, setPlaylists } = usePlaylists();
 
   useEffect(() => {
     setTitle(playlist?.name || defaultName);
@@ -24,6 +26,8 @@ const PlaylistHeader = ({ playlist, tracks }) => {
     const url = `https://api.spotify.com/v1/playlists/${playlist.id}`;
     await sendPutRequest(url, bodyData);
     // Spotify takes around 30 secs to the change take effect, refetch the playlist will return old name
+    const newPlaylists = playlists.map(p => p.id === playlist.id ? {...p, name: title} : p);
+    setPlaylists(newPlaylists);
   };
 
   return (
