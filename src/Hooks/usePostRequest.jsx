@@ -8,7 +8,7 @@ const usePostRequest = () => {
         setIsLoading(true);
         setError(null);
         
-        const token = localStorage.getItem("accessToken");
+        const token = localStorage.getItem("access_token");
         if (!token) {
             setError("No access token found");
             setIsLoading(false);
