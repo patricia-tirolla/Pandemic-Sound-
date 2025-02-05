@@ -63,7 +63,7 @@ const SearchPage = () => {
                         {result.tracks.items.map((track) => (
                             <li 
                                 key={track.id} 
-                                className="single-track-container"
+                                className="search-single-track-container"
                                 onClick={(e) => {
                                     // Only navigate if clicking the track area, not buttons
                                     if (!e.target.closest('button')) {
@@ -71,18 +71,18 @@ const SearchPage = () => {
                                     }
                                 }}
                             >
-                               <div className="track-img-name-container">
-                                <div className="track-info">
+                               <div className="search-track-img-name-container">
+                               <div className="search-track-info">
                                     <img
-                                        className="track-image"
+                                        className="search-track-image"
                                         src={track.album?.images?.[0]?.url || "https://via.placeholder.com/150"}
                                         alt="Album Art"
                                     />
                                     
                                 </div>
-                                <p className="track-name">{track.name}</p>
+                                <p className="search-track-name">{track.name}</p>
                                 </div>
-                                <div className="button-add-results-container">
+                                <div className="search-button-add-results-container">
                                     <AddToSavedTracks
                                         track={track}
                                         playlists={playlists}
@@ -99,67 +99,68 @@ const SearchPage = () => {
                         ))}
                     </ul>
                 ) : <p>No tracks found</p>;
-                case "albums":
-                    return result?.albums?.items
-                        .filter(album => album.total_tracks > 1) // Filter out singles
-                        .length > 0 ? (
-                            <ul className="search-list">
-                                {result.albums.items
-                                    .filter(album => album.total_tracks > 1)
-                                    .map((album) => (
-                                        <li 
-                                            key={album.id} 
-                                            className="single-track-container"
-                                            onClick={() => navigate(`/album/${album.id}`)}
-                                        >
-                                            <div className="track-info">
-                                                <img
-                                                    className="track-image"
-                                                    src={album.images?.[0]?.url || "https://via.placeholder.com/150"}
-                                                    alt="Album Art"
-                                                />
-                                                <div className="album-details">
-                                                    <p className="album-name">{album.name}</p>
-                                                    <p className="album-artist">
+                case "artists":
+                    return result?.artists?.items?.length > 0 ? (
+                        <ul className="search-list">
+                            {result.artists.items.map((artist) => (
+                                <li 
+                                    key={artist.id} 
+                                    className="search-artist-container"
+                                    onClick={() => navigate(`/artist/${artist.id}`)}
+                                >
+                                    <div className="search-artist-info">
+                                        <img
+                                            className="search-artist-image"
+                                            src={artist.images?.[0]?.url || "https://via.placeholder.com/150"}
+                                            alt="Artist"
+                                        />
+                                    </div>
+                                    <div className="search-artist-details">
+                                        <p className="search-artist-name">{artist.name}</p>
+                                        <p className="search-artist-followers">
+                                            {artist.followers?.total?.toLocaleString()} followers
+                                        </p>
+                                        <p className="search-artist-type">Artist</p>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    ) : <p>No artists found</p>;
+                
+                    case "albums":
+                        return result?.albums?.items
+                            .filter(album => album.total_tracks > 1)
+                            .length > 0 ? (
+                                <ul className="search-list">
+                                    {result.albums.items
+                                        .filter(album => album.total_tracks > 1)
+                                        .map((album) => (
+                                            <li 
+                                                key={album.id} 
+                                                className="search-album-container"
+                                                onClick={() => navigate(`/album/${album.id}`)}
+                                            >
+                                                <div className="search-album-info">
+                                                    <img
+                                                        className="search-album-image"
+                                                        src={album.images?.[0]?.url || "https://via.placeholder.com/150"}
+                                                        alt="Album Art"
+                                                    />
+                                                </div>
+                                                <div className="search-album-details">
+                                                    <p className="search-album-name">{album.name}</p>
+                                                    <p className="search-album-artist">
                                                         {album.artists?.map(artist => artist.name).join(', ')}
                                                     </p>
-                                                    <p className="album-type">
+                                                    <p className="search-album-type">
                                                         {album.album_type.charAt(0).toUpperCase() + album.album_type.slice(1)}
                                                     </p>
                                                 </div>
-                                            </div>
-                                        </li>
-                                    ))}
-                            </ul>
-                        ) : <p>No albums found</p>;
-                    case "artists":
-                        return result?.artists?.items?.length > 0 ? (
-                            <ul className="search-list">
-                                {result.artists.items.map((artist) => (
-                                    <li 
-                                        key={artist.id} 
-                                        className="single-track-container"
-                                        onClick={() => navigate(`/artist/${artist.id}`)}
-                                    >
-                                        <div className="track-info">
-                                            <img
-                                                className="track-image"
-                                                src={artist.images?.[0]?.url || "https://via.placeholder.com/150"}
-                                                alt="Artist"
-                                            />
-                                            <div className="artist-search-details">
-                                                <p className="artist-search-name">{artist.name}</p>
-                                                <p className="artist-search-followers">
-                                                    {artist.followers?.total?.toLocaleString()} followers
-                                                </p>
-                                                <p className="artist-search-type">Artist</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        ) : <p>No artists found</p>;
-                        
+                                            </li>
+                                        ))}
+                                </ul>
+                            ) : <p>No albums found</p>;
+                      
             default:
                 return null;
         }
@@ -169,9 +170,9 @@ const SearchPage = () => {
         <div className="search-container">
             {result && !loading && (
                 <div className="search-results">
-                    <div className="searchHeader">
+                    <div className="search-header">
                         <h2 className="search-heading">Search Results for "{searchValue}"</h2>
-                        <div className="filter-buttons">
+                        <div className="search-filter-buttons">
                             <button
                                 onClick={() => setFilter("tracks")}
                                 className={`filter-btn ${filter === "tracks" ? "active" : ""}`}

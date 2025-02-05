@@ -24,34 +24,35 @@ const AlbumPage = () => {
   
 
   return (
-    <div className="album-search-container">
-      <div className="album-search-header">
+    <div className="album-album-container">
+      <div className="album-album-header">
         <img 
           src={album.images?.[0]?.url} 
           alt={album.name} 
-          className="album-search-cover"
+          className="album-album-cover"
         />
-        <div className="album-search-info">
+        <div className="album-album-info">
           <h1>{album.name}</h1>
           <p>{album.artists?.[0]?.name}</p>
           <p>{album.release_date}</p>
         </div>
       </div>
 
-      <div className="album-search-tracks">
+      <div className="album-album-tracks">
         {album.tracks?.items?.map((track) => (
-          <div key={track.id} className="track-item">
-            <div className="track-info">
-              <p className="track-name">{track.name}</p>
-              <p className="track-duration">
+          <div key={track.id} className="album-album-track-item">
+            <div className="album-album-track-info">
+              <p className="album-album-track-name">{track.name}</p>
+              <p className="album-album-track-duration">
                 {Math.floor(track.duration_ms / 60000)}:
                 {((track.duration_ms % 60000) / 1000).toFixed(0).padStart(2, '0')}
               </p>
             </div>
-            <div className="button-add-results-container">
+            <div className="album-album-button-add-results-container">
 
-            <div className="track-actions">
-              <AddToSavedTracks track={track} />
+            <div className="album-album-track-actions">
+              <AddToSavedTracks track={track} 
+              />
               <AddToPlaylistButton
                 track={track}
                 playlists={playlists}

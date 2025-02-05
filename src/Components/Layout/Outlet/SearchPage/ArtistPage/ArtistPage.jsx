@@ -38,34 +38,34 @@ const ArtistPage = () => {
     if (!artist || !topTracks || !albums) return <div>Loading...</div>;
 
     return (
-        <div className="artist-search-container">
-            <div className="artist-search-header">
+        <div className="artist-artist-container">
+            <div className="artist-artist-header">
                 <img 
                     src={artist.images?.[0]?.url} 
                     alt={artist.name} 
-                    className="artist-search-cover"
+                    className="artist-artist-cover"
                 />
-                <div className="artist-search-info">
+                <div className="artist-artist-info">
                     <h1>{artist.name}</h1>
                     <p>{artist.followers?.total.toLocaleString()} followers</p>
                 </div>
             </div>
 
-            <section className="top-tracks-section">
+            <section className="-artist-top-tracks-section">
                 <h2>Popular Tracks</h2>
-                <div className="tracks-container">
+                <div className="artist-artist-tracks-container">
                     {topTracks.tracks?.map((track) => (
-                        <div key={track.id} className="track-item">
-                            <div className="track-info">
+                        <div key={track.id} className="artist-artist-track-item">
+                            <div className="artist-artist-track-info">
                                 <img 
                                     src={track.album?.images?.[2]?.url} 
                                     alt={track.name}
-                                    className="track-thumbnail" 
+                                    className="artist-artist-track-thumbnail" 
                                 />
-                                <p className="track-name">{track.name}</p>
+                                <p className="artist-artist-track-name">{track.name}</p>
                             </div>
-                            <div className="button-add-results-container">
-                            <div className="track-actions">
+                            <div className="search-button-add-results-container">
+                            <div className="search-button-add-results-container">
                                 <AddToSavedTracks track={track} />
                                 <AddToPlaylistButton
                                     track={track}
@@ -80,22 +80,22 @@ const ArtistPage = () => {
                 </div>
             </section>
 
-            <section className="albums-albums-section">
+            <section className="artist-albums-section">
                 <h2>Albums</h2>
-                <div className="albums-grid">
+                <div className="artist-albums-grid">
                     {albums.items?.map((album) => (
                         <div
                          key={album.id}
-                          className="album-card"
+                          className="artist-album-card"
                           onClick={() => navigate(`/album/${album.id}`)}
                           >
                             <img 
                                 src={album.images?.[1]?.url} 
                                 alt={album.name}
-                                className="album-cover" 
+                                className="artist-album-cover" 
                             />
-                            <p className="album-name">{album.name}</p>
-                            <p className="album-year">
+                            <p className="artist-album-name">{album.name}</p>
+                            <p className="artist-album-year">
                                 {new Date(album.release_date).getFullYear()}
                             </p>
                         </div>
