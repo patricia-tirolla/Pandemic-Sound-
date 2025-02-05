@@ -16,13 +16,12 @@
 .new-releases {
   justify-self: center;
   align-self:center;
-
   display: grid;
   grid-template-columns: repeat(3, 1fr); 
   gap: 3rem;
   align-self: center;
   max-height: 80%;
-  overflow: scroll;
+  /* overflow: scroll; */
   width: 90%;
 }
 
@@ -100,13 +99,20 @@
 
   .new-releases {
     grid-template-columns: repeat(2, 1fr); 
-    gap: 1.2rem 1rem;
+    gap: 2rem 0.5rem;
   }
+
+  .album-card {
+    padding: 10px;
+    width: 90px
+   
+  }
+
 }
 
-@media (max-width: 768px) {
+@media (min-width: 601px) and (max-width: 768px) {
   .new-releases {
     grid-template-columns: repeat(2, 1fr); 
-    gap:2rem;
+    gap:1.5rem;
   }
 }
