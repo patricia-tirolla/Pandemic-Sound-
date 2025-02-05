@@ -85,41 +85,45 @@ const SearchPage = () => {
                     </ul>
                 ) : <p>No tracks found</p>;
                 case "albums":
-                    return result?.albums?.items?.length > 0 ? (
-                        <ul className="search-list">
-                            {result.albums.items.map((album) => (
-                                <li 
-                                    key={album.id} 
-                                    className="single-track-container"
-                                    onClick={() => navigate(`/album/${album.id}`)}
-                                >
-                                    <div className="track-info">
-                                        <img
-                                            className="track-image"
-                                            src={album.images?.[0]?.url || "https://via.placeholder.com/150"}
-                                            alt="Album Art"
-                                        />
-                                        <div className="album-details">
-                                            <p className="album-name">{album.name}</p>
-                                            <p className="album-artist">
-                                                {album.artists?.map(artist => artist.name).join(', ')}
-                                            </p>
-                                            <p className="album-type">
-                                                {album.album_type.charAt(0).toUpperCase() + album.album_type.slice(1)}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    ) : <p>No albums found</p>;
+                    return result?.albums?.items
+                        .filter(album => album.total_tracks > 1) // Filter out singles
+                        .length > 0 ? (
+                            <ul className="search-list">
+                                {result.albums.items
+                                    .filter(album => album.total_tracks > 1)
+                                    .map((album) => (
+                                        <li 
+                                            key={album.id} 
+                                            className="single-track-container"
+                                            onClick={() => navigate(`/album/${album.id}`)}
+                                        >
+                                            <div className="track-info">
+                                                <img
+                                                    className="track-image"
+                                                    src={album.images?.[0]?.url || "https://via.placeholder.com/150"}
+                                                    alt="Album Art"
+                                                />
+                                                <div className="album-details">
+                                                    <p className="album-name">{album.name}</p>
+                                                    <p className="album-artist">
+                                                        {album.artists?.map(artist => artist.name).join(', ')}
+                                                    </p>
+                                                    <p className="album-type">
+                                                        {album.album_type.charAt(0).toUpperCase() + album.album_type.slice(1)}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    ))}
+                            </ul>
+                        ) : <p>No albums found</p>;
                     case "artists":
                         return result?.artists?.items?.length > 0 ? (
                             <ul className="search-list">
                                 {result.artists.items.map((artist) => (
                                     <li 
                                         key={artist.id} 
-                                        className="single-artist-container"
+                                        className="single-track-container"
                                         onClick={() => navigate(`/artist/${artist.id}`)}
                                     >
                                         <div className="track-info">
@@ -172,7 +176,6 @@ const SearchPage = () => {
                     {renderResults("tracks")}
                     {renderResults("albums")}
                     {renderResults("artists")}
-                    {renderResults("playlists")}
                 </div>
             )}
         </div>

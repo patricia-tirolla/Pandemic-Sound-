@@ -21,9 +21,7 @@ const AlbumPage = () => {
 
   if (error) return <div>Error: {error}</div>;
   if (!album) return <div>Loading...</div>;
-  if (album.tracks?.items?.length <= 1) {
-    return <div>This appears to be a single track release</div>;
-  }
+  
 
   return (
     <div className="album-search-container">
