@@ -12,6 +12,8 @@ import Song from "./Components/Layout/Outlet/SongPage/SongPage";
 import ErrorPage from "./Components/404/ErrorPage"
 import "./styles/reset.css";
 import "./styles/App.css";
+import AlbumPage from "./Components/Layout/Outlet/SearchPage/AlbumPage";
+import ArtistPage from "./Components/Layout/Outlet/SearchPage/ArtistPage";
 
 function App() {
   return (
@@ -25,6 +27,9 @@ function App() {
         <Route path="playlist/:playlistId" element={<PlaylistPage />} />
         <Route path="track/:trackId" element={<Song />} />
         <Route path="search" element={<SearchPage />} />
+        <Route path="/album/:albumId" element={<AlbumPage />} />
+        <Route path="/artist/:artistId" element={<ArtistPage />} />
+
       </Route>
       <Route path="*" element={<ErrorPage />} />
     </Routes>

@@ -75,23 +75,62 @@ const SearchPage = () => {
                         ))}
                     </ul>
                 ) : <p>No tracks found</p>;
-            case "albums":
-                return result?.albums?.items?.length > 0 ? (
-                    <ul className="search-list">
-                        {result.albums.items.map((album) => (
-                            <li key={album.id}>{album.name}</li>
-                        ))}
-                    </ul>
-                ) : <p>No albums found</p>;
-
-            case "artists":
-                return result?.artists?.items?.length > 0 ? (
-                    <ul className="search-list">
-                        {result.artists.items.map((artist) => (
-                            <li key={artist.id}>{artist.name}</li>
-                        ))}
-                    </ul>
-                ) : <p>No artists found</p>;
+                case "albums":
+                    return result?.albums?.items?.length > 0 ? (
+                        <ul className="search-list">
+                            {result.albums.items.map((album) => (
+                                <li 
+                                    key={album.id} 
+                                    className="single-track-container"
+                                    onClick={() => navigate(`/album/${album.id}`)}
+                                >
+                                    <div className="track-info">
+                                        <img
+                                            className="track-image"
+                                            src={album.images?.[0]?.url || "https://via.placeholder.com/150"}
+                                            alt="Album Art"
+                                        />
+                                        <div className="album-details">
+                                            <p className="album-name">{album.name}</p>
+                                            <p className="album-artist">
+                                                {album.artists?.map(artist => artist.name).join(', ')}
+                                            </p>
+                                            <p className="album-type">
+                                                {album.album_type.charAt(0).toUpperCase() + album.album_type.slice(1)}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    ) : <p>No albums found</p>;
+                    case "artists":
+                        return result?.artists?.items?.length > 0 ? (
+                            <ul className="search-list">
+                                {result.artists.items.map((artist) => (
+                                    <li 
+                                        key={artist.id} 
+                                        className="single-artist-container"
+                                        onClick={() => navigate(`/artist/${artist.id}`)}
+                                    >
+                                        <div className="track-info">
+                                            <img
+                                                className="track-image"
+                                                src={artist.images?.[0]?.url || "https://via.placeholder.com/150"}
+                                                alt="Artist"
+                                            />
+                                            <div className="artist-details">
+                                                <p className="artist-name">{artist.name}</p>
+                                                <p className="artist-followers">
+                                                    {artist.followers?.total?.toLocaleString()} followers
+                                                </p>
+                                                <p className="artist-type">Artist</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : <p>No artists found</p>;
             default:
                 return null;
         }
