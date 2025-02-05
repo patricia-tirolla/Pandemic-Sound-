@@ -9,7 +9,7 @@ import { usePlaylists } from "../../../../Hooks/PlaylistsProvider";
 import "./songPage.css";
 
 const Song = () => {
-  const [accessToken] = useState(localStorage.getItem("accessToken"));
+  const [accessToken] = useState(localStorage.getItem("access_token"));
   const profile = useProfile();
   const [activeTrackId, setActiveTrackId] = useState(null);
   const [embedUrl, setEmbedUrl] = useState();

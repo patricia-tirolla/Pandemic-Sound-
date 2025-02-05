@@ -7,7 +7,7 @@ const usePutRequest = () => {
   const sendPutRequest = async (url, bodyData) => {
     setIsLoading(true);
     setError(null);
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken = localStorage.getItem("access_token");
 
     if (!accessToken) {
       setError("No access token found");

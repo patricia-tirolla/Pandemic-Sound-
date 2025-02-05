@@ -1,21 +1,39 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { fetchProfile } from "../Components/AuthCallback/script";
+import { fetchProfile, getRefreshToken } from "../Components/AuthCallback/script";
 
 const ProfileContext = createContext();
 
 export const ProfileProvider = ({children}) => {
     const [profile, setProfile] = useState(null);
-    const accessToken = localStorage.getItem("accessToken");
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        (async () => {
-          if (accessToken) {
-            const fetchedProfile = await fetchProfile(accessToken);
-            setProfile(fetchedProfile);
-            localStorage.setItem("profileId", fetchedProfile.id);
-          }
-        })();
-      }, [accessToken]);
+      const fetchAndSetProfile = async () => {
+        setLoading(true);
+        let accessToken = localStorage.getItem("access_token");
+
+        if (!accessToken) {
+            accessToken = await getRefreshToken();
+        }
+
+        if (accessToken) {
+            const fetchedProfile = await fetchProfile();
+            if (fetchedProfile) {
+                setProfile(fetchedProfile);
+                localStorage.setItem("profileId", fetchedProfile.id);
+            } else {
+                setProfile(null);
+            }
+        } else {
+            setProfile(null);
+        }
+        setLoading(false);
+    };
+
+    fetchAndSetProfile();
+}, []);
+
+if (loading) return <div>Loading...</div>;
 
     return <ProfileContext.Provider value={profile}>
         {children}
