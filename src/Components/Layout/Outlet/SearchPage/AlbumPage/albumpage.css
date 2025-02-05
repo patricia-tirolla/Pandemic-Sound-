@@ -127,6 +127,9 @@
     gap: 1rem;
     align-items: center;
 }
+.album-page-button {
+    margin-left: 0  ;
+}
 .album-album-button-add-results-container {
     display: flex;
     gap: 1rem;

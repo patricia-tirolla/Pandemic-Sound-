@@ -4,7 +4,7 @@ import usePostRequest from "../../../../../Hooks/usePostRequest";
 import { usePlaylists } from '../../../../../Hooks/PlaylistsProvider';
 import "./addToPlaylistButton.css"
 const AddToPlaylistButton = ({ track, activeTrackId, toggleDropdown, dropdownRef }) => {
-    const {playlists, fetchPlaylists} = usePlaylists();
+    const { playlists, fetchPlaylists } = usePlaylists();
     const { sendPostRequest, isLoading, error: requestError } = usePostRequest();
     const [showSuccess, setShowSuccess] = useState(false);
     const [error, setError] = useState(null);
@@ -41,7 +41,9 @@ const AddToPlaylistButton = ({ track, activeTrackId, toggleDropdown, dropdownRef
     }, []);
 
     return (
-        <div className="dropdown" ref={dropdownRef}>
+        <div className="dropdown" ref={dropdownRef}
+      
+        >
             <button
                 className="dropdown-button"
                 onClick={(e) => {
@@ -53,9 +55,10 @@ const AddToPlaylistButton = ({ track, activeTrackId, toggleDropdown, dropdownRef
                 disabled={isLoading}
             >
 
-                               {isLoading ? '...' : 
-                 showSuccess ? '✓ ' : 
-                 isMobile ? '+' : 'Add to Playlist'}            </button>
+                {isLoading ? '...' :
+                    showSuccess ? '✓ ' :
+                        isMobile ? '+' : 'Add to Playlist'}        
+                            </button>
 
             {activeTrackId === track.id && (
                 <div className="dropdown-menu">
