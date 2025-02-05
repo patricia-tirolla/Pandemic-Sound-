@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import useGetRequest from '../../../../../Hooks/useGetRequest';
 import AddToPlaylistButton from "../../PlaylistPage/AddTrackToPlaylist/AddToPlaylistButton";
 import AddToSavedTracks from "../../PlaylistPage/AddTrackToPlaylist/AddToSavedTracks";
@@ -9,7 +9,8 @@ const ArtistPage = () => {
     const { artistId } = useParams();
     const [activeTrackId, setActiveTrackId] = useState(null);
     const accessToken = localStorage.getItem("accessToken");
-    
+    const navigate = useNavigate();
+
     const { data: artist, error: artistError } = useGetRequest(
         `https://api.spotify.com/v1/artists/${artistId}`,
         accessToken
@@ -63,6 +64,7 @@ const ArtistPage = () => {
                                 />
                                 <p className="track-name">{track.name}</p>
                             </div>
+                            <div className="button-add-results-container">
                             <div className="track-actions">
                                 <AddToSavedTracks track={track} />
                                 <AddToPlaylistButton
@@ -72,23 +74,28 @@ const ArtistPage = () => {
                                     toggleDropdown={toggleDropdown}
                                 />
                             </div>
+                            </div>
                         </div>
                     ))}
                 </div>
             </section>
 
-            <section className="albums-search-section">
+            <section className="albums-albums-section">
                 <h2>Albums</h2>
-                <div className="albums-search-grid">
+                <div className="albums-grid">
                     {albums.items?.map((album) => (
-                        <div key={album.id} className="album-search-card">
+                        <div
+                         key={album.id}
+                          className="album-card"
+                          onClick={() => navigate(`/album/${album.id}`)}
+                          >
                             <img 
                                 src={album.images?.[1]?.url} 
                                 alt={album.name}
-                                className="album-search-cover" 
+                                className="album-cover" 
                             />
-                            <p className="album-search-name">{album.name}</p>
-                            <p className="album-search-year">
+                            <p className="album-name">{album.name}</p>
+                            <p className="album-year">
                                 {new Date(album.release_date).getFullYear()}
                             </p>
                         </div>

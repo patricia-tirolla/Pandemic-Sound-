@@ -37,8 +37,23 @@ const SearchPage = () => {
       <div className="error-message">Error: {searchError || saveError}</div>
     );
   }
+  const renderSectionHeader = (type) => {
+    if (filter !== "all") return null;
+    
+    const titles = {
+        tracks: "Songs",
+        albums: "Albums",
+        artists: "Artists"
+    };
 
+    return (
+        <h3 className="section-header">
+            {titles[type]}
+        </h3>
+    );
+};
   const renderResults = (type) => {
+    
     if (filter !== "all" && filter !== type) return null;
 
         switch (type) {
@@ -144,9 +159,11 @@ const SearchPage = () => {
                                 ))}
                             </ul>
                         ) : <p>No artists found</p>;
+                        
             default:
                 return null;
         }
+        
     };
     return (
         <div className="search-container">
@@ -173,8 +190,11 @@ const SearchPage = () => {
                             </button>
                         </div>
                     </div>
+                    {renderSectionHeader("tracks")}
                     {renderResults("tracks")}
+                    {renderSectionHeader("albums")}
                     {renderResults("albums")}
+                    {renderSectionHeader("artists")}
                     {renderResults("artists")}
                 </div>
             )}
