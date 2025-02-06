@@ -45,7 +45,6 @@ const PlaylistDisplay = () => {
   if (!profile || !playlist) return <div>Loading...</div>;
 
   return (
-   
     <main className="playlist-page">
       <PlaylistHeader playlist={playlist} tracks={tracks} />
       <TrackList tracks={tracks} playlistId={playlistId} onDeleteTrack={fetchPlaylists} />
