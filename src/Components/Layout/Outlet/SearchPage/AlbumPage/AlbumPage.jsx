@@ -52,7 +52,6 @@ const AlbumPage = () => {
 
             <div className="album-album-track-actions">
               <AddToSavedTracks track={track} 
-              className="album-page-button"
               />
               <AddToPlaylistButton
                 track={track}
