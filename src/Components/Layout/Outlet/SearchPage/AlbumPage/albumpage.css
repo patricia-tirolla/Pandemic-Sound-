@@ -64,7 +64,8 @@
         height: 150px;
     }
     .album-album-info p {
-        font-size: 0.9rem;
+        grid-row: 1 / 3;
+        width: 3rem;
     }
     .album-album-track-item {
         flex-direction: column;

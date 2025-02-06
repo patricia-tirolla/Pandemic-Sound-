@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import useGetRequest from '../../../../../Hooks/useGetRequest';
 import AddToPlaylistButton from "../../PlaylistPage/AddTrackToPlaylist/AddToPlaylistButton";
 import AddToSavedTracks from "../../PlaylistPage/AddTrackToPlaylist/AddToSavedTracks";
 import { usePlaylists } from '../../../../../Hooks/PlaylistsProvider';
 import "./albumpage.css";
+
 const AlbumPage = () => {
   const { albumId } = useParams();
   const [activeTrackId, setActiveTrackId] = useState(null);
@@ -14,6 +15,7 @@ const AlbumPage = () => {
     accessToken
   );
   const { playlists } = usePlaylists();
+  const navigate = useNavigate();
 
   const toggleDropdown = (trackId) => {
     setActiveTrackId(prev => prev === trackId ? null : trackId);
@@ -22,7 +24,12 @@ const AlbumPage = () => {
   if (error) return <div>Error: {error}</div>;
   if (!album) return <div>Loading...</div>;
   
-
+  const handleTrackClick = (trackId, e) => {
+    if (e.target.closest('.album-album-button-add-results-container')) {
+      return;
+    }
+    navigate(`/track/${trackId}`);
+  };
   return (
     <div className="album-album-container">
       <div className="album-album-header">
@@ -40,13 +47,10 @@ const AlbumPage = () => {
 
       <div className="album-album-tracks">
         {album.tracks?.items?.map((track) => (
-          <div key={track.id} className="album-album-track-item">
+          <div key={track.id} className="album-album-track-item" onClick={(e) => handleTrackClick(track.id, e)}style={{ cursor: 'pointer' }}>
             <div className="album-album-track-info">
               <p className="album-album-track-name">{track.name}</p>
-              <p className="album-album-track-duration">
-                {Math.floor(track.duration_ms / 60000)}:
-                {((track.duration_ms % 60000) / 1000).toFixed(0).padStart(2, '0')}
-              </p>
+             
             </div>
             <div className="album-album-button-add-results-container">
 
