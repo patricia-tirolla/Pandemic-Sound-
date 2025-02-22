@@ -2,47 +2,46 @@ import "./getPlaylist.css";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+const defaultImage =
+  "https://static.vecteezy.com/system/resources/thumbnails/002/249/673/small/music-note-icon-song-melody-tune-flat-symbol-free-vector.jpg";
+const defaultName = "Untitled Playlist";
+
+// can create a separate component for PlaylistItem for better readability
+const PlaylistItem = ({ playlist, onClick }) => (
+  <div className="single-playlist-container" onClick={onClick}>
+    <img
+      alt="playlistimage"
+      src={playlist?.images?.[0]?.url || defaultImage}
+      className="playlist-image"
+    />
+    <div className="playlist-info">
+      <h4>{playlist?.name || defaultName}</h4>
+    </div>
+  </div>
+);
+
 export const GetPlaylist = ({ playlists }) => {
   const navigate = useNavigate();
 
   const displayPlaylist = (playlist) => {
     navigate(`/playlist/${playlist.id}`);
   };
-
-  const defaultImage =
-    "https://static.vecteezy.com/system/resources/thumbnails/002/249/673/small/music-note-icon-song-melody-tune-flat-symbol-free-vector.jpg";
-  const defaultName = "Untitled Playlist";
-
   return (
     <div className="playlistContainer">
-      {playlists.length === 0 ? (
-        <div>
-          <p>No playlists found</p>
-        </div>
-      ) : (
+      {/* playlists.length === 0 can be simplified to */}
+      {playlists.length ? (
         playlists.map((playlist) => (
-          <div
+          <PlaylistItem
             key={playlist.id}
-            className="single-playlist-container"
+            playlist={playlist}
             onClick={() => displayPlaylist(playlist)}
-          >
-            <img
-              alt="playlistimage"
-              src={
-                playlist?.images?.length > 0
-                  ? playlist.images[0].url
-                  : defaultImage
-              }
-              className="playlist-image"
-            />
-            <div className="playlist-info">
-              <h4>{playlist?.name || defaultName}</h4>
-            </div>
-          </div>
+          />
         ))
+      ) : (
+        <p>No playlists found</p>
       )}
     </div>
   );
-}
+};
 
 export default GetPlaylist;

@@ -1,8 +1,10 @@
-.main{
-    grid-column: 2;
-    grid-row: 2;
-    justify-items: center;
-    align-items: center;
-    overflow: scroll;
-    min-width: 100px;
-  }
+/* should be called Layout.css */
+
+.main {
+  grid-column: 2;
+  grid-row: 2;
+  justify-items: center;
+  align-items: center;
+  overflow: scroll;
+  min-width: 100px;
+}

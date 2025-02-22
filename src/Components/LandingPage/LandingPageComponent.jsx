@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import {
   redirectToAuthCodeFlow,
-  isUserAutheticated,
+  isUserAuthenticated,
 } from "../AuthCallback/script";
-import clientId from "../AuthCallback/ClientId";
+import CLIENT_ID from "../AuthCallback/ClientId";
 import { useNavigate } from "react-router-dom";
 import "./LandingPage.css";
 
@@ -14,7 +14,7 @@ const LandingPage = () => {
 
   useEffect(() => {
     (async () => {
-      if (await isUserAutheticated()) {
+      if (await isUserAuthenticated()) {
         navigate("/home");
       }
       if (backgroundVideoRef.current) {
@@ -25,7 +25,7 @@ const LandingPage = () => {
 
   return (
     <main className="landing-page">
-    <video
+      <video
         className="background-video"
         ref={backgroundVideoRef}
         src="/assets/pandemic-sound-bakcground.mp4"
@@ -33,31 +33,31 @@ const LandingPage = () => {
         autoPlay
         muted
         aria-hidden="true"
-    />
-    <section className="landing-info-container">
-        <div className="landing-info-container">
-            <video
-                className="logo-video"
-                src="/assets/ps-logo-video.mp4"
-                type="video/mp4"
-                autoPlay
-                loop
-                muted
-                aria-label="Pandemic Sound Logo"
-            />
-            <h1 className="landing-page-description">
-                Create, customize, and perfect your playlists using Spotify
-                integration. Discover new music and stay updated on trending new
-                releases.
-            </h1>
-            {!accessToken && (
-                <button onClick={() => redirectToAuthCodeFlow(clientId)}>
-                    Log in with Spotify
-                </button>
-            )}
-        </div>
-    </section>
-</main>
+      />
+      {/* div is redundant, cant keep section with the className, there will be a slight difference in UI but it could be adjusted with CSS */}
+      <section className="landing-info-container">
+        <video
+          className="logo-video"
+          src="/assets/ps-logo-video.mp4"
+          type="video/mp4"
+          autoPlay
+          loop
+          muted
+          aria-label="Pandemic Sound Logo"
+        />
+        <h1 className="landing-page-description">
+          Create, customize, and perfect your playlists using Spotify
+          integration. Discover new music and stay updated on trending new
+          releases.
+        </h1>
+        {!accessToken && (
+          // update to follow constant convention
+          <button onClick={() => redirectToAuthCodeFlow(CLIENT_ID)}>
+            Log in with Spotify
+          </button>
+        )}
+      </section>
+    </main>
   );
 };
 
