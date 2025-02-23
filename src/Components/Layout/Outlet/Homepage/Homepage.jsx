@@ -1,16 +1,22 @@
-import React from 'react';
+import React from "react";
 import useGetRequest from "../../../../Hooks/useGetRequest";
 import "./homepage.css";
 
 const Homepage = () => {
   const accessToken = localStorage.getItem("access_token");
-  const { data: newReleases, error, isLoading } = useGetRequest(
+  const {
+    data: newReleases,
+    error,
+    isLoading,
+  } = useGetRequest(
     "https://api.spotify.com/v1/browse/new-releases?offset=0",
     accessToken
   );
 
   if (!accessToken) {
-    return <div className="error-container">Please login to view new releases</div>;
+    return (
+      <div className="error-container">Please login to view new releases</div>
+    );
   }
 
   if (isLoading) {
@@ -32,29 +38,33 @@ const Homepage = () => {
 
   return (
     <main>
-    <section className="releases-main-container">
-      <h2 className='realeses-title'>Explore</h2>
-      <section className="new-releases">
-        {newReleases.albums.items.map((album) => (
-          <article key={album.id} className="album-card">
-            <a 
-              href={album.external_urls?.spotify} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="play-button"
-            >
-              Listen in Spotify
-            </a>
-            {album.images?.[0]?.url ? (
-              <img src={album.images[0].url} alt={album.name || 'Album cover'} />
-            ) : (
-              <div className="no-image">No Image Available</div>
-            )}
-            <h3>{album.name || 'Untitled Album'}</h3>
-          </article>
-        ))}
+      <section className="releases-main-container">
+        <h2 className="realeses-title">Explore</h2>
+        {/* shouldnt be nested sections */}
+        <div className="new-releases">
+          {newReleases.albums.items.map((album) => (
+            <article key={album.id} className="album-card">
+              <a
+                href={album.external_urls?.spotify}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="play-button"
+              >
+                Listen in Spotify
+              </a>
+              {album.images?.[0]?.url ? (
+                <img
+                  src={album.images[0].url}
+                  alt={album.name || "Album cover"}
+                />
+              ) : (
+                <div className="no-image">No Image Available</div>
+              )}
+              <h3>{album.name || "Untitled Album"}</h3>
+            </article>
+          ))}
+        </div>
       </section>
-    </section>
     </main>
   );
 };

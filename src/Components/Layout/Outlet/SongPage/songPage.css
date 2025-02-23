@@ -4,15 +4,9 @@
   padding: 4rem;
   flex-direction: column;
   gap: 20px;
+}
 
-}
-.songContainer {
-  display: flex;
-  justify-content: center;
-  padding: 4rem;
-  flex-direction: column;
-  gap: 20px;
-}
+/* duplicated css */
 
 .trackDetails {
   display: flex;
@@ -40,11 +34,9 @@
   justify-content: center;
   align-items: center;
   /* overflow: scroll; */
-
 }
 .save-track-button {
   margin-left: 80%;
- 
 }
 .trackInfo {
   display: flex;
@@ -133,11 +125,9 @@ iframe {
     gap: 15px;
   }
 
+  /* duplicated css */
   .buttons-container {
-    gap: 3rem;
     padding: 1rem;
-    justify-content: center;
-    align-items: center;
     width: 100%;
   }
   .dropdown {
@@ -147,11 +137,9 @@ iframe {
     width: 100%;
   }
   .save-track-button {
-
     font-size: 0.7rem;
     margin-left: 40%;
-    width:auto;
-
+    width: auto;
   }
 
   .dropdown-button {
@@ -161,20 +149,17 @@ iframe {
   .trackDetails {
     padding: 2rem 0 0 0;
   }
-.iframe-container{
-  margin-left: auto;      
-  margin-right: auto; 
-  height: auto;      
-
-}
-  iframe {    
-  margin-top: 10px;        
-  max-width: 15rem;        
-  height: auto;            
-  display: block;
-
+  .iframe-container {
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
   }
-
+  iframe {
+    margin-top: 10px;
+    max-width: 15rem;
+    height: auto;
+    display: block;
+  }
 
   .trackName {
     font-size: 1.5rem;
@@ -194,14 +179,14 @@ iframe {
   }
 }
 
-@media(min-width: 601px) and (max-width: 768px) {
+@media (min-width: 601px) and (max-width: 768px) {
   .songContainer {
     padding: 15px;
   }
 
   iframe {
-    max-width: 25rem;        
-    height: 15rem; 
+    max-width: 25rem;
+    height: 15rem;
   }
 
   .trackName {
@@ -221,14 +206,10 @@ iframe {
     font-size: 1rem;
   }
 
+  /* duplicated css */
   .buttons-container {
-
-    gap: 3rem;
     padding: 1rem;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-
   }
   .dropdown,
   .save-track-button,
